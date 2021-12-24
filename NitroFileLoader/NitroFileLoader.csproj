@@ -7,6 +7,7 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Platforms>x64</Platforms>
     <AnalysisLevel>latest</AnalysisLevel>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <ApplicationIcon />
@@ -34,6 +35,7 @@
     <DocumentationFile>bin\Debug\NitroFileLoader.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <RegisterForComInterop>true</RegisterForComInterop>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -41,6 +43,7 @@
     <DocumentationFile>bin\Release\NitroFileLoader.xml</DocumentationFile>
     <RegisterForComInterop>true</RegisterForComInterop>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SoundFont2">
@@ -56,19 +59,11 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GotaSequenceLibDeluxe-master\GotaSequenceLib.csproj">
-      <Private>true</Private>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GotaSoundBankDeluxe-master\GotaSoundBank.csproj">
-      <Private>true</Private>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GotaSoundIODeluxe-master\GotaSoundIO.csproj">
-      <Private>true</Private>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SoundFont2-master\SoundFont2\SoundFont2.csproj" />
+    <ProjectReference Include="..\DLS2\DLS2.csproj" />
+    <ProjectReference Include="..\GotaSequenceLibDeluxe\GotaSequenceLib.csproj" />
+    <ProjectReference Include="..\GotaSoundBankDeluxe\GotaSoundBank.csproj" />
+    <ProjectReference Include="..\GotaSoundIODeluxe\GotaSoundIO.csproj" />
+    <ProjectReference Include="..\SoundFont2\SoundFont2.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

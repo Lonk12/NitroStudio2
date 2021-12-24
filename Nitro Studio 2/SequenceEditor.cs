@@ -154,7 +154,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update nodes.
         /// </summary>
-        public override void UpdateNodes() {
+        protected override void UpdateNodes() {
 
             //File open.
             if (FileOpen && File != null) {
@@ -172,7 +172,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Do info stuff.
         /// </summary>
-        public override void DoInfoStuff() {}
+        protected override void DoInfoStuff() {}
 
         private void MyFindReplace_KeyPressed(object sender, KeyEventArgs e) {
             genericScintilla_KeyDown(sender, e);
@@ -535,7 +535,7 @@ namespace NitroStudio2 {
                 UpdateLineNumbers(0, sequenceEditor.Lines.Count);
         }
 
-        public override void newToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void newToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open and can save test.
             if (!FileTest(sender, e, true)) {
@@ -555,7 +555,7 @@ namespace NitroStudio2 {
 
         }
 
-        public override void openToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void openToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open and save test.
             if (!FileTest(sender, e, true)) {
@@ -586,7 +586,7 @@ namespace NitroStudio2 {
 
         }
 
-        public override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //Update.
             UpdateSequence();
@@ -600,7 +600,7 @@ namespace NitroStudio2 {
 
         }
 
-        public override void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
@@ -637,7 +637,7 @@ namespace NitroStudio2 {
 
         }
 
-        public override void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
             
             //Update.
             UpdateSequence();
@@ -661,7 +661,7 @@ namespace NitroStudio2 {
 
         }
 
-        public override void blankFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void blankFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open save test.
             if (!FileTest(sender, e, false, true)) {
@@ -780,7 +780,7 @@ namespace NitroStudio2 {
             }
         }
 
-        public override void closeToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void closeToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //Do base.
             base.closeToolStripMenuItem_Click(sender, e);

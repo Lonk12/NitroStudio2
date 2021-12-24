@@ -25,63 +25,63 @@ namespace NitroStudio2 {
         /// <summary>
         /// File type to use.
         /// </summary>
-        public IOFile File;
+        protected IOFile File;
 
         /// <summary>
         /// External file.
         /// </summary>
-        public IOFile ExtFile;
+        protected IOFile ExtFile;
 
         /// <summary>
         /// File name.
         /// </summary>
-        public string FileName;
+        protected string FileName;
 
         /// <summary>
         /// File path.
         /// </summary>
-        public string FilePath;
+        protected string FilePath;
 
         /// <summary>
         /// Description of the extension.
         /// </summary>
-        public string ExtensionDescription;
+        protected string ExtensionDescription;
 
         /// <summary>
         /// Extension of format.
         /// </summary>
-        public string Extension;
+        protected string Extension;
 
         /// <summary>
         /// Editor name.
         /// </summary>
-        public string EditorName;
+        protected string EditorName;
 
         /// <summary>
         /// Current file open.
         /// </summary>
-        public bool FileOpen;
+        protected bool FileOpen;
 
         /// <summary>
         /// File type.
         /// </summary>
-        public Type FileType;
+        protected Type FileType;
 
         /// <summary>
         /// Other editor.
         /// </summary>
-        public EditorBase OtherEditor;
+        protected EditorBase OtherEditor;
 
         /// <summary>
         /// Writing info.
         /// </summary>
-        public bool WritingInfo;
+        protected bool WritingInfo;
 
         /// <summary>
         /// The current note that is down.
         /// </summary>
-        public Notes NoteDown;
-        public Panel pnlPianoKeys;
+        protected Notes NoteDown;
+        protected Panel pnlPianoKeys;
         private PianoKey pkeyC7;
         private PianoKey pkeyE7;
         private PianoKey pkeyCSharp7;
@@ -167,159 +167,159 @@ namespace NitroStudio2 {
         private PianoKey pkeyASharp5;
         private PianoKey pkeyB5;
         private PianoKey pkeyC8;
-        public ToolStripMenuItem toolsToolStripMenuItem;
+        protected ToolStripMenuItem toolsToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem getHelpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem aboutNitroStudio2ToolStripMenuItem;
         private ToolStripMenuItem bankGeneratorToolStripMenuItem;
         private ToolStripMenuItem exportSDKProjectToolStripMenuItem;
-        public Panel settingsPanel;
+        protected Panel settingsPanel;
         private Label label2;
-        public CheckBox writeNamesBox;
+        protected CheckBox writeNamesBox;
         private Label label3;
-        public ComboBox seqImportModeBox;
-        public ComboBox seqExportModeBox;
+        protected ComboBox seqImportModeBox;
+        protected ComboBox seqExportModeBox;
         private Label label4;
-        public Panel indexPanel;
+        protected Panel indexPanel;
         private Label label5;
-        public NumericUpDown itemIndexBox;
-        public Button swapAtIndexButton;
-        public Panel forceUniqueFilePanel;
-        public CheckBox forceUniqueFileBox;
+        protected NumericUpDown itemIndexBox;
+        protected Button swapAtIndexButton;
+        protected Panel forceUniqueFilePanel;
+        protected CheckBox forceUniqueFileBox;
         private Label label8;
-        public Panel warPanel;
-        public CheckBox loadIndividuallyBox;
+        protected Panel warPanel;
+        protected CheckBox loadIndividuallyBox;
         private Label label9;
-        public Panel blankPanel;
-        public Panel bankPanel;
+        protected Panel blankPanel;
+        protected Panel bankPanel;
         private TableLayoutPanel tableLayoutPanel2;
-        public ComboBox bnkWar0ComboBox;
+        protected ComboBox bnkWar0ComboBox;
         private Label label6;
-        public NumericUpDown bnkWar0Box;
+        protected NumericUpDown bnkWar0Box;
         private TableLayoutPanel tableLayoutPanel5;
-        public ComboBox bnkWar3ComboBox;
-        public NumericUpDown bnkWar3Box;
+        protected ComboBox bnkWar3ComboBox;
+        protected NumericUpDown bnkWar3Box;
         private Label label11;
         private TableLayoutPanel tableLayoutPanel4;
-        public ComboBox bnkWar2ComboBox;
-        public NumericUpDown bnkWar2Box;
+        protected ComboBox bnkWar2ComboBox;
+        protected NumericUpDown bnkWar2Box;
         private Label label10;
         private TableLayoutPanel tableLayoutPanel3;
-        public ComboBox bnkWar1ComboBox;
-        public NumericUpDown bnkWar1Box;
+        protected ComboBox bnkWar1ComboBox;
+        protected NumericUpDown bnkWar1Box;
         private Label label7;
-        public Panel grpPanel;
-        public DataGridView grpEntries;
+        protected Panel grpPanel;
+        protected DataGridView grpEntries;
         private DataGridViewComboBoxColumn item;
         private DataGridViewComboBoxColumn loadFlags;
-        public Panel streamPlayerPanel;
+        protected Panel streamPlayerPanel;
         private TableLayoutPanel tableLayoutPanel6;
-        public Label leftChannelLabel;
-        public ComboBox stmPlayerChannelType;
+        protected Label leftChannelLabel;
+        protected ComboBox stmPlayerChannelType;
         private Label label12;
-        public Label rightChannelLabel;
-        public NumericUpDown stmPlayerLeftChannelBox;
-        public NumericUpDown stmPlayerRightChannelBox;
-        public Panel stmPanel;
+        protected Label rightChannelLabel;
+        protected NumericUpDown stmPlayerLeftChannelBox;
+        protected NumericUpDown stmPlayerRightChannelBox;
+        protected Panel stmPanel;
         private Label label13;
-        public NumericUpDown stmPriorityBox;
+        protected NumericUpDown stmPriorityBox;
         private Label label14;
-        public NumericUpDown stmVolumeBox;
+        protected NumericUpDown stmVolumeBox;
         private Label label15;
         private TableLayoutPanel tableLayoutPanel7;
-        public ComboBox stmPlayerComboBox;
-        public NumericUpDown stmPlayerBox;
-        public CheckBox stmMonoToStereoBox;
+        protected ComboBox stmPlayerComboBox;
+        protected NumericUpDown stmPlayerBox;
+        protected CheckBox stmMonoToStereoBox;
         private Label label16;
-        public Panel playerPanel;
-        public NumericUpDown playerMaxSequencesBox;
+        protected Panel playerPanel;
+        protected NumericUpDown playerMaxSequencesBox;
         private Label label17;
-        public NumericUpDown playerHeapSizeBox;
+        protected NumericUpDown playerHeapSizeBox;
         private Label label18;
         private Label label19;
         private TableLayoutPanel tableLayoutPanel8;
-        public CheckBox playerFlag15Box;
-        public CheckBox playerFlag14Box;
-        public CheckBox playerFlag13Box;
-        public CheckBox playerFlag12Box;
-        public CheckBox playerFlag11Box;
-        public CheckBox playerFlag10Box;
-        public CheckBox playerFlag9Box;
-        public CheckBox playerFlag8Box;
-        public CheckBox playerFlag7Box;
-        public CheckBox playerFlag6Box;
-        public CheckBox playerFlag5Box;
-        public CheckBox playerFlag4Box;
-        public CheckBox playerFlag3Box;
-        public CheckBox playerFlag2Box;
-        public CheckBox playerFlag1Box;
-        public CheckBox playerFlag0Box;
-        public Panel kermalisSoundPlayerPanel;
-        public Label soundPlayerLabel;
+        protected CheckBox playerFlag15Box;
+        protected CheckBox playerFlag14Box;
+        protected CheckBox playerFlag13Box;
+        protected CheckBox playerFlag12Box;
+        protected CheckBox playerFlag11Box;
+        protected CheckBox playerFlag10Box;
+        protected CheckBox playerFlag9Box;
+        protected CheckBox playerFlag8Box;
+        protected CheckBox playerFlag7Box;
+        protected CheckBox playerFlag6Box;
+        protected CheckBox playerFlag5Box;
+        protected CheckBox playerFlag4Box;
+        protected CheckBox playerFlag3Box;
+        protected CheckBox playerFlag2Box;
+        protected CheckBox playerFlag1Box;
+        protected CheckBox playerFlag0Box;
+        protected Panel kermalisSoundPlayerPanel;
+        protected Label soundPlayerLabel;
         private TableLayoutPanel tableLayoutPanel9;
-        public Button kermalisStopButton;
-        public Button kermalisPauseButton;
-        public TrackBar kermalisVolumeSlider;
-        public Button kermalisPlayButton;
+        protected Button kermalisStopButton;
+        protected Button kermalisPauseButton;
+        protected TrackBar kermalisVolumeSlider;
+        protected Button kermalisPlayButton;
         private Label label21;
-        public CheckBox kermalisLoopBox;
+        protected CheckBox kermalisLoopBox;
         private Label label22;
-        public Panel seqPanel;
+        protected Panel seqPanel;
         private Label label23;
         private TableLayoutPanel tableLayoutPanel10;
-        public ComboBox seqBankComboBox;
-        public NumericUpDown seqBankBox;
+        protected ComboBox seqBankComboBox;
+        protected NumericUpDown seqBankBox;
         private Label label24;
-        public NumericUpDown seqVolumeBox;
-        public NumericUpDown seqChannelPriorityBox;
+        protected NumericUpDown seqVolumeBox;
+        protected NumericUpDown seqChannelPriorityBox;
         private Label label25;
-        public NumericUpDown seqPlayerPriorityBox;
+        protected NumericUpDown seqPlayerPriorityBox;
         private Label label26;
         private Label label27;
         private TableLayoutPanel tableLayoutPanel11;
-        public ComboBox seqPlayerComboBox;
-        public NumericUpDown seqPlayerBox;
-        public Panel seqBankPanel;
+        protected ComboBox seqPlayerComboBox;
+        protected NumericUpDown seqPlayerBox;
+        protected Panel seqBankPanel;
         private Label label28;
         private TableLayoutPanel tableLayoutPanel12;
-        public ComboBox seqEditorBankComboBox;
-        public NumericUpDown seqEditorBankBox;
-        public Panel seqArcPanel;
-        public Button seqArcOpenFileButton;
-        public Panel seqArcSeqPanel;
+        protected ComboBox seqEditorBankComboBox;
+        protected NumericUpDown seqEditorBankBox;
+        protected Panel seqArcPanel;
+        protected Button seqArcOpenFileButton;
+        protected Panel seqArcSeqPanel;
         private Label label29;
         private TableLayoutPanel tableLayoutPanel13;
-        public ComboBox seqArcSeqComboBox;
-        public NumericUpDown seqArcSeqBox;
-        public Panel bankEditorPanel;
+        protected ComboBox seqArcSeqComboBox;
+        protected NumericUpDown seqArcSeqBox;
+        protected Panel bankEditorPanel;
         private Label label30;
         private TableLayoutPanel tableLayoutPanel14;
-        public RadioButton directBox;
-        public RadioButton keySplitBox;
-        public RadioButton drumSetBox;
-        public Label drumSetRangeStartLabel;
+        protected RadioButton directBox;
+        protected RadioButton keySplitBox;
+        protected RadioButton drumSetBox;
+        protected Label drumSetRangeStartLabel;
         private TableLayoutPanel tableLayoutPanel15;
-        public ComboBox drumSetStartRangeComboBox;
-        public NumericUpDown drumSetStartRangeBox;
+        protected ComboBox drumSetStartRangeComboBox;
+        protected NumericUpDown drumSetStartRangeBox;
         private Label label32;
-        public DataGridView bankRegions;
-        public Panel bankEditorWars;
+        protected DataGridView bankRegions;
+        protected Panel bankEditorWars;
         private TableLayoutPanel tableLayoutPanel16;
-        public ComboBox war3ComboBox;
-        public NumericUpDown war3Box;
+        protected ComboBox war3ComboBox;
+        protected NumericUpDown war3Box;
         private Label label31;
         private TableLayoutPanel tableLayoutPanel17;
-        public ComboBox war2ComboBox;
-        public NumericUpDown war2Box;
+        protected ComboBox war2ComboBox;
+        protected NumericUpDown war2Box;
         private Label label33;
         private TableLayoutPanel tableLayoutPanel18;
-        public ComboBox war1ComboBox;
-        public NumericUpDown war1Box;
+        protected ComboBox war1ComboBox;
+        protected NumericUpDown war1Box;
         private Label label34;
         private TableLayoutPanel tableLayoutPanel19;
-        public ComboBox war0ComboBox;
-        public NumericUpDown war0Box;
+        protected ComboBox war0ComboBox;
+        protected NumericUpDown war0Box;
         private Label label35;
         private ToolStripMenuItem sequenceEditorToolStripMenuItem;
         private ToolStripMenuItem sequenceArchiveEditorToolStripMenuItem;
@@ -327,72 +327,72 @@ namespace NitroStudio2 {
         private ToolStripMenuItem createStreamToolStripMenuItem;
         private ToolStripMenuItem creaveWaveToolStripMenuItem;
         private ToolStripMenuItem waveArchiveEditorToolStripMenuItem;
-        public ToolStripStatusLabel currentNote;
+        protected ToolStripStatusLabel currentNote;
         private TableLayoutPanel tableLayoutPanel1;
-        public CheckBox track0Box;
-        public PictureBox track0Picture;
-        public Button track0Solo;
+        protected CheckBox track0Box;
+        protected PictureBox track0Picture;
+        protected Button track0Solo;
         private TableLayoutPanel tableLayoutPanel20;
         private TableLayoutPanel tableLayoutPanel27;
-        public CheckBox track12Box;
-        public PictureBox track12Picture;
-        public Button track12Solo;
+        protected CheckBox track12Box;
+        protected PictureBox track12Picture;
+        protected Button track12Solo;
         private TableLayoutPanel tableLayoutPanel26;
-        public CheckBox track10Box;
-        public PictureBox track10Picture;
-        public Button track10Solo;
+        protected CheckBox track10Box;
+        protected PictureBox track10Picture;
+        protected Button track10Solo;
         private TableLayoutPanel tableLayoutPanel25;
-        public CheckBox track8Box;
-        public PictureBox track8Picture;
-        public Button track8Solo;
+        protected CheckBox track8Box;
+        protected PictureBox track8Picture;
+        protected Button track8Solo;
         private TableLayoutPanel tableLayoutPanel24;
-        public CheckBox track6Box;
-        public PictureBox track6Picture;
-        public Button track6Solo;
+        protected CheckBox track6Box;
+        protected PictureBox track6Picture;
+        protected Button track6Solo;
         private TableLayoutPanel tableLayoutPanel23;
-        public CheckBox track4Box;
-        public PictureBox track4Picture;
-        public Button track4Solo;
+        protected CheckBox track4Box;
+        protected PictureBox track4Picture;
+        protected Button track4Solo;
         private TableLayoutPanel tableLayoutPanel22;
-        public CheckBox track2Box;
-        public PictureBox track2Picture;
-        public Button track2Solo;
+        protected CheckBox track2Box;
+        protected PictureBox track2Picture;
+        protected Button track2Solo;
         private TableLayoutPanel tableLayoutPanel21;
-        public CheckBox track1Box;
-        public PictureBox track1Picture;
-        public Button track1Solo;
+        protected CheckBox track1Box;
+        protected PictureBox track1Picture;
+        protected Button track1Solo;
         private TableLayoutPanel tableLayoutPanel35;
-        public CheckBox track15Box;
-        public PictureBox track15Picture;
-        public Button track15Solo;
+        protected CheckBox track15Box;
+        protected PictureBox track15Picture;
+        protected Button track15Solo;
         private TableLayoutPanel tableLayoutPanel34;
-        public CheckBox track13Box;
-        public PictureBox track13Picture;
-        public Button track13Solo;
+        protected CheckBox track13Box;
+        protected PictureBox track13Picture;
+        protected Button track13Solo;
         private TableLayoutPanel tableLayoutPanel33;
-        public CheckBox track11Box;
-        public PictureBox track11Picture;
-        public Button track11Solo;
+        protected CheckBox track11Box;
+        protected PictureBox track11Picture;
+        protected Button track11Solo;
         private TableLayoutPanel tableLayoutPanel32;
-        public CheckBox track9Box;
-        public PictureBox track9Picture;
-        public Button track9Solo;
+        protected CheckBox track9Box;
+        protected PictureBox track9Picture;
+        protected Button track9Solo;
         private TableLayoutPanel tableLayoutPanel31;
-        public CheckBox track7Box;
-        public PictureBox track7Picture;
-        public Button track7Solo;
+        protected CheckBox track7Box;
+        protected PictureBox track7Picture;
+        protected Button track7Solo;
         private TableLayoutPanel tableLayoutPanel30;
-        public CheckBox track5Box;
-        public PictureBox track5Picture;
-        public Button track5Solo;
+        protected CheckBox track5Box;
+        protected PictureBox track5Picture;
+        protected Button track5Solo;
         private TableLayoutPanel tableLayoutPanel29;
-        public CheckBox track3Box;
-        public PictureBox track3Picture;
-        public Button track3Solo;
+        protected CheckBox track3Box;
+        protected PictureBox track3Picture;
+        protected Button track3Solo;
         private TableLayoutPanel tableLayoutPanel28;
-        public CheckBox track14Box;
-        public PictureBox track14Picture;
-        public Button track14Solo;
+        protected CheckBox track14Box;
+        protected PictureBox track14Picture;
+        protected Button track14Solo;
         private DataGridViewButtonColumn playSampleButton;
         private DataGridViewComboBoxColumn endNote;
         private DataGridViewComboBoxColumn instrumentType;
@@ -406,16 +406,16 @@ namespace NitroStudio2 {
         private DataGridViewTextBoxColumn pan;
         private ToolStripMenuItem sF2ToDLSToolStripMenuItem;
         private ToolStripMenuItem dLSToSF2ToolStripMenuItem;
-        public TrackBar kermalisPosition;
+        protected TrackBar kermalisPosition;
         private ToolStripMenuItem batchExportMIDIDLSSF2ToolStripMenuItem;
         private TableLayoutPanel tableLayoutPanel36;
-        public Button exportWavButton;
-        public Button exportMidiButton;
+        protected Button exportWavButton;
+        protected Button exportMidiButton;
 
         /// <summary>
         /// Main window.
         /// </summary>
-        public static MainWindow MainWindow;
+        protected static MainWindow MainWindow;
 
         /// <summary>
         /// Constructor.
@@ -425,10 +425,12 @@ namespace NitroStudio2 {
         /// <param name="extension">File extension type.</param>
         /// <param name="editorName">Editor name.</param>
         /// <param name="mainWindow">Main window.</param>
-        public EditorBase(Type fileType, string extensionDescription, string extension, string editorName, MainWindow mainWindow) {
-
+        private EditorBase()
+        {
             //Initialize component.
             InitializeComponent();
+        }
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, MainWindow mainWindow) {
 
             //Set main window.
             MainWindow = mainWindow;
@@ -463,7 +465,7 @@ namespace NitroStudio2 {
         /// <param name="editorName">Editor name.</param>
         /// <param name="fileToOpen">File to open.</param>
         /// <param name="mainWindow">Main window.</param>
-        public EditorBase(Type fileType, string extensionDescription, string extension, string editorName, string fileToOpen, MainWindow mainWindow) {
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, string fileToOpen, MainWindow mainWindow) {
 
             //Initialize component.
             InitializeComponent();
@@ -509,7 +511,7 @@ namespace NitroStudio2 {
         /// <param name="fileToOpen">File to open.</param>
         /// <param name="mainWindow">Main window.</param>
         /// <param name="fileName">Filename.</param>
-        public EditorBase(Type fileType, string extensionDescription, string extension, string editorName, IOFile fileToOpen, MainWindow mainWindow, string fileName) {
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, IOFile fileToOpen, MainWindow mainWindow, string fileName) {
 
             //Initialize component.
             InitializeComponent();
@@ -547,34 +549,34 @@ namespace NitroStudio2 {
             DoInfoStuff();
 
         }
-        public MenuStrip menuStrip;
-        public ToolStripMenuItem newToolStripMenuItem;
-        public ToolStripMenuItem openToolStripMenuItem;
-        public ToolStripMenuItem saveToolStripMenuItem;
-        public ToolStripMenuItem saveAsToolStripMenuItem;
-        public ToolStripMenuItem closeToolStripMenuItem;
-        public ToolStripMenuItem quitToolStripMenuItem;
-        public ToolStripMenuItem editToolStripMenuItem;
-        public ToolStripMenuItem blankFileToolStripMenuItem;
-        public ToolStripMenuItem importFileToolStripMenuItem;
-        public ToolStripMenuItem exportFileToolStripMenuItem;
-        public SplitContainer splitContainer1;
-        public TreeView tree;
+        protected MenuStrip menuStrip;
+        protected ToolStripMenuItem newToolStripMenuItem;
+        protected ToolStripMenuItem openToolStripMenuItem;
+        protected ToolStripMenuItem saveToolStripMenuItem;
+        protected ToolStripMenuItem saveAsToolStripMenuItem;
+        protected ToolStripMenuItem closeToolStripMenuItem;
+        protected ToolStripMenuItem quitToolStripMenuItem;
+        protected ToolStripMenuItem editToolStripMenuItem;
+        protected ToolStripMenuItem blankFileToolStripMenuItem;
+        protected ToolStripMenuItem importFileToolStripMenuItem;
+        protected ToolStripMenuItem exportFileToolStripMenuItem;
+        protected SplitContainer splitContainer1;
+        protected TreeView tree;
         private OpenFileDialog openFileDialog;
         private SaveFileDialog saveFileDialog;
         private StatusStrip statusStrip;
-        public ToolStripStatusLabel status;
-        public ImageList treeIcons;
+        protected ToolStripStatusLabel status;
+        protected ImageList treeIcons;
         private System.ComponentModel.IContainer components;
-        public ContextMenuStrip rootMenu;
+        protected ContextMenuStrip rootMenu;
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem expandToolStripMenuItem;
         private ToolStripMenuItem collapseToolStripMenuItem;
-        public Panel noInfoPanel;
+        protected Panel noInfoPanel;
         private Label label1;
         private ToolTip toolTip;
-        public ToolStripMenuItem fileMenu;
-        public ContextMenuStrip nodeMenu;
+        protected ToolStripMenuItem fileMenu;
+        protected ContextMenuStrip nodeMenu;
         private ToolStripMenuItem addAboveToolStripMenuItem1;
         private ToolStripMenuItem addBelowToolStripMenuItem1;
         private ToolStripMenuItem moveUpToolStripMenuItem1;
@@ -582,10 +584,10 @@ namespace NitroStudio2 {
         private ToolStripMenuItem replaceFileToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem1;
         private ToolStripMenuItem exportToolStripMenuItem1;
-        public Panel sequenceEditorPanel;
-        public Scintilla sequenceEditor;
+        protected Panel sequenceEditorPanel;
+        protected Scintilla sequenceEditor;
         private BindingSource bindingSource1;
-        public ContextMenuStrip sarEntryMenu;
+        protected ContextMenuStrip sarEntryMenu;
         private ToolStripMenuItem sarAddAbove;
         private ToolStripMenuItem sarAddBelow;
         private ToolStripMenuItem sarMoveUp;
@@ -595,7 +597,7 @@ namespace NitroStudio2 {
         private ToolStripMenuItem sarRename;
         private ToolStripMenuItem sarDelete;
 
-        public void InitializeComponent() {
+        protected void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorBase));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("File Information", 10, 10);
@@ -5296,7 +5298,7 @@ namespace NitroStudio2 {
         /// <param name="description">File description.</param>
         /// <param name="extension">File extension.</param>
         /// <returns>Path of the file to open.</returns>
-        public string GetFileOpenerPath(string description, string extension) {
+        protected string GetFileOpenerPath(string description, string extension) {
 
             //Set filer.
             openFileDialog.FileName = "";
@@ -5314,7 +5316,7 @@ namespace NitroStudio2 {
         /// <param name="description">File description.</param>
         /// <param name="extension">File extension.</param>
         /// <returns>Path of the file to save.</returns>
-        public string GetFileSaverPath(string description, string extension) {
+        protected string GetFileSaverPath(string description, string extension) {
 
             //Set filer.
             saveFileDialog.FileName = "";
@@ -5346,9 +5348,9 @@ namespace NitroStudio2 {
         /// <summary>
         /// On closing.
         /// </summary>
-        public virtual void OnClosing() {}
+        protected virtual void OnClosing() {}
 
-        public ContextMenuStrip CreateMenuStrip(ContextMenuStrip orig, int[] indices, EventHandler[] eventHandlers) {
+        protected ContextMenuStrip CreateMenuStrip(ContextMenuStrip orig, int[] indices, EventHandler[] eventHandlers) {
 
             ContextMenuStrip c = new ContextMenuStrip();
 
@@ -5370,7 +5372,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Do the info stuff on node selected.
         /// </summary>
-        public virtual void DoInfoStuff() {
+        protected virtual void DoInfoStuff() {
 
             //Fix selected node issue.
             if (tree.SelectedNode == null) {
@@ -5397,7 +5399,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Begin the updating of nodes.
         /// </summary>
-        public void BeginUpdateNodes() {
+        protected void BeginUpdateNodes() {
 
             //Begin update.
             tree.BeginUpdate();
@@ -5428,12 +5430,12 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update the nodes in the tree. THIS MUST CONTAIN THE BEGIN AND END UPDATE NODES!
         /// </summary>
-        public abstract void UpdateNodes();
+        protected abstract void UpdateNodes();
 
         /// <summary>
         /// Complete the updating of nodes.
         /// </summary>
-        public void EndUpdateNodes() {
+        protected void EndUpdateNodes() {
 
             //Restore the expanded nodes if they exist.
             if (expandedNodes.Count > 0) {
@@ -5467,7 +5469,7 @@ namespace NitroStudio2 {
         #region fileMenu
 
         //New.
-        public virtual void newToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void newToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open and can save test.
             if (!FileTest(sender, e, true)) {
@@ -5490,7 +5492,7 @@ namespace NitroStudio2 {
         }
 
         //Open.
-        public virtual void openToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void openToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open and save test.
             if (!FileTest(sender, e, true)) {
@@ -5522,7 +5524,7 @@ namespace NitroStudio2 {
         }
 
         //Save.
-        public virtual void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void saveToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
@@ -5569,7 +5571,7 @@ namespace NitroStudio2 {
         }
 
         //Save as.
-        public void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
@@ -5595,7 +5597,7 @@ namespace NitroStudio2 {
         }
 
         //Close.
-        public virtual void closeToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void closeToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open and can save test.
             if (!FileTest(sender, e, true, true)) {
@@ -5634,7 +5636,7 @@ namespace NitroStudio2 {
         #region editMenu
 
         //Blank the file.
-        public virtual void blankFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void blankFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open save test.
             if (!FileTest(sender, e, false, true)) {
@@ -5651,7 +5653,7 @@ namespace NitroStudio2 {
         }
 
         //Import data from another file.
-        public virtual void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
@@ -5679,7 +5681,7 @@ namespace NitroStudio2 {
         }
 
         //Export data to somewhere.
-        public virtual void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open.
             if (!FileTest(sender, e, false, true)) {
@@ -5728,7 +5730,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Returns true if the user wants to continue.
         /// </summary>
-        public bool FileTest(object sender, EventArgs e, bool save, bool forceOpen = false) {
+        protected bool FileTest(object sender, EventArgs e, bool save, bool forceOpen = false) {
 
             //File is open.
             if (FileOpen) {
@@ -5827,7 +5829,7 @@ namespace NitroStudio2 {
 
         }
 
-        public virtual void NodeMouseDoubleClick() {}
+        protected virtual void NodeMouseDoubleClick() {}
 
         void tree_NodeKey(object sender, KeyEventArgs e) {
 
@@ -5895,9 +5897,9 @@ namespace NitroStudio2 {
             Stop();
         }
 
-        public virtual void Play() {}
-        public virtual void Pause() {}
-        public virtual void Stop() {}
+        protected virtual void Play() {}
+        protected virtual void Pause() {}
+        protected virtual void Stop() {}
 
         #endregion
 
@@ -5909,7 +5911,7 @@ namespace NitroStudio2 {
             ForceWaveVersionButtonClick();
         }
 
-        public virtual void ForceWaveVersionButtonClick() {}
+        protected virtual void ForceWaveVersionButtonClick() {}
 
         #endregion
 
@@ -5921,15 +5923,15 @@ namespace NitroStudio2 {
             RootAdd();
         }
 
-        public void expandToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void expandToolStripMenuItem_Click(object sender, EventArgs e) {
             tree.SelectedNode.Expand();
         }
 
-        public void collapseToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void collapseToolStripMenuItem_Click(object sender, EventArgs e) {
             tree.SelectedNode.Collapse();
         }
 
-        public virtual void RootAdd() {}
+        protected virtual void RootAdd() {}
 
         #endregion
 
@@ -5937,51 +5939,51 @@ namespace NitroStudio2 {
         //Node menu.
         #region nodeMenu
 
-        public void addAboveToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void addAboveToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeAddAbove();
         }
 
-        public void addBelowToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void addBelowToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeAddBelow();
         }
 
-        public void moveUpToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void moveUpToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeMoveUp();
         }
 
-        public void moveDownToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void moveDownToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeMoveDown();
         }
 
-        public void blankToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void blankToolStripMenuItem_Click(object sender, EventArgs e) {
             NodeBlank();
         }
 
-        public void replaceFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void replaceFileToolStripMenuItem_Click(object sender, EventArgs e) {
             NodeReplace();
         }
 
-        public void exportToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void exportToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeExport();
         }
 
-        public void nullifyToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void nullifyToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeNullify();
         }
 
-        public void deleteToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void deleteToolStripMenuItem1_Click(object sender, EventArgs e) {
             NodeDelete();
         }
 
-        public virtual void NodeAddAbove() {}
-        public virtual void NodeAddBelow() {}
-        public virtual void NodeMoveUp() {}
-        public virtual void NodeMoveDown() {}
-        public virtual void NodeBlank() {}
-        public virtual void NodeReplace() {}
-        public virtual void NodeExport() {}
-        public virtual void NodeNullify() {}
-        public virtual void NodeDelete() {}
+        protected virtual void NodeAddAbove() {}
+        protected virtual void NodeAddBelow() {}
+        protected virtual void NodeMoveUp() {}
+        protected virtual void NodeMoveDown() {}
+        protected virtual void NodeBlank() {}
+        protected virtual void NodeReplace() {}
+        protected virtual void NodeExport() {}
+        protected virtual void NodeNullify() {}
+        protected virtual void NodeDelete() {}
 
         /// <summary>
         /// Swap the a and b objects.
@@ -5989,7 +5991,7 @@ namespace NitroStudio2 {
         /// <param name="objects">Objects list.</param>
         /// <param name="a">Object a to swap.</param>
         /// <param name="b">Object b to swap.</param>
-        public bool Swap<T>(IList<T> objects, int a, int b) {
+        protected bool Swap<T>(IList<T> objects, int a, int b) {
 
             //Make sure it is possible.
             if (a < 0 || a >= objects.Count || b < 0 || b >= objects.Count) {
@@ -6034,12 +6036,12 @@ namespace NitroStudio2 {
             BoxWavRevChanged();
         }
 
-        public virtual void BoxWarMajChanged() {}
-        public virtual void BoxWarMinChanged() {}
-        public virtual void BoxWarRevChanged() {}
-        public virtual void BoxWavMajChanged() {}
-        public virtual void BoxWavMinChanged() {}
-        public virtual void BoxWavRevChanged() {}
+        protected virtual void BoxWarMajChanged() {}
+        protected virtual void BoxWarMinChanged() {}
+        protected virtual void BoxWarRevChanged() {}
+        protected virtual void BoxWavMajChanged() {}
+        protected virtual void BoxWavMinChanged() {}
+        protected virtual void BoxWavRevChanged() {}
 
         #endregion
 
@@ -6067,11 +6069,11 @@ namespace NitroStudio2 {
             WarBatchImport();
         }
 
-        public virtual void WarExtractWave() {}
-        public virtual void WarExtractWave3ds() {}
-        public virtual void WarExtractWaveWiiU() {}
-        public virtual void WarExtractWaveSwitch() {}
-        public virtual void WarBatchImport() {}
+        protected virtual void WarExtractWave() {}
+        protected virtual void WarExtractWave3ds() {}
+        protected virtual void WarExtractWaveWiiU() {}
+        protected virtual void WarExtractWaveSwitch() {}
+        protected virtual void WarBatchImport() {}
 
         #endregion
 
@@ -6217,12 +6219,12 @@ namespace NitroStudio2 {
             }
         }
 
-        public virtual void GroupForceSequenceVersion() {}
-        public virtual void GroupForceBankVersion() {}
-        public virtual void GroupForceWaveArchiveVersion() {}
-        public virtual void GroupForceWaveSoundDataVersion() {}
-        public virtual void GroupForcePrefetchVersion() {}
-        public virtual void GroupVersionChanged() {}
+        protected virtual void GroupForceSequenceVersion() {}
+        protected virtual void GroupForceBankVersion() {}
+        protected virtual void GroupForceWaveArchiveVersion() {}
+        protected virtual void GroupForceWaveSoundDataVersion() {}
+        protected virtual void GroupForcePrefetchVersion() {}
+        protected virtual void GroupVersionChanged() {}
 
         #endregion
 
@@ -6248,9 +6250,9 @@ namespace NitroStudio2 {
             }
         }
 
-        public virtual void GroupFileIdComboChanged() {}
-        public virtual void GroupFileIdNumBoxChanged() {}
-        public virtual void GroupFileIdEmbedModeChanged() {}
+        protected virtual void GroupFileIdComboChanged() {}
+        protected virtual void GroupFileIdNumBoxChanged() {}
+        protected virtual void GroupFileIdEmbedModeChanged() {}
 
         #endregion
 
@@ -6282,10 +6284,10 @@ namespace NitroStudio2 {
             }
         }
 
-        public virtual void GroupDependencyTypeChanged() {}
-        public virtual void GroupDependencyEntryComboChanged() {}
-        public virtual void GroupDependencyEntryNumBoxChanged() {}
-        public virtual void GroupDependencyFlagsChanged() {}
+        protected virtual void GroupDependencyTypeChanged() {}
+        protected virtual void GroupDependencyEntryComboChanged() {}
+        protected virtual void GroupDependencyEntryNumBoxChanged() {}
+        protected virtual void GroupDependencyFlagsChanged() {}
 
         #endregion
 
@@ -6352,414 +6354,414 @@ namespace NitroStudio2 {
             }
         }
 
-        public virtual void SarProjectInfoUpdated() { }
+        protected virtual void SarProjectInfoUpdated() { }
 
         #endregion
 
-        public virtual void StmSound3dButton_Click(object sender, EventArgs e) {}
+        protected virtual void StmSound3dButton_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdSound3dButton_Click(object sender, EventArgs e) {}
+        protected virtual void WsdSound3dButton_Click(object sender, EventArgs e) {}
 
-        public virtual void SeqEditSound3dInfoButton_Click(object sender, EventArgs e) {}
+        protected virtual void SeqEditSound3dInfoButton_Click(object sender, EventArgs e) {}
 
-        public virtual void SeqEditSoundInfoButton_Click(object sender, EventArgs e) {}
+        protected virtual void SeqEditSoundInfoButton_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdEditSoundInfoButton_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEditSoundInfoButton_Click(object sender, EventArgs e) {}
 
-        public virtual void StmSoundInfoButton_Click(object sender, EventArgs e) {}
+        protected virtual void StmSoundInfoButton_Click(object sender, EventArgs e) {}
 
-        public virtual void FileTypeBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void FileTypeBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void PlayerSoundLimitBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void PlayerSoundLimitBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void PlayerEnableSoundLimitBox_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void PlayerEnableSoundLimitBox_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void PlayerHeapSizeBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void PlayerHeapSizeBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void SarGrpFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SarGrpFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SarWarFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SarWarFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void WarLoadIndividuallyBox_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WarLoadIndividuallyBox_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WarIncludeWaveCountBox_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WarIncludeWaveCountBox_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SarBnkFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SarBnkFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void BnkWarsChanged(object sender, EventArgs e) {}
+        protected virtual void BnkWarsChanged(object sender, EventArgs e) {}
 
-        public virtual void SoundGrpStartIndex_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void SoundGrpStartIndex_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void SoundGrpEndIndex_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void SoundGrpEndIndex_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void SoundGroupFilesChanged(object sender, EventArgs e) {}
+        protected virtual void SoundGroupFilesChanged(object sender, EventArgs e) {}
 
-        public virtual void SoundGroupWarsChanged(object sender, EventArgs e) {}
+        protected virtual void SoundGroupWarsChanged(object sender, EventArgs e) {}
 
-        public virtual void SarSeqFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SarSeqFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SarSeqPlay_Click(object sender, EventArgs e) {}
+        protected virtual void SarSeqPlay_Click(object sender, EventArgs e) {}
 
-        public virtual void SarSeqPause_Click(object sender, EventArgs e) {}
+        protected virtual void SarSeqPause_Click(object sender, EventArgs e) {}
 
-        public virtual void SarSeqStop_Click(object sender, EventArgs e) {}
+        protected virtual void SarSeqStop_Click(object sender, EventArgs e) {}
 
-        public virtual void SeqSound3dInfoExists_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqSound3dInfoExists_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqBank0Box_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SeqBank0Box_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqBank1Box_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SeqBank1Box_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqBank2Box_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SeqBank2Box_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqBank3Box_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SeqBank3Box_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqOffsetFromLabelButton_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqOffsetFromLabelButton_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqOffsetManualButton_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqOffsetManualButton_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqOffsetFromLabelBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SeqOffsetFromLabelBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqOffsetManualBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void SeqOffsetManualBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqChannelPriorityBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void SeqChannelPriorityBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqIsReleasePriorityBox_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqIsReleasePriorityBox_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC0_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC0_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC1_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC1_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC2_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC2_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC3_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC3_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC4_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC4_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC5_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC5_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC6_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC6_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC7_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC7_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC8_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC8_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC9_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC9_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC10_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC10_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC11_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC11_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC12_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC12_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC13_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC13_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC14_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC14_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqC15_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void SeqC15_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void SarWsdFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void SarWsdFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void SarWsdPlay_Click(object sender, EventArgs e) {}
+        protected virtual void SarWsdPlay_Click(object sender, EventArgs e) {}
 
-        public virtual void SarWsdPause_Click(object sender, EventArgs e) {}
+        protected virtual void SarWsdPause_Click(object sender, EventArgs e) {}
 
-        public virtual void SarWsdStop_Click(object sender, EventArgs e) {}
+        protected virtual void SarWsdStop_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdSound3dEnable_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSound3dEnable_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdWaveIndex_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdWaveIndex_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdTracksToAllocate_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdTracksToAllocate_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdCopyCount_Click(object sender, EventArgs e) {}
+        protected virtual void WsdCopyCount_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdChannelPriority_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdChannelPriority_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdFixPriority_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdFixPriority_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void StmFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void StmPlay_Click(object sender, EventArgs e) {}
+        protected virtual void StmPlay_Click(object sender, EventArgs e) {}
 
-        public virtual void StmPause_Click(object sender, EventArgs e) {}
+        protected virtual void StmPause_Click(object sender, EventArgs e) {}
 
-        public virtual void StmStop_Click(object sender, EventArgs e) {}
+        protected virtual void StmStop_Click(object sender, EventArgs e) {}
 
-        public virtual void StmSound3dEnable_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmSound3dEnable_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmWriteTrackInfo_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmWriteTrackInfo_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmUpdateTrackInfo_Click(object sender, EventArgs e) {}
+        protected virtual void StmUpdateTrackInfo_Click(object sender, EventArgs e) {}
 
-        public virtual void StmTrack0_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack0_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack1_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack1_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack2_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack2_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack3_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack3_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack4_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack4_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack5_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack5_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack6_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack6_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack7_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack7_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack8_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack8_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack9_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack9_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack10_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack10_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack11_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack11_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack12_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack12_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack13_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack13_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack14_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack14_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmTrack15_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmTrack15_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmStreamType_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void StmStreamType_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void StmAllocateChannelsNum_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmAllocateChannelsNum_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmCopyChannelCountFromFile_Click(object sender, EventArgs e) {}
+        protected virtual void StmCopyChannelCountFromFile_Click(object sender, EventArgs e) {}
 
-        public virtual void StmPitch_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmPitch_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmIncludeExtension_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmIncludeExtension_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmLoopStartFrame_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmLoopStartFrame_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmLoopEndFrame_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmLoopEndFrame_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmCopyExtensionFromFile_Click(object sender, EventArgs e) {}
+        protected virtual void StmCopyExtensionFromFile_Click(object sender, EventArgs e) {}
 
-        public virtual void StmGeneratePrefetch_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void StmGeneratePrefetch_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void StmPrefetchFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void StmPrefetchFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void StmUpdatePrefetchInfo_Click(object sender, EventArgs e) {}
+        protected virtual void StmUpdatePrefetchInfo_Click(object sender, EventArgs e) {}
 
-        public virtual void StmCreateUniquePrefetchFile_Click(object sender, EventArgs e) {}
+        protected virtual void StmCreateUniquePrefetchFile_Click(object sender, EventArgs e) {}
 
-        public virtual void StmSendMain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmSendMain_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmSendA_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmSendA_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmSendB_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmSendB_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void StmSendC_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void StmSendC_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackVolume_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackVolume_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackPan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackPan_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackSpan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackSpan_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackSurround_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void TrackSurround_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackLPFFrequency_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackLPFFrequency_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackBiquadType_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void TrackBiquadType_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackBiquadValue_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackBiquadValue_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackSendMain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackSendMain_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackSendA_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackSendA_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackSendB_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackSendB_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackSendC_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void TrackSendC_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void TrackChannelsChanged(object sender, EventArgs e) {}
+        protected virtual void TrackChannelsChanged(object sender, EventArgs e) {}
 
-        public virtual void ByteOrderBox_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void ByteOrderBox_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void VersionMax_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VersionMax_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void VersionMin_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VersionMin_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void VersionRev_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VersionRev_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void SeqVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void SeqVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void BankVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void BankVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void WarVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void WarVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void WsdVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void GrpVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void GrpVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void StmVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void StmVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void StpVersionUpdate_Click(object sender, EventArgs e) {}
+        protected virtual void StpVersionUpdate_Click(object sender, EventArgs e) {}
 
-        public virtual void FilesIncludeGroups_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void FilesIncludeGroups_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void FilesGroupGridCellChanged(object sender, EventArgs e) {}
+        protected virtual void FilesGroupGridCellChanged(object sender, EventArgs e) {}
 
-        public virtual void ReplaceToolStripMenuItem_Click(object sender, EventArgs e) {}
+        protected virtual void ReplaceToolStripMenuItem_Click(object sender, EventArgs e) {}
 
-        public virtual void ExportToolStripMenuItem_Click(object sender, EventArgs e) {}
+        protected virtual void ExportToolStripMenuItem_Click(object sender, EventArgs e) {}
 
-        public virtual void ChangeExternalPathToolStripMenuItem_Click(object sender, EventArgs e) {}
+        protected virtual void ChangeExternalPathToolStripMenuItem_Click(object sender, EventArgs e) {}
 
-        public virtual void SarAddAbove_Click(object sender, EventArgs e) {}
+        protected virtual void SarAddAbove_Click(object sender, EventArgs e) {}
 
-        public virtual void SarAddBelow_Click(object sender, EventArgs e) {}
+        protected virtual void SarAddBelow_Click(object sender, EventArgs e) {}
 
-        public virtual void SarAddInside_Click(object sender, EventArgs e) {}
+        protected virtual void SarAddInside_Click(object sender, EventArgs e) {}
 
-        public virtual void SarMoveUp_Click(object sender, EventArgs e) {}
+        protected virtual void SarMoveUp_Click(object sender, EventArgs e) {}
 
-        public virtual void SarMoveDown_Click(object sender, EventArgs e) {}
+        protected virtual void SarMoveDown_Click(object sender, EventArgs e) {}
 
-        public virtual void SarReplace_Click(object sender, EventArgs e) {}
+        protected virtual void SarReplace_Click(object sender, EventArgs e) {}
 
-        public virtual void SarExport_Click(object sender, EventArgs e) {}
+        protected virtual void SarExport_Click(object sender, EventArgs e) {}
 
-        public virtual void SarRename_Click(object sender, EventArgs e) {}
+        protected virtual void SarRename_Click(object sender, EventArgs e) {}
 
-        public virtual void SarNullify_Click(object sender, EventArgs e) {}
+        protected virtual void SarNullify_Click(object sender, EventArgs e) {}
 
-        public virtual void SarDelete_Click(object sender, EventArgs e) {}
+        protected virtual void SarDelete_Click(object sender, EventArgs e) {}
 
         //Wsd editor.
         #region WsdEditor
 
-        public virtual void WsdTrackPlay_Click(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPlay_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdTrackPause_Click(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPause_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdTrackStop_Click(object sender, EventArgs e) {}
+        protected virtual void WsdTrackStop_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdTrackPlayOnce_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPlayOnce_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdTrackPlayLoop_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPlayLoop_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdPlayNext_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdPlayNext_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdEventGrid_CellChange(object sende, EventArgs e) {}
+        protected virtual void WsdEventGrid_CellChange(object sende, EventArgs e) {}
 
-        public virtual void WsdEntryPlay_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlay_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdEntryPause_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPause_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdEntryStop_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEntryStop_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdEntryPlayOnce_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlayOnce_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdEntryPlayLoop_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlayLoop_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdEntryPlayNext_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlayNext_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdAttack_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdAttack_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdDecay_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdDecay_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdSustain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSustain_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdRelease_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRelease_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdHold_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdHold_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdLPF_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdLPF_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdBiquadType_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void WsdBiquadType_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdBiquadValue_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdBiquadValue_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdSendMain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendMain_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdSendA_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendA_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdSendB_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendB_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdSendC_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendC_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdPan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdPan_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdSpan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSpan_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdPitch_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdPitch_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdReference_CellChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReference_CellChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdReferencePlay_Click(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlay_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdReferencePause_Click(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePause_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdReferenceStop_Click(object sender, EventArgs e) {}
+        protected virtual void WsdReferenceStop_Click(object sender, EventArgs e) {}
 
-        public virtual void WsdReferencePlayOnce_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlayOnce_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdReferencePlayLoop_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlayLoop_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdReferencePlayNext_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlayNext_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdRefArchiveCombo_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefArchiveCombo_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdRefArchiveBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefArchiveBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdRefWaveCombo_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefWaveCombo_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void WsdRefWaveBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefWaveBox_ValueChanged(object sender, EventArgs e) {}
 
         #endregion
 
         //Version change.
         #region VersionChange
 
-        public virtual void VMajBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VMajBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void VMinBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VMinBox_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void VRevBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VRevBox_ValueChanged(object sender, EventArgs e) {}
 
         #endregion
 
         //Note info.
         #region NoteInfo
 
-        public virtual void NoteReferenceWave_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void NoteReferenceWave_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteInterpolationType_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void NoteInterpolationType_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void NotePercussionMode_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void NotePercussionMode_CheckedChanged(object sender, EventArgs e) {}
 
-        public virtual void NotePitchSemitones_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NotePitchSemitones_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NotePitchCents_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NotePitchCents_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteVolume_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteVolume_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NotePan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NotePan_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteSurroundPan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteSurroundPan_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteOriginalKey_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteOriginalKey_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteKeyGroup_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void NoteKeyGroup_SelectedIndexChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteAttack_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteAttack_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteDecay_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteDecay_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteSustain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteSustain_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteRelease_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteRelease_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void NoteHold_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteHold_ValueChanged(object sender, EventArgs e) {}
 
-        public virtual void InstrumentApplyChanges_Click(object sender, EventArgs e) {}
+        protected virtual void InstrumentApplyChanges_Click(object sender, EventArgs e) {}
 
         #endregion
 
@@ -7024,15 +7026,15 @@ namespace NitroStudio2 {
             }
         }
 
-        public virtual void OnPianoPress() {}
+        protected virtual void OnPianoPress() {}
 
-        public virtual void OnPianoRelease() {}
+        protected virtual void OnPianoRelease() {}
 
         private void ExportStringsToolStripMenuItem_Click(object sender, EventArgs e) {
             ExportStrings();
         }
 
-        public virtual void ExportStrings() {}
+        protected virtual void ExportStrings() {}
 
         private void SequenceEditorToolStripMenuItem_Click(object sender, EventArgs e) {
             var ed = new SequenceEditor(this as MainWindow);
@@ -7095,7 +7097,7 @@ namespace NitroStudio2 {
         /// <param name="color">Color.</param>
         /// <param name="start">Start note.</param>
         /// <param name="end">End note.</param>
-        public void ColorRegion(Color color, byte start, byte end) {
+        protected void ColorRegion(Color color, byte start, byte end) {
             for (byte b = start; b <= end; b++) {
                 var n = GetKey((Notes)b);
                 if (n != null) {
@@ -7113,7 +7115,7 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        public PianoKey GetKey(Notes n) {
+        protected PianoKey GetKey(Notes n) {
             switch (n) {
                 case Notes.an1:
                     return pkeyA1;

@@ -178,7 +178,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update nodes.
         /// </summary>
-        public override void UpdateNodes() {
+        protected override void UpdateNodes() {
 
             //Begin update.
             BeginUpdateNodes();
@@ -260,7 +260,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Do info stuff.
         /// </summary>
-        public override void DoInfoStuff() {
+        protected override void DoInfoStuff() {
 
             //The base.
             base.DoInfoStuff();
@@ -503,7 +503,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Double click a node.
         /// </summary>
-        public override void NodeMouseDoubleClick() {
+        protected override void NodeMouseDoubleClick() {
 
             //Do base.
             base.NodeMouseDoubleClick();
@@ -1531,7 +1531,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Play click.
         /// </summary>
-        public void PlayClick(object sender, EventArgs e) {
+        protected void PlayClick(object sender, EventArgs e) {
             if (tree.SelectedNode.Parent.Name == "sequences") {
                 var s = SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                 try { Player.PrepareForSong(new PlayableBank[] { s.Bank.File }, s.Bank.GetAssociatedWaves()); } catch { MessageBox.Show("Sequence entry has no valid bank hooked up to it!"); return; }
@@ -2537,7 +2537,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Root add.
         /// </summary>
-        public override void RootAdd() {
+        protected override void RootAdd() {
 
             //Sequences.
             if (tree.SelectedNode.Name.Equals("sequences")) {
@@ -3110,7 +3110,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Import a file.
         /// </summary>
-        public override void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
@@ -3131,7 +3131,7 @@ namespace NitroStudio2 {
 
         }
 
-        public override void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
