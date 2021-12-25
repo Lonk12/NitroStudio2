@@ -44,7 +44,7 @@ namespace NitroStudio2 {
         /// Create a new bank editor.
         /// </summary>
         /// <param name="mainWindow">Main window.</param>
-        protected BankEditor(MainWindow mainWindow) : base(typeof(Bank), "Bank", "bnk", "Bank Editor", mainWindow) {
+        public BankEditor(MainWindow mainWindow) : base(typeof(Bank), "Bank", "bnk", "Bank Editor", mainWindow) {
             //Init();
         }
 
@@ -52,7 +52,7 @@ namespace NitroStudio2 {
         /// Create a new bank editor.
         /// </summary>
         /// <param name="fileToOpen">The file to open.</param>
-        protected BankEditor(string fileToOpen) : base(typeof(Bank), "Bank", "bnk", "Bank Editor", fileToOpen, null) {
+        public BankEditor(string fileToOpen) : base(typeof(Bank), "Bank", "bnk", "Bank Editor", fileToOpen, null) {
             //Init();
         }
 
@@ -62,7 +62,7 @@ namespace NitroStudio2 {
         /// <param name="fileToOpen">The file to open.</param>
         /// <param name="mainWindow">The main window.</param>
         /// <param name="fileName">File name.</param>
-        protected BankEditor(IOFile fileToOpen, MainWindow mainWindow, string fileName) : base(typeof(Bank), "Bank", "bnk", "Bank Editor", fileToOpen, mainWindow, fileName) {
+        public BankEditor(IOFile fileToOpen, MainWindow mainWindow, string fileName) : base(typeof(Bank), "Bank", "bnk", "Bank Editor", fileToOpen, mainWindow, fileName) {
             //Init();
         }
 
@@ -304,7 +304,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Load wave archives.
         /// </summary>
-        protected void LoadWaveArchives() {
+        public void LoadWaveArchives() {
             if (MainWindow == null) {
                 return;
             }

@@ -108,10 +108,7 @@
     <ProjectReference Include="..\GotaSequenceLibDeluxe\GotaSequenceLib.csproj" />
     <ProjectReference Include="..\GotaSoundBankDeluxe\GotaSoundBank.csproj" />
     <ProjectReference Include="..\GotaSoundIODeluxe\GotaSoundIO.csproj" />
-    <ProjectReference Include="..\NitroFileLoader\NitroFileLoader.csproj">
-      <Private>true</Private>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-    </ProjectReference>
+    <ProjectReference Include="..\NitroFileLoader\NitroFileLoader.csproj" />
     <ProjectReference Include="..\Sanford.Multimedia.Midi\Sanford.Multimedia.Midi.csproj" />
     <ProjectReference Include="..\ScintillaNetFindReplaceDialog\ScintillaNETFindReplaceDialog.csproj" />
     <ProjectReference Include="..\ScintillaNET\ScintillaNET.csproj" />

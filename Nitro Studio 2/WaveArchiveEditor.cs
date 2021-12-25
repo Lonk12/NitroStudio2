@@ -92,7 +92,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Do info stuff.
         /// </summary>
-        public override void DoInfoStuff() {
+        protected override void DoInfoStuff() {
 
             //Base.
             base.DoInfoStuff();
@@ -127,7 +127,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update nodes.
         /// </summary>
-        public override void UpdateNodes() {
+        protected override void UpdateNodes() {
 
             //Begin update.
             BeginUpdateNodes();
@@ -279,28 +279,28 @@ namespace NitroStudio2 {
         /// <summary>
         /// Add a wave to the list.
         /// </summary>
-        public override void RootAdd() {
+        protected override void RootAdd() {
             AddWave(WA.Waves.Count);
         }
 
         /// <summary>
         /// Add above.
         /// </summary>
-        public override void NodeAddAbove() {
+        protected override void NodeAddAbove() {
             AddWave(tree.SelectedNode.Index);
         }
 
         /// <summary>
         /// Add below.
         /// </summary>
-        public override void NodeAddBelow() {
+        protected override void NodeAddBelow() {
             AddWave(tree.SelectedNode.Index + 1);
         }
 
         /// <summary>
         /// Move up.
         /// </summary>
-        public override void NodeMoveUp() {
+        protected override void NodeMoveUp() {
             if (Swap(WA.Waves, tree.SelectedNode.Index, tree.SelectedNode.Index - 1)) {
                 tree.SelectedNode = tree.Nodes[0].Nodes[tree.SelectedNode.Index - 1];
                 UpdateNodes();
@@ -311,7 +311,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Move down.
         /// </summary>
-        public override void NodeMoveDown() {
+        protected override void NodeMoveDown() {
             if (Swap(WA.Waves, tree.SelectedNode.Index, tree.SelectedNode.Index + 1)) {
                 tree.SelectedNode = tree.Nodes[0].Nodes[tree.SelectedNode.Index + 1];
                 UpdateNodes();
@@ -322,7 +322,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Replace the wave.
         /// </summary>
-        public override void NodeReplace() {
+        protected override void NodeReplace() {
 
             //Get the file.
             OpenFileDialog o = new OpenFileDialog();
@@ -365,7 +365,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Export the wave.
         /// </summary>
-        public override void NodeExport() {
+        protected override void NodeExport() {
 
             //Get the file.
             SaveFileDialog s = new SaveFileDialog();
@@ -407,7 +407,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Delete the wave.
         /// </summary>
-        public override void NodeDelete() {
+        protected override void NodeDelete() {
             WA.Waves.RemoveAt(tree.SelectedNode.Index);
             UpdateNodes();
             DoInfoStuff();

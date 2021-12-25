@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ABI.Windows.ApplicationModel.Email.DataProvider;
 using static GotaSequenceLib.Playback.Player;
 
 namespace NitroStudio2 {
@@ -707,7 +708,7 @@ namespace NitroStudio2 {
 
         }
 
-        protected override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        public override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //Update.
             UpdateSequence();
@@ -720,11 +721,7 @@ namespace NitroStudio2 {
             base.saveToolStripMenuItem_Click(sender, e);
             if (ExtFile != null) { CopyOtherPropertiesFromFile(ExtFile as SequenceArchive, SA); }
 
-            //Main window.
-            if (MainWindow != null) {
-                MainWindow.UpdateNodes();
-                MainWindow.DoInfoStuff();
-            }
+            MainWindow.UpdateThingy();
 
         }
 

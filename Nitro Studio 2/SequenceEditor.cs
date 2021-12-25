@@ -586,7 +586,7 @@ namespace NitroStudio2 {
 
         }
 
-        protected override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        public override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //Update.
             UpdateSequence();

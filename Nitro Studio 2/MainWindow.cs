@@ -63,7 +63,8 @@ namespace NitroStudio2 {
         /// Create a new main window.
         /// </summary>
         public MainWindow() : base(typeof(SoundArchive), "Sound Archive", "dat", "Nitro Studio 2", null) {
-            Init();
+            //Init();
+            InitializeComponent();
             Text = "Nitro Studio 2";
         }
 
@@ -72,13 +73,16 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="fileToOpen">The file to open.</param>
         public MainWindow(string fileToOpen) : base(typeof(SoundArchive), "Sound Archive", "dat", "Nitro Studio 2", fileToOpen, null) {
-            Init();
+            //Init();
+            InitializeComponent();
         }
 
         /// <summary>
         /// Initialize.
         /// </summary>
-        public void Init() {
+        public void Init()
+        {
+            InitializeComponent();
 
             //Window stuff.
             Icon = Properties.Resources.Icon;
@@ -498,6 +502,12 @@ namespace NitroStudio2 {
             //Done.
             WritingInfo = false;
 
+        }
+
+        public void UpdateThingy()
+        {
+            UpdateNodes();
+            DoInfoStuff();
         }
 
         /// <summary>

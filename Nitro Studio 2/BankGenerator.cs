@@ -365,9 +365,7 @@ namespace NitroStudio2 {
 
             //Close.
             Close();
-            MainWindow.UpdateNodes();
-            MainWindow.DoInfoStuff();
-
+            MainWindow.UpdateThingy();
         }
 
         /// <summary>

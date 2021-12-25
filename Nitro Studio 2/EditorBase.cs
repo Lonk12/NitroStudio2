@@ -20,7 +20,7 @@ namespace NitroStudio2 {
     /// <summary>
     /// An editor base for files.
     /// </summary>
-    public abstract class EditorBase : Form {
+    public class EditorBase : Form {
 
         /// <summary>
         /// File type to use.
@@ -283,8 +283,8 @@ namespace NitroStudio2 {
         protected Panel seqBankPanel;
         private Label label28;
         private TableLayoutPanel tableLayoutPanel12;
-        protected ComboBox seqEditorBankComboBox;
-        protected NumericUpDown seqEditorBankBox;
+        public ComboBox seqEditorBankComboBox;
+        public NumericUpDown seqEditorBankBox;
         protected Panel seqArcPanel;
         protected Button seqArcOpenFileButton;
         protected Panel seqArcSeqPanel;
@@ -306,20 +306,20 @@ namespace NitroStudio2 {
         protected DataGridView bankRegions;
         protected Panel bankEditorWars;
         private TableLayoutPanel tableLayoutPanel16;
-        protected ComboBox war3ComboBox;
-        protected NumericUpDown war3Box;
+        public ComboBox war3ComboBox;
+        public NumericUpDown war3Box;
         private Label label31;
         private TableLayoutPanel tableLayoutPanel17;
-        protected ComboBox war2ComboBox;
-        protected NumericUpDown war2Box;
+        public ComboBox war2ComboBox;
+        public NumericUpDown war2Box;
         private Label label33;
         private TableLayoutPanel tableLayoutPanel18;
-        protected ComboBox war1ComboBox;
-        protected NumericUpDown war1Box;
+        public ComboBox war1ComboBox;
+        public NumericUpDown war1Box;
         private Label label34;
         private TableLayoutPanel tableLayoutPanel19;
-        protected ComboBox war0ComboBox;
-        protected NumericUpDown war0Box;
+        public ComboBox war0ComboBox;
+        public NumericUpDown war0Box;
         private Label label35;
         private ToolStripMenuItem sequenceEditorToolStripMenuItem;
         private ToolStripMenuItem sequenceArchiveEditorToolStripMenuItem;
@@ -430,7 +430,9 @@ namespace NitroStudio2 {
             //Initialize component.
             InitializeComponent();
         }
-        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, MainWindow mainWindow) {
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, MainWindow mainWindow)
+            : this()
+        {
 
             //Set main window.
             MainWindow = mainWindow;
@@ -448,12 +450,17 @@ namespace NitroStudio2 {
             EditorName = editorName;
             Text = EditorName;
 
+           //Load += OnLoad;
+
+        }
+
+        private void OnLoad(object sender, EventArgs e)
+        {
             //Update nodes.
             UpdateNodes();
 
             //Do info stuff.
             DoInfoStuff();
-
         }
 
         /// <summary>
@@ -1003,6 +1010,7 @@ namespace NitroStudio2 {
             // menuStrip
             // 
             this.menuStrip.BackColor = System.Drawing.Color.Black;
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editToolStripMenuItem,
@@ -1011,7 +1019,7 @@ namespace NitroStudio2 {
             this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(984, 24);
+            this.menuStrip.Size = new System.Drawing.Size(984, 33);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -1027,7 +1035,7 @@ namespace NitroStudio2 {
             this.quitToolStripMenuItem});
             this.fileMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(37, 20);
+            this.fileMenu.Size = new System.Drawing.Size(54, 29);
             this.fileMenu.Text = "File";
             // 
             // newToolStripMenuItem
@@ -1036,7 +1044,7 @@ namespace NitroStudio2 {
             this.newToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.newToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.New;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(176, 34);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -1046,7 +1054,7 @@ namespace NitroStudio2 {
             this.openToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.openToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Open;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(176, 34);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -1056,7 +1064,7 @@ namespace NitroStudio2 {
             this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.saveToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Save;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(176, 34);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -1066,7 +1074,7 @@ namespace NitroStudio2 {
             this.saveAsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.saveAsToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Save_As;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(176, 34);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -1076,7 +1084,7 @@ namespace NitroStudio2 {
             this.closeToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.closeToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Close;
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(176, 34);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -1086,7 +1094,7 @@ namespace NitroStudio2 {
             this.quitToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.quitToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Quit;
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(176, 34);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -1099,7 +1107,7 @@ namespace NitroStudio2 {
             this.exportFileToolStripMenuItem});
             this.editToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // blankFileToolStripMenuItem
@@ -1108,7 +1116,7 @@ namespace NitroStudio2 {
             this.blankFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.blankFileToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Rename;
             this.blankFileToolStripMenuItem.Name = "blankFileToolStripMenuItem";
-            this.blankFileToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.blankFileToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.blankFileToolStripMenuItem.Text = "Blank File";
             this.blankFileToolStripMenuItem.Click += new System.EventHandler(this.blankFileToolStripMenuItem_Click);
             // 
@@ -1118,7 +1126,7 @@ namespace NitroStudio2 {
             this.importFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.importFileToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Import;
             this.importFileToolStripMenuItem.Name = "importFileToolStripMenuItem";
-            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.importFileToolStripMenuItem.Text = "Import File";
             this.importFileToolStripMenuItem.Click += new System.EventHandler(this.importFileToolStripMenuItem_Click);
             // 
@@ -1128,7 +1136,7 @@ namespace NitroStudio2 {
             this.exportFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.exportFileToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Export;
             this.exportFileToolStripMenuItem.Name = "exportFileToolStripMenuItem";
-            this.exportFileToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exportFileToolStripMenuItem.Size = new System.Drawing.Size(200, 34);
             this.exportFileToolStripMenuItem.Text = "Export File";
             this.exportFileToolStripMenuItem.Click += new System.EventHandler(this.exportFileToolStripMenuItem_Click);
             // 
@@ -1148,7 +1156,7 @@ namespace NitroStudio2 {
             this.batchExportMIDIDLSSF2ToolStripMenuItem});
             this.toolsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             this.toolsToolStripMenuItem.Text = "Tools";
             this.toolsToolStripMenuItem.Visible = false;
             // 
@@ -1158,7 +1166,7 @@ namespace NitroStudio2 {
             this.sequenceEditorToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sequenceEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sequenceEditorToolStripMenuItem.Image")));
             this.sequenceEditorToolStripMenuItem.Name = "sequenceEditorToolStripMenuItem";
-            this.sequenceEditorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sequenceEditorToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.sequenceEditorToolStripMenuItem.Text = "Sequence Editor";
             this.sequenceEditorToolStripMenuItem.Click += new System.EventHandler(this.SequenceEditorToolStripMenuItem_Click);
             // 
@@ -1168,7 +1176,7 @@ namespace NitroStudio2 {
             this.sequenceArchiveEditorToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sequenceArchiveEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sequenceArchiveEditorToolStripMenuItem.Image")));
             this.sequenceArchiveEditorToolStripMenuItem.Name = "sequenceArchiveEditorToolStripMenuItem";
-            this.sequenceArchiveEditorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sequenceArchiveEditorToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.sequenceArchiveEditorToolStripMenuItem.Text = "Sequence Archive Editor";
             this.sequenceArchiveEditorToolStripMenuItem.Click += new System.EventHandler(this.SequenceArchiveEditorToolStripMenuItem_Click);
             // 
@@ -1178,7 +1186,7 @@ namespace NitroStudio2 {
             this.bankEditorToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.bankEditorToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Bank;
             this.bankEditorToolStripMenuItem.Name = "bankEditorToolStripMenuItem";
-            this.bankEditorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.bankEditorToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.bankEditorToolStripMenuItem.Text = "Bank Editor";
             this.bankEditorToolStripMenuItem.Click += new System.EventHandler(this.BankEditorToolStripMenuItem_Click);
             // 
@@ -1188,7 +1196,7 @@ namespace NitroStudio2 {
             this.waveArchiveEditorToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.waveArchiveEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("waveArchiveEditorToolStripMenuItem.Image")));
             this.waveArchiveEditorToolStripMenuItem.Name = "waveArchiveEditorToolStripMenuItem";
-            this.waveArchiveEditorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.waveArchiveEditorToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.waveArchiveEditorToolStripMenuItem.Text = "Wave Archive Editor";
             this.waveArchiveEditorToolStripMenuItem.Click += new System.EventHandler(this.WaveArchiveEditorToolStripMenuItem_Click);
             // 
@@ -1198,7 +1206,7 @@ namespace NitroStudio2 {
             this.bankGeneratorToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.bankGeneratorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bankGeneratorToolStripMenuItem.Image")));
             this.bankGeneratorToolStripMenuItem.Name = "bankGeneratorToolStripMenuItem";
-            this.bankGeneratorToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.bankGeneratorToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.bankGeneratorToolStripMenuItem.Text = "Bank Generator";
             this.bankGeneratorToolStripMenuItem.Click += new System.EventHandler(this.BankGeneratorToolStripMenuItem_Click);
             // 
@@ -1208,7 +1216,7 @@ namespace NitroStudio2 {
             this.creaveWaveToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.creaveWaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("creaveWaveToolStripMenuItem.Image")));
             this.creaveWaveToolStripMenuItem.Name = "creaveWaveToolStripMenuItem";
-            this.creaveWaveToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.creaveWaveToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.creaveWaveToolStripMenuItem.Text = "Creave Wave";
             this.creaveWaveToolStripMenuItem.Click += new System.EventHandler(this.CreaveWaveToolStripMenuItem_Click);
             // 
@@ -1218,7 +1226,7 @@ namespace NitroStudio2 {
             this.createStreamToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.createStreamToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("createStreamToolStripMenuItem.Image")));
             this.createStreamToolStripMenuItem.Name = "createStreamToolStripMenuItem";
-            this.createStreamToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.createStreamToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.createStreamToolStripMenuItem.Text = "Create Stream";
             this.createStreamToolStripMenuItem.Click += new System.EventHandler(this.CreateStreamToolStripMenuItem_Click);
             // 
@@ -1228,7 +1236,7 @@ namespace NitroStudio2 {
             this.exportSDKProjectToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.exportSDKProjectToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.NSM;
             this.exportSDKProjectToolStripMenuItem.Name = "exportSDKProjectToolStripMenuItem";
-            this.exportSDKProjectToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.exportSDKProjectToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.exportSDKProjectToolStripMenuItem.Text = "Export SDK Project";
             this.exportSDKProjectToolStripMenuItem.Click += new System.EventHandler(this.ExportSDKProjectToolStripMenuItem_Click);
             // 
@@ -1238,7 +1246,7 @@ namespace NitroStudio2 {
             this.sF2ToDLSToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sF2ToDLSToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sF2ToDLSToolStripMenuItem.Image")));
             this.sF2ToDLSToolStripMenuItem.Name = "sF2ToDLSToolStripMenuItem";
-            this.sF2ToDLSToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sF2ToDLSToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.sF2ToDLSToolStripMenuItem.Text = "SF2 To DLS";
             this.sF2ToDLSToolStripMenuItem.Click += new System.EventHandler(this.sF2ToDLSToolStripMenuItem_Click);
             // 
@@ -1248,7 +1256,7 @@ namespace NitroStudio2 {
             this.dLSToSF2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.dLSToSF2ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dLSToSF2ToolStripMenuItem.Image")));
             this.dLSToSF2ToolStripMenuItem.Name = "dLSToSF2ToolStripMenuItem";
-            this.dLSToSF2ToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.dLSToSF2ToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.dLSToSF2ToolStripMenuItem.Text = "DLS To SF2";
             this.dLSToSF2ToolStripMenuItem.Click += new System.EventHandler(this.dLSToSF2ToolStripMenuItem_Click);
             // 
@@ -1258,7 +1266,7 @@ namespace NitroStudio2 {
             this.batchExportMIDIDLSSF2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.batchExportMIDIDLSSF2ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("batchExportMIDIDLSSF2ToolStripMenuItem.Image")));
             this.batchExportMIDIDLSSF2ToolStripMenuItem.Name = "batchExportMIDIDLSSF2ToolStripMenuItem";
-            this.batchExportMIDIDLSSF2ToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.batchExportMIDIDLSSF2ToolStripMenuItem.Size = new System.Drawing.Size(331, 34);
             this.batchExportMIDIDLSSF2ToolStripMenuItem.Text = "Batch Export MIDI/DLS/SF2";
             // 
             // helpToolStripMenuItem
@@ -1268,7 +1276,7 @@ namespace NitroStudio2 {
             this.getHelpToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // getHelpToolStripMenuItem
@@ -1277,7 +1285,7 @@ namespace NitroStudio2 {
             this.getHelpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.getHelpToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Help;
             this.getHelpToolStripMenuItem.Name = "getHelpToolStripMenuItem";
-            this.getHelpToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.getHelpToolStripMenuItem.Size = new System.Drawing.Size(183, 34);
             this.getHelpToolStripMenuItem.Text = "Get Help";
             this.getHelpToolStripMenuItem.Click += new System.EventHandler(this.GetHelpToolStripMenuItem_Click);
             // 
@@ -1288,7 +1296,7 @@ namespace NitroStudio2 {
             this.aboutNitroStudio2ToolStripMenuItem});
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // aboutNitroStudio2ToolStripMenuItem
@@ -1297,7 +1305,7 @@ namespace NitroStudio2 {
             this.aboutNitroStudio2ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.aboutNitroStudio2ToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Ico;
             this.aboutNitroStudio2ToolStripMenuItem.Name = "aboutNitroStudio2ToolStripMenuItem";
-            this.aboutNitroStudio2ToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.aboutNitroStudio2ToolStripMenuItem.Size = new System.Drawing.Size(280, 34);
             this.aboutNitroStudio2ToolStripMenuItem.Text = "About Nitro Studio 2";
             this.aboutNitroStudio2ToolStripMenuItem.Click += new System.EventHandler(this.AboutNitroStudio2ToolStripMenuItem_Click);
             // 
@@ -1305,7 +1313,7 @@ namespace NitroStudio2 {
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 33);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -1334,7 +1342,7 @@ namespace NitroStudio2 {
             this.splitContainer1.Panel2.Controls.Add(this.bankEditorWars);
             this.splitContainer1.Panel2.Controls.Add(this.tree);
             this.splitContainer1.Panel2.Controls.Add(this.sequenceEditorPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(984, 630);
+            this.splitContainer1.Size = new System.Drawing.Size(984, 611);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 1;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -1350,7 +1358,7 @@ namespace NitroStudio2 {
             this.seqBankPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.seqBankPanel.Location = new System.Drawing.Point(0, 334);
             this.seqBankPanel.Name = "seqBankPanel";
-            this.seqBankPanel.Size = new System.Drawing.Size(332, 294);
+            this.seqBankPanel.Size = new System.Drawing.Size(332, 275);
             this.seqBankPanel.TabIndex = 18;
             this.seqBankPanel.Visible = false;
             // 
@@ -2359,7 +2367,7 @@ namespace NitroStudio2 {
             this.seqEditorBankComboBox.FormattingEnabled = true;
             this.seqEditorBankComboBox.Location = new System.Drawing.Point(3, 3);
             this.seqEditorBankComboBox.Name = "seqEditorBankComboBox";
-            this.seqEditorBankComboBox.Size = new System.Drawing.Size(253, 23);
+            this.seqEditorBankComboBox.Size = new System.Drawing.Size(253, 33);
             this.seqEditorBankComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.seqEditorBankComboBox, "Bank to use with the sequence.");
             // 
@@ -2375,7 +2383,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqEditorBankBox.Name = "seqEditorBankBox";
-            this.seqEditorBankBox.Size = new System.Drawing.Size(40, 23);
+            this.seqEditorBankBox.Size = new System.Drawing.Size(40, 31);
             this.seqEditorBankBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.seqEditorBankBox, "Id of the bank to use with the sequence.");
             // 
@@ -2392,7 +2400,7 @@ namespace NitroStudio2 {
             this.bankEditorPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.bankEditorPanel.Location = new System.Drawing.Point(0, 334);
             this.bankEditorPanel.Name = "bankEditorPanel";
-            this.bankEditorPanel.Size = new System.Drawing.Size(332, 294);
+            this.bankEditorPanel.Size = new System.Drawing.Size(332, 275);
             this.bankEditorPanel.TabIndex = 21;
             this.bankEditorPanel.Visible = false;
             // 
@@ -2419,16 +2427,18 @@ namespace NitroStudio2 {
             this.bankRegions.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.bankRegions.Location = new System.Drawing.Point(14, 141);
             this.bankRegions.Name = "bankRegions";
-            this.bankRegions.Size = new System.Drawing.Size(305, 144);
+            this.bankRegions.RowHeadersWidth = 62;
+            this.bankRegions.Size = new System.Drawing.Size(305, 125);
             this.bankRegions.TabIndex = 26;
             // 
             // playSampleButton
             // 
             this.playSampleButton.HeaderText = "Play";
+            this.playSampleButton.MinimumWidth = 8;
             this.playSampleButton.Name = "playSampleButton";
             this.playSampleButton.Text = "Play";
             this.playSampleButton.UseColumnTextForButtonValue = true;
-            this.playSampleButton.Width = 35;
+            this.playSampleButton.Width = 50;
             // 
             // endNote
             // 
@@ -2563,8 +2573,9 @@ namespace NitroStudio2 {
             "fn9 (125)",
             "fs9 (126)",
             "gn9 (127)"});
+            this.endNote.MinimumWidth = 8;
             this.endNote.Name = "endNote";
-            this.endNote.Width = 56;
+            this.endNote.Width = 83;
             // 
             // instrumentType
             // 
@@ -2575,24 +2586,27 @@ namespace NitroStudio2 {
             "Noise",
             "Direct PCM",
             "Null"});
+            this.instrumentType.MinimumWidth = 8;
             this.instrumentType.Name = "instrumentType";
-            this.instrumentType.Width = 88;
+            this.instrumentType.Width = 132;
             // 
             // waveId
             // 
             this.waveId.HeaderText = "Wave Id/PSG Cycle";
             this.waveId.MaxInputLength = 5;
+            this.waveId.MinimumWidth = 8;
             this.waveId.Name = "waveId";
             this.waveId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.waveId.Width = 102;
+            this.waveId.Width = 150;
             // 
             // waveArchiveId
             // 
             this.waveArchiveId.HeaderText = "Wave Archive Id";
             this.waveArchiveId.MaxInputLength = 5;
+            this.waveArchiveId.MinimumWidth = 8;
             this.waveArchiveId.Name = "waveArchiveId";
             this.waveArchiveId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.waveArchiveId.Width = 79;
+            this.waveArchiveId.Width = 116;
             // 
             // baseNote
             // 
@@ -2726,48 +2740,54 @@ namespace NitroStudio2 {
             "fn9 (125)",
             "fs9 (126)",
             "gn9 (127)"});
+            this.baseNote.MinimumWidth = 8;
             this.baseNote.Name = "baseNote";
-            this.baseNote.Width = 60;
+            this.baseNote.Width = 88;
             // 
             // attack
             // 
             this.attack.HeaderText = "Attack";
             this.attack.MaxInputLength = 3;
+            this.attack.MinimumWidth = 8;
             this.attack.Name = "attack";
             this.attack.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.attack.Width = 47;
+            this.attack.Width = 68;
             // 
             // decay
             // 
             this.decay.HeaderText = "Decay";
             this.decay.MaxInputLength = 3;
+            this.decay.MinimumWidth = 8;
             this.decay.Name = "decay";
             this.decay.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.decay.Width = 45;
+            this.decay.Width = 66;
             // 
             // sustain
             // 
             this.sustain.HeaderText = "Sustain";
             this.sustain.MaxInputLength = 3;
+            this.sustain.MinimumWidth = 8;
             this.sustain.Name = "sustain";
             this.sustain.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.sustain.Width = 51;
+            this.sustain.Width = 75;
             // 
             // release
             // 
             this.release.HeaderText = "Release";
             this.release.MaxInputLength = 3;
+            this.release.MinimumWidth = 8;
             this.release.Name = "release";
             this.release.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.release.Width = 52;
+            this.release.Width = 76;
             // 
             // pan
             // 
             this.pan.HeaderText = "Pan";
             this.pan.MaxInputLength = 3;
+            this.pan.MinimumWidth = 8;
             this.pan.Name = "pan";
             this.pan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.pan.Width = 33;
+            this.pan.Width = 46;
             // 
             // label32
             // 
@@ -2934,7 +2954,7 @@ namespace NitroStudio2 {
             "gn9"});
             this.drumSetStartRangeComboBox.Location = new System.Drawing.Point(3, 3);
             this.drumSetStartRangeComboBox.Name = "drumSetStartRangeComboBox";
-            this.drumSetStartRangeComboBox.Size = new System.Drawing.Size(253, 23);
+            this.drumSetStartRangeComboBox.Size = new System.Drawing.Size(253, 33);
             this.drumSetStartRangeComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.drumSetStartRangeComboBox, "What note to start the drum set range at.");
             // 
@@ -2950,7 +2970,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.drumSetStartRangeBox.Name = "drumSetStartRangeBox";
-            this.drumSetStartRangeBox.Size = new System.Drawing.Size(40, 23);
+            this.drumSetStartRangeBox.Size = new System.Drawing.Size(40, 31);
             this.drumSetStartRangeBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.drumSetStartRangeBox, "What note to start the drum set range at.");
             // 
@@ -3079,7 +3099,7 @@ namespace NitroStudio2 {
             this.seqArcSeqComboBox.FormattingEnabled = true;
             this.seqArcSeqComboBox.Location = new System.Drawing.Point(3, 3);
             this.seqArcSeqComboBox.Name = "seqArcSeqComboBox";
-            this.seqArcSeqComboBox.Size = new System.Drawing.Size(253, 23);
+            this.seqArcSeqComboBox.Size = new System.Drawing.Size(253, 33);
             this.seqArcSeqComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.seqArcSeqComboBox, "Sequence to play.");
             // 
@@ -3095,7 +3115,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqArcSeqBox.Name = "seqArcSeqBox";
-            this.seqArcSeqBox.Size = new System.Drawing.Size(40, 23);
+            this.seqArcSeqBox.Size = new System.Drawing.Size(40, 31);
             this.seqArcSeqBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.seqArcSeqBox, "Id of the sequence to play.");
             // 
@@ -3105,7 +3125,7 @@ namespace NitroStudio2 {
             this.seqArcPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.seqArcPanel.Location = new System.Drawing.Point(0, 270);
             this.seqArcPanel.Name = "seqArcPanel";
-            this.seqArcPanel.Size = new System.Drawing.Size(332, 358);
+            this.seqArcPanel.Size = new System.Drawing.Size(332, 339);
             this.seqArcPanel.TabIndex = 19;
             this.seqArcPanel.Visible = false;
             // 
@@ -3135,7 +3155,7 @@ namespace NitroStudio2 {
             this.seqPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.seqPanel.Location = new System.Drawing.Point(0, 270);
             this.seqPanel.Name = "seqPanel";
-            this.seqPanel.Size = new System.Drawing.Size(332, 358);
+            this.seqPanel.Size = new System.Drawing.Size(332, 339);
             this.seqPanel.TabIndex = 17;
             this.seqPanel.Visible = false;
             // 
@@ -3164,7 +3184,7 @@ namespace NitroStudio2 {
             this.seqPlayerComboBox.FormattingEnabled = true;
             this.seqPlayerComboBox.Location = new System.Drawing.Point(3, 3);
             this.seqPlayerComboBox.Name = "seqPlayerComboBox";
-            this.seqPlayerComboBox.Size = new System.Drawing.Size(253, 23);
+            this.seqPlayerComboBox.Size = new System.Drawing.Size(253, 33);
             this.seqPlayerComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.seqPlayerComboBox, "Player to play the sequence.");
             // 
@@ -3180,7 +3200,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqPlayerBox.Name = "seqPlayerBox";
-            this.seqPlayerBox.Size = new System.Drawing.Size(40, 23);
+            this.seqPlayerBox.Size = new System.Drawing.Size(40, 31);
             this.seqPlayerBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.seqPlayerBox, "Id of the player to play the sequence.");
             // 
@@ -3208,7 +3228,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqPlayerPriorityBox.Name = "seqPlayerPriorityBox";
-            this.seqPlayerPriorityBox.Size = new System.Drawing.Size(305, 23);
+            this.seqPlayerPriorityBox.Size = new System.Drawing.Size(305, 31);
             this.seqPlayerPriorityBox.TabIndex = 21;
             this.toolTip.SetToolTip(this.seqPlayerPriorityBox, "If the sounds can not all be played at once, the one with the highest priority wi" +
         "ll play.");
@@ -3237,7 +3257,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqChannelPriorityBox.Name = "seqChannelPriorityBox";
-            this.seqChannelPriorityBox.Size = new System.Drawing.Size(305, 23);
+            this.seqChannelPriorityBox.Size = new System.Drawing.Size(305, 31);
             this.seqChannelPriorityBox.TabIndex = 19;
             this.toolTip.SetToolTip(this.seqChannelPriorityBox, "If the sounds can not all be played at once, the one with the highest priority wi" +
         "ll play.");
@@ -3266,7 +3286,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqVolumeBox.Name = "seqVolumeBox";
-            this.seqVolumeBox.Size = new System.Drawing.Size(305, 23);
+            this.seqVolumeBox.Size = new System.Drawing.Size(305, 31);
             this.seqVolumeBox.TabIndex = 17;
             this.toolTip.SetToolTip(this.seqVolumeBox, "The volume of the sequence.");
             // 
@@ -3306,7 +3326,7 @@ namespace NitroStudio2 {
             this.seqBankComboBox.FormattingEnabled = true;
             this.seqBankComboBox.Location = new System.Drawing.Point(3, 3);
             this.seqBankComboBox.Name = "seqBankComboBox";
-            this.seqBankComboBox.Size = new System.Drawing.Size(253, 23);
+            this.seqBankComboBox.Size = new System.Drawing.Size(253, 33);
             this.seqBankComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.seqBankComboBox, "Bank to use with the sequence.");
             // 
@@ -3322,7 +3342,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.seqBankBox.Name = "seqBankBox";
-            this.seqBankBox.Size = new System.Drawing.Size(40, 23);
+            this.seqBankBox.Size = new System.Drawing.Size(40, 31);
             this.seqBankBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.seqBankBox, "Id of the bank to use with the sequence.");
             // 
@@ -3348,7 +3368,7 @@ namespace NitroStudio2 {
             this.playerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerPanel.Location = new System.Drawing.Point(0, 270);
             this.playerPanel.Name = "playerPanel";
-            this.playerPanel.Size = new System.Drawing.Size(332, 358);
+            this.playerPanel.Size = new System.Drawing.Size(332, 339);
             this.playerPanel.TabIndex = 15;
             this.playerPanel.Visible = false;
             // 
@@ -3393,7 +3413,7 @@ namespace NitroStudio2 {
             this.playerFlag15Box.AutoSize = true;
             this.playerFlag15Box.Location = new System.Drawing.Point(231, 78);
             this.playerFlag15Box.Name = "playerFlag15Box";
-            this.playerFlag15Box.Size = new System.Drawing.Size(38, 19);
+            this.playerFlag15Box.Size = new System.Drawing.Size(58, 19);
             this.playerFlag15Box.TabIndex = 15;
             this.playerFlag15Box.Text = "15";
             this.playerFlag15Box.UseVisualStyleBackColor = true;
@@ -3403,7 +3423,7 @@ namespace NitroStudio2 {
             this.playerFlag14Box.AutoSize = true;
             this.playerFlag14Box.Location = new System.Drawing.Point(155, 78);
             this.playerFlag14Box.Name = "playerFlag14Box";
-            this.playerFlag14Box.Size = new System.Drawing.Size(38, 19);
+            this.playerFlag14Box.Size = new System.Drawing.Size(58, 19);
             this.playerFlag14Box.TabIndex = 14;
             this.playerFlag14Box.Text = "14";
             this.playerFlag14Box.UseVisualStyleBackColor = true;
@@ -3413,7 +3433,7 @@ namespace NitroStudio2 {
             this.playerFlag13Box.AutoSize = true;
             this.playerFlag13Box.Location = new System.Drawing.Point(79, 78);
             this.playerFlag13Box.Name = "playerFlag13Box";
-            this.playerFlag13Box.Size = new System.Drawing.Size(38, 19);
+            this.playerFlag13Box.Size = new System.Drawing.Size(58, 19);
             this.playerFlag13Box.TabIndex = 13;
             this.playerFlag13Box.Text = "13";
             this.playerFlag13Box.UseVisualStyleBackColor = true;
@@ -3423,7 +3443,7 @@ namespace NitroStudio2 {
             this.playerFlag12Box.AutoSize = true;
             this.playerFlag12Box.Location = new System.Drawing.Point(3, 78);
             this.playerFlag12Box.Name = "playerFlag12Box";
-            this.playerFlag12Box.Size = new System.Drawing.Size(38, 19);
+            this.playerFlag12Box.Size = new System.Drawing.Size(58, 19);
             this.playerFlag12Box.TabIndex = 12;
             this.playerFlag12Box.Text = "12";
             this.playerFlag12Box.UseVisualStyleBackColor = true;
@@ -3433,7 +3453,7 @@ namespace NitroStudio2 {
             this.playerFlag11Box.AutoSize = true;
             this.playerFlag11Box.Location = new System.Drawing.Point(231, 53);
             this.playerFlag11Box.Name = "playerFlag11Box";
-            this.playerFlag11Box.Size = new System.Drawing.Size(38, 19);
+            this.playerFlag11Box.Size = new System.Drawing.Size(58, 19);
             this.playerFlag11Box.TabIndex = 11;
             this.playerFlag11Box.Text = "11";
             this.playerFlag11Box.UseVisualStyleBackColor = true;
@@ -3443,7 +3463,7 @@ namespace NitroStudio2 {
             this.playerFlag10Box.AutoSize = true;
             this.playerFlag10Box.Location = new System.Drawing.Point(155, 53);
             this.playerFlag10Box.Name = "playerFlag10Box";
-            this.playerFlag10Box.Size = new System.Drawing.Size(38, 19);
+            this.playerFlag10Box.Size = new System.Drawing.Size(58, 19);
             this.playerFlag10Box.TabIndex = 10;
             this.playerFlag10Box.Text = "10";
             this.playerFlag10Box.UseVisualStyleBackColor = true;
@@ -3453,7 +3473,7 @@ namespace NitroStudio2 {
             this.playerFlag9Box.AutoSize = true;
             this.playerFlag9Box.Location = new System.Drawing.Point(79, 53);
             this.playerFlag9Box.Name = "playerFlag9Box";
-            this.playerFlag9Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag9Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag9Box.TabIndex = 9;
             this.playerFlag9Box.Text = "9";
             this.playerFlag9Box.UseVisualStyleBackColor = true;
@@ -3463,7 +3483,7 @@ namespace NitroStudio2 {
             this.playerFlag8Box.AutoSize = true;
             this.playerFlag8Box.Location = new System.Drawing.Point(3, 53);
             this.playerFlag8Box.Name = "playerFlag8Box";
-            this.playerFlag8Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag8Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag8Box.TabIndex = 8;
             this.playerFlag8Box.Text = "8";
             this.playerFlag8Box.UseVisualStyleBackColor = true;
@@ -3473,7 +3493,7 @@ namespace NitroStudio2 {
             this.playerFlag7Box.AutoSize = true;
             this.playerFlag7Box.Location = new System.Drawing.Point(231, 28);
             this.playerFlag7Box.Name = "playerFlag7Box";
-            this.playerFlag7Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag7Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag7Box.TabIndex = 7;
             this.playerFlag7Box.Text = "7";
             this.playerFlag7Box.UseVisualStyleBackColor = true;
@@ -3483,7 +3503,7 @@ namespace NitroStudio2 {
             this.playerFlag6Box.AutoSize = true;
             this.playerFlag6Box.Location = new System.Drawing.Point(155, 28);
             this.playerFlag6Box.Name = "playerFlag6Box";
-            this.playerFlag6Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag6Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag6Box.TabIndex = 6;
             this.playerFlag6Box.Text = "6";
             this.playerFlag6Box.UseVisualStyleBackColor = true;
@@ -3493,7 +3513,7 @@ namespace NitroStudio2 {
             this.playerFlag5Box.AutoSize = true;
             this.playerFlag5Box.Location = new System.Drawing.Point(79, 28);
             this.playerFlag5Box.Name = "playerFlag5Box";
-            this.playerFlag5Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag5Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag5Box.TabIndex = 5;
             this.playerFlag5Box.Text = "5";
             this.playerFlag5Box.UseVisualStyleBackColor = true;
@@ -3503,7 +3523,7 @@ namespace NitroStudio2 {
             this.playerFlag4Box.AutoSize = true;
             this.playerFlag4Box.Location = new System.Drawing.Point(3, 28);
             this.playerFlag4Box.Name = "playerFlag4Box";
-            this.playerFlag4Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag4Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag4Box.TabIndex = 4;
             this.playerFlag4Box.Text = "4";
             this.playerFlag4Box.UseVisualStyleBackColor = true;
@@ -3513,7 +3533,7 @@ namespace NitroStudio2 {
             this.playerFlag3Box.AutoSize = true;
             this.playerFlag3Box.Location = new System.Drawing.Point(231, 3);
             this.playerFlag3Box.Name = "playerFlag3Box";
-            this.playerFlag3Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag3Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag3Box.TabIndex = 3;
             this.playerFlag3Box.Text = "3";
             this.playerFlag3Box.UseVisualStyleBackColor = true;
@@ -3523,7 +3543,7 @@ namespace NitroStudio2 {
             this.playerFlag2Box.AutoSize = true;
             this.playerFlag2Box.Location = new System.Drawing.Point(155, 3);
             this.playerFlag2Box.Name = "playerFlag2Box";
-            this.playerFlag2Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag2Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag2Box.TabIndex = 2;
             this.playerFlag2Box.Text = "2";
             this.playerFlag2Box.UseVisualStyleBackColor = true;
@@ -3533,7 +3553,7 @@ namespace NitroStudio2 {
             this.playerFlag1Box.AutoSize = true;
             this.playerFlag1Box.Location = new System.Drawing.Point(79, 3);
             this.playerFlag1Box.Name = "playerFlag1Box";
-            this.playerFlag1Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag1Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag1Box.TabIndex = 1;
             this.playerFlag1Box.Text = "1";
             this.playerFlag1Box.UseVisualStyleBackColor = true;
@@ -3543,7 +3563,7 @@ namespace NitroStudio2 {
             this.playerFlag0Box.AutoSize = true;
             this.playerFlag0Box.Location = new System.Drawing.Point(3, 3);
             this.playerFlag0Box.Name = "playerFlag0Box";
-            this.playerFlag0Box.Size = new System.Drawing.Size(32, 19);
+            this.playerFlag0Box.Size = new System.Drawing.Size(48, 19);
             this.playerFlag0Box.TabIndex = 0;
             this.playerFlag0Box.Text = "0";
             this.playerFlag0Box.UseVisualStyleBackColor = true;
@@ -3573,7 +3593,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.playerHeapSizeBox.Name = "playerHeapSizeBox";
-            this.playerHeapSizeBox.Size = new System.Drawing.Size(305, 23);
+            this.playerHeapSizeBox.Size = new System.Drawing.Size(305, 31);
             this.playerHeapSizeBox.TabIndex = 8;
             this.toolTip.SetToolTip(this.playerHeapSizeBox, "How much memory to reserve in the sound heap for the player.");
             // 
@@ -3601,7 +3621,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.playerMaxSequencesBox.Name = "playerMaxSequencesBox";
-            this.playerMaxSequencesBox.Size = new System.Drawing.Size(305, 23);
+            this.playerMaxSequencesBox.Size = new System.Drawing.Size(305, 31);
             this.playerMaxSequencesBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.playerMaxSequencesBox, "Max number of sequences the player can play.");
             // 
@@ -3629,7 +3649,7 @@ namespace NitroStudio2 {
             this.stmPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stmPanel.Location = new System.Drawing.Point(0, 270);
             this.stmPanel.Name = "stmPanel";
-            this.stmPanel.Size = new System.Drawing.Size(332, 358);
+            this.stmPanel.Size = new System.Drawing.Size(332, 339);
             this.stmPanel.TabIndex = 14;
             this.stmPanel.Visible = false;
             // 
@@ -3692,7 +3712,7 @@ namespace NitroStudio2 {
             this.stmPlayerComboBox.FormattingEnabled = true;
             this.stmPlayerComboBox.Location = new System.Drawing.Point(3, 3);
             this.stmPlayerComboBox.Name = "stmPlayerComboBox";
-            this.stmPlayerComboBox.Size = new System.Drawing.Size(253, 23);
+            this.stmPlayerComboBox.Size = new System.Drawing.Size(253, 33);
             this.stmPlayerComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.stmPlayerComboBox, "The player to play the stream.");
             // 
@@ -3708,7 +3728,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.stmPlayerBox.Name = "stmPlayerBox";
-            this.stmPlayerBox.Size = new System.Drawing.Size(40, 23);
+            this.stmPlayerBox.Size = new System.Drawing.Size(40, 31);
             this.stmPlayerBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.stmPlayerBox, "Id of the player to play the stream.");
             // 
@@ -3725,7 +3745,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.stmPriorityBox.Name = "stmPriorityBox";
-            this.stmPriorityBox.Size = new System.Drawing.Size(305, 23);
+            this.stmPriorityBox.Size = new System.Drawing.Size(305, 31);
             this.stmPriorityBox.TabIndex = 7;
             this.toolTip.SetToolTip(this.stmPriorityBox, "If the sounds can not all be played at once, the one with the highest priority wi" +
         "ll play.");
@@ -3754,7 +3774,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.stmVolumeBox.Name = "stmVolumeBox";
-            this.stmVolumeBox.Size = new System.Drawing.Size(305, 23);
+            this.stmVolumeBox.Size = new System.Drawing.Size(305, 31);
             this.stmVolumeBox.TabIndex = 5;
             this.toolTip.SetToolTip(this.stmVolumeBox, "The volume of the stream.");
             // 
@@ -3777,7 +3797,7 @@ namespace NitroStudio2 {
             this.streamPlayerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.streamPlayerPanel.Location = new System.Drawing.Point(0, 270);
             this.streamPlayerPanel.Name = "streamPlayerPanel";
-            this.streamPlayerPanel.Size = new System.Drawing.Size(332, 358);
+            this.streamPlayerPanel.Size = new System.Drawing.Size(332, 339);
             this.streamPlayerPanel.TabIndex = 13;
             this.streamPlayerPanel.Visible = false;
             // 
@@ -3794,7 +3814,7 @@ namespace NitroStudio2 {
             "Stereo"});
             this.stmPlayerChannelType.Location = new System.Drawing.Point(14, 28);
             this.stmPlayerChannelType.Name = "stmPlayerChannelType";
-            this.stmPlayerChannelType.Size = new System.Drawing.Size(305, 23);
+            this.stmPlayerChannelType.Size = new System.Drawing.Size(305, 33);
             this.stmPlayerChannelType.TabIndex = 4;
             this.toolTip.SetToolTip(this.stmPlayerChannelType, "If the stream is stereo or mono.");
             // 
@@ -3840,7 +3860,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.stmPlayerLeftChannelBox.Name = "stmPlayerLeftChannelBox";
-            this.stmPlayerLeftChannelBox.Size = new System.Drawing.Size(146, 23);
+            this.stmPlayerLeftChannelBox.Size = new System.Drawing.Size(146, 31);
             this.stmPlayerLeftChannelBox.TabIndex = 4;
             this.toolTip.SetToolTip(this.stmPlayerLeftChannelBox, "Channel to use for the stream.");
             // 
@@ -3856,7 +3876,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.stmPlayerRightChannelBox.Name = "stmPlayerRightChannelBox";
-            this.stmPlayerRightChannelBox.Size = new System.Drawing.Size(147, 23);
+            this.stmPlayerRightChannelBox.Size = new System.Drawing.Size(147, 31);
             this.stmPlayerRightChannelBox.TabIndex = 3;
             this.toolTip.SetToolTip(this.stmPlayerRightChannelBox, "Channel to use for the stream.");
             // 
@@ -3887,7 +3907,7 @@ namespace NitroStudio2 {
             this.grpPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpPanel.Location = new System.Drawing.Point(0, 270);
             this.grpPanel.Name = "grpPanel";
-            this.grpPanel.Size = new System.Drawing.Size(332, 358);
+            this.grpPanel.Size = new System.Drawing.Size(332, 339);
             this.grpPanel.TabIndex = 12;
             this.grpPanel.Visible = false;
             // 
@@ -3903,13 +3923,15 @@ namespace NitroStudio2 {
             this.grpEntries.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpEntries.Location = new System.Drawing.Point(0, 0);
             this.grpEntries.Name = "grpEntries";
-            this.grpEntries.Size = new System.Drawing.Size(332, 358);
+            this.grpEntries.RowHeadersWidth = 62;
+            this.grpEntries.Size = new System.Drawing.Size(332, 339);
             this.grpEntries.TabIndex = 0;
             // 
             // item
             // 
             this.item.FillWeight = 1750F;
             this.item.HeaderText = "Item";
+            this.item.MinimumWidth = 8;
             this.item.Name = "item";
             this.item.Width = 175;
             // 
@@ -3917,6 +3939,7 @@ namespace NitroStudio2 {
             // 
             this.loadFlags.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.loadFlags.HeaderText = "Load Flags";
+            this.loadFlags.MinimumWidth = 8;
             this.loadFlags.Name = "loadFlags";
             this.loadFlags.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.loadFlags.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -3936,7 +3959,7 @@ namespace NitroStudio2 {
             this.bankPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.bankPanel.Location = new System.Drawing.Point(0, 270);
             this.bankPanel.Name = "bankPanel";
-            this.bankPanel.Size = new System.Drawing.Size(332, 358);
+            this.bankPanel.Size = new System.Drawing.Size(332, 339);
             this.bankPanel.TabIndex = 11;
             this.bankPanel.Visible = false;
             // 
@@ -3965,7 +3988,7 @@ namespace NitroStudio2 {
             this.bnkWar3ComboBox.FormattingEnabled = true;
             this.bnkWar3ComboBox.Location = new System.Drawing.Point(3, 3);
             this.bnkWar3ComboBox.Name = "bnkWar3ComboBox";
-            this.bnkWar3ComboBox.Size = new System.Drawing.Size(253, 23);
+            this.bnkWar3ComboBox.Size = new System.Drawing.Size(253, 33);
             this.bnkWar3ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.bnkWar3ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -3986,7 +4009,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.bnkWar3Box.Name = "bnkWar3Box";
-            this.bnkWar3Box.Size = new System.Drawing.Size(40, 23);
+            this.bnkWar3Box.Size = new System.Drawing.Size(40, 31);
             this.bnkWar3Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.bnkWar3Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4026,7 +4049,7 @@ namespace NitroStudio2 {
             this.bnkWar2ComboBox.FormattingEnabled = true;
             this.bnkWar2ComboBox.Location = new System.Drawing.Point(3, 3);
             this.bnkWar2ComboBox.Name = "bnkWar2ComboBox";
-            this.bnkWar2ComboBox.Size = new System.Drawing.Size(253, 23);
+            this.bnkWar2ComboBox.Size = new System.Drawing.Size(253, 33);
             this.bnkWar2ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.bnkWar2ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4047,7 +4070,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.bnkWar2Box.Name = "bnkWar2Box";
-            this.bnkWar2Box.Size = new System.Drawing.Size(40, 23);
+            this.bnkWar2Box.Size = new System.Drawing.Size(40, 31);
             this.bnkWar2Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.bnkWar2Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4087,7 +4110,7 @@ namespace NitroStudio2 {
             this.bnkWar1ComboBox.FormattingEnabled = true;
             this.bnkWar1ComboBox.Location = new System.Drawing.Point(3, 3);
             this.bnkWar1ComboBox.Name = "bnkWar1ComboBox";
-            this.bnkWar1ComboBox.Size = new System.Drawing.Size(253, 23);
+            this.bnkWar1ComboBox.Size = new System.Drawing.Size(253, 33);
             this.bnkWar1ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.bnkWar1ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4108,7 +4131,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.bnkWar1Box.Name = "bnkWar1Box";
-            this.bnkWar1Box.Size = new System.Drawing.Size(40, 23);
+            this.bnkWar1Box.Size = new System.Drawing.Size(40, 31);
             this.bnkWar1Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.bnkWar1Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4148,7 +4171,7 @@ namespace NitroStudio2 {
             this.bnkWar0ComboBox.FormattingEnabled = true;
             this.bnkWar0ComboBox.Location = new System.Drawing.Point(3, 3);
             this.bnkWar0ComboBox.Name = "bnkWar0ComboBox";
-            this.bnkWar0ComboBox.Size = new System.Drawing.Size(253, 23);
+            this.bnkWar0ComboBox.Size = new System.Drawing.Size(253, 33);
             this.bnkWar0ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.bnkWar0ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4169,7 +4192,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.bnkWar0Box.Name = "bnkWar0Box";
-            this.bnkWar0Box.Size = new System.Drawing.Size(40, 23);
+            this.bnkWar0Box.Size = new System.Drawing.Size(40, 31);
             this.bnkWar0Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.bnkWar0Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4191,7 +4214,7 @@ namespace NitroStudio2 {
             this.blankPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.blankPanel.Location = new System.Drawing.Point(0, 270);
             this.blankPanel.Name = "blankPanel";
-            this.blankPanel.Size = new System.Drawing.Size(332, 358);
+            this.blankPanel.Size = new System.Drawing.Size(332, 339);
             this.blankPanel.TabIndex = 10;
             this.blankPanel.Visible = false;
             // 
@@ -4202,7 +4225,7 @@ namespace NitroStudio2 {
             this.warPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.warPanel.Location = new System.Drawing.Point(0, 270);
             this.warPanel.Name = "warPanel";
-            this.warPanel.Size = new System.Drawing.Size(332, 358);
+            this.warPanel.Size = new System.Drawing.Size(332, 339);
             this.warPanel.TabIndex = 9;
             this.warPanel.Visible = false;
             // 
@@ -4308,7 +4331,7 @@ namespace NitroStudio2 {
             0,
             0});
             this.itemIndexBox.Name = "itemIndexBox";
-            this.itemIndexBox.Size = new System.Drawing.Size(305, 23);
+            this.itemIndexBox.Size = new System.Drawing.Size(305, 31);
             this.itemIndexBox.TabIndex = 1;
             this.toolTip.SetToolTip(this.itemIndexBox, "The index of the item as referenced to by the game.");
             // 
@@ -4334,7 +4357,7 @@ namespace NitroStudio2 {
             this.settingsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.settingsPanel.Location = new System.Drawing.Point(0, 150);
             this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(332, 478);
+            this.settingsPanel.Size = new System.Drawing.Size(332, 459);
             this.settingsPanel.TabIndex = 1;
             this.settingsPanel.Visible = false;
             // 
@@ -4351,7 +4374,7 @@ namespace NitroStudio2 {
             "Sseq2Midi"});
             this.seqExportModeBox.Location = new System.Drawing.Point(11, 126);
             this.seqExportModeBox.Name = "seqExportModeBox";
-            this.seqExportModeBox.Size = new System.Drawing.Size(308, 23);
+            this.seqExportModeBox.Size = new System.Drawing.Size(308, 33);
             this.seqExportModeBox.TabIndex = 5;
             this.toolTip.SetToolTip(this.seqExportModeBox, "What program should be used to export sequences. Nitro Studio is my custom export" +
         "er, while Sseq2Midi is the exe included. I recommend you use my exporter.");
@@ -4381,7 +4404,7 @@ namespace NitroStudio2 {
             "Nintendo Tools"});
             this.seqImportModeBox.Location = new System.Drawing.Point(11, 77);
             this.seqImportModeBox.Name = "seqImportModeBox";
-            this.seqImportModeBox.Size = new System.Drawing.Size(308, 23);
+            this.seqImportModeBox.Size = new System.Drawing.Size(308, 33);
             this.seqImportModeBox.TabIndex = 3;
             this.toolTip.SetToolTip(this.seqImportModeBox, resources.GetString("seqImportModeBox.ToolTip"));
             // 
@@ -4425,7 +4448,7 @@ namespace NitroStudio2 {
             this.noInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noInfoPanel.Location = new System.Drawing.Point(0, 150);
             this.noInfoPanel.Name = "noInfoPanel";
-            this.noInfoPanel.Size = new System.Drawing.Size(332, 478);
+            this.noInfoPanel.Size = new System.Drawing.Size(332, 459);
             this.noInfoPanel.TabIndex = 0;
             // 
             // label1
@@ -4433,7 +4456,7 @@ namespace NitroStudio2 {
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(332, 478);
+            this.label1.Size = new System.Drawing.Size(332, 459);
             this.label1.TabIndex = 0;
             this.label1.Text = "No Valid Info Selected!";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4462,7 +4485,7 @@ namespace NitroStudio2 {
             this.kermalisPosition.Location = new System.Drawing.Point(14, 118);
             this.kermalisPosition.Maximum = 100;
             this.kermalisPosition.Name = "kermalisPosition";
-            this.kermalisPosition.Size = new System.Drawing.Size(305, 45);
+            this.kermalisPosition.Size = new System.Drawing.Size(305, 69);
             this.kermalisPosition.TabIndex = 5;
             this.kermalisPosition.TickFrequency = 5;
             this.toolTip.SetToolTip(this.kermalisPosition, "Sound position.");
@@ -4585,7 +4608,7 @@ namespace NitroStudio2 {
             this.pnlPianoKeys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlPianoKeys.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(51)))));
             this.pnlPianoKeys.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
-            this.pnlPianoKeys.Location = new System.Drawing.Point(37, 568);
+            this.pnlPianoKeys.Location = new System.Drawing.Point(37, 549);
             this.pnlPianoKeys.Name = "pnlPianoKeys";
             this.pnlPianoKeys.Size = new System.Drawing.Size(565, 46);
             this.pnlPianoKeys.TabIndex = 6;
@@ -4635,7 +4658,7 @@ namespace NitroStudio2 {
             this.war3ComboBox.FormattingEnabled = true;
             this.war3ComboBox.Location = new System.Drawing.Point(3, 3);
             this.war3ComboBox.Name = "war3ComboBox";
-            this.war3ComboBox.Size = new System.Drawing.Size(247, 23);
+            this.war3ComboBox.Size = new System.Drawing.Size(247, 33);
             this.war3ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.war3ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4656,7 +4679,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.war3Box.Name = "war3Box";
-            this.war3Box.Size = new System.Drawing.Size(39, 23);
+            this.war3Box.Size = new System.Drawing.Size(39, 31);
             this.war3Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.war3Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4696,7 +4719,7 @@ namespace NitroStudio2 {
             this.war2ComboBox.FormattingEnabled = true;
             this.war2ComboBox.Location = new System.Drawing.Point(3, 3);
             this.war2ComboBox.Name = "war2ComboBox";
-            this.war2ComboBox.Size = new System.Drawing.Size(247, 23);
+            this.war2ComboBox.Size = new System.Drawing.Size(247, 33);
             this.war2ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.war2ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4717,7 +4740,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.war2Box.Name = "war2Box";
-            this.war2Box.Size = new System.Drawing.Size(39, 23);
+            this.war2Box.Size = new System.Drawing.Size(39, 31);
             this.war2Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.war2Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4757,7 +4780,7 @@ namespace NitroStudio2 {
             this.war1ComboBox.FormattingEnabled = true;
             this.war1ComboBox.Location = new System.Drawing.Point(3, 3);
             this.war1ComboBox.Name = "war1ComboBox";
-            this.war1ComboBox.Size = new System.Drawing.Size(247, 23);
+            this.war1ComboBox.Size = new System.Drawing.Size(247, 33);
             this.war1ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.war1ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4778,7 +4801,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.war1Box.Name = "war1Box";
-            this.war1Box.Size = new System.Drawing.Size(39, 23);
+            this.war1Box.Size = new System.Drawing.Size(39, 31);
             this.war1Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.war1Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4818,7 +4841,7 @@ namespace NitroStudio2 {
             this.war0ComboBox.FormattingEnabled = true;
             this.war0ComboBox.Location = new System.Drawing.Point(3, 3);
             this.war0ComboBox.Name = "war0ComboBox";
-            this.war0ComboBox.Size = new System.Drawing.Size(247, 23);
+            this.war0ComboBox.Size = new System.Drawing.Size(247, 33);
             this.war0ComboBox.TabIndex = 6;
             this.toolTip.SetToolTip(this.war0ComboBox, "Wave archive to be used for the bank.");
             // 
@@ -4839,7 +4862,7 @@ namespace NitroStudio2 {
             0,
             -2147483648});
             this.war0Box.Name = "war0Box";
-            this.war0Box.Size = new System.Drawing.Size(39, 23);
+            this.war0Box.Size = new System.Drawing.Size(39, 31);
             this.war0Box.TabIndex = 7;
             this.toolTip.SetToolTip(this.war0Box, "Id of the wave archive to use for this bank.");
             // 
@@ -4872,7 +4895,7 @@ namespace NitroStudio2 {
             treeNode1});
             this.tree.SelectedImageIndex = 0;
             this.tree.ShowLines = false;
-            this.tree.Size = new System.Drawing.Size(644, 628);
+            this.tree.Size = new System.Drawing.Size(644, 609);
             this.tree.TabIndex = 0;
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
             this.tree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseDoubleClick);
@@ -4908,7 +4931,7 @@ namespace NitroStudio2 {
             this.sequenceEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sequenceEditorPanel.Location = new System.Drawing.Point(0, 0);
             this.sequenceEditorPanel.Name = "sequenceEditorPanel";
-            this.sequenceEditorPanel.Size = new System.Drawing.Size(644, 628);
+            this.sequenceEditorPanel.Size = new System.Drawing.Size(644, 609);
             this.sequenceEditorPanel.TabIndex = 3;
             this.sequenceEditorPanel.Visible = false;
             // 
@@ -4919,12 +4942,13 @@ namespace NitroStudio2 {
             // statusStrip
             // 
             this.statusStrip.BackColor = System.Drawing.Color.Black;
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status,
             this.currentNote});
-            this.statusStrip.Location = new System.Drawing.Point(0, 654);
+            this.statusStrip.Location = new System.Drawing.Point(0, 644);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(984, 22);
+            this.statusStrip.Size = new System.Drawing.Size(984, 32);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -4932,7 +4956,7 @@ namespace NitroStudio2 {
             // 
             this.status.BackColor = System.Drawing.Color.Black;
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(125, 17);
+            this.status.Size = new System.Drawing.Size(192, 25);
             this.status.Text = "No Valid Info Selected!";
             // 
             // currentNote
@@ -4940,17 +4964,18 @@ namespace NitroStudio2 {
             this.currentNote.BackColor = System.Drawing.Color.Black;
             this.currentNote.Name = "currentNote";
             this.currentNote.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.currentNote.Size = new System.Drawing.Size(0, 17);
+            this.currentNote.Size = new System.Drawing.Size(0, 25);
             // 
             // rootMenu
             // 
             this.rootMenu.BackColor = System.Drawing.Color.Black;
+            this.rootMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.rootMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addToolStripMenuItem,
             this.expandToolStripMenuItem,
             this.collapseToolStripMenuItem});
             this.rootMenu.Name = "rootMenu";
-            this.rootMenu.Size = new System.Drawing.Size(120, 70);
+            this.rootMenu.Size = new System.Drawing.Size(160, 100);
             // 
             // addToolStripMenuItem
             // 
@@ -4958,7 +4983,7 @@ namespace NitroStudio2 {
             this.addToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.addToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.New;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(159, 32);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
@@ -4968,7 +4993,7 @@ namespace NitroStudio2 {
             this.expandToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.expandToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Save;
             this.expandToolStripMenuItem.Name = "expandToolStripMenuItem";
-            this.expandToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.expandToolStripMenuItem.Size = new System.Drawing.Size(159, 32);
             this.expandToolStripMenuItem.Text = "Expand";
             this.expandToolStripMenuItem.Click += new System.EventHandler(this.expandToolStripMenuItem_Click);
             // 
@@ -4978,13 +5003,14 @@ namespace NitroStudio2 {
             this.collapseToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.collapseToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Save_As;
             this.collapseToolStripMenuItem.Name = "collapseToolStripMenuItem";
-            this.collapseToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.collapseToolStripMenuItem.Size = new System.Drawing.Size(159, 32);
             this.collapseToolStripMenuItem.Text = "Collapse";
             this.collapseToolStripMenuItem.Click += new System.EventHandler(this.collapseToolStripMenuItem_Click);
             // 
             // nodeMenu
             // 
             this.nodeMenu.BackColor = System.Drawing.Color.Black;
+            this.nodeMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.nodeMenu.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.nodeMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addAboveToolStripMenuItem1,
@@ -4995,7 +5021,7 @@ namespace NitroStudio2 {
             this.exportToolStripMenuItem1,
             this.deleteToolStripMenuItem1});
             this.nodeMenu.Name = "contextMenuStrip1";
-            this.nodeMenu.Size = new System.Drawing.Size(139, 158);
+            this.nodeMenu.Size = new System.Drawing.Size(190, 228);
             // 
             // addAboveToolStripMenuItem1
             // 
@@ -5003,7 +5029,7 @@ namespace NitroStudio2 {
             this.addAboveToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.addAboveToolStripMenuItem1.Image = global::NitroStudio2.Properties.Resources.New;
             this.addAboveToolStripMenuItem1.Name = "addAboveToolStripMenuItem1";
-            this.addAboveToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.addAboveToolStripMenuItem1.Size = new System.Drawing.Size(189, 32);
             this.addAboveToolStripMenuItem1.Text = "Add Above";
             this.addAboveToolStripMenuItem1.Click += new System.EventHandler(this.addAboveToolStripMenuItem1_Click);
             // 
@@ -5013,7 +5039,7 @@ namespace NitroStudio2 {
             this.addBelowToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.addBelowToolStripMenuItem1.Image = global::NitroStudio2.Properties.Resources.Open;
             this.addBelowToolStripMenuItem1.Name = "addBelowToolStripMenuItem1";
-            this.addBelowToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.addBelowToolStripMenuItem1.Size = new System.Drawing.Size(189, 32);
             this.addBelowToolStripMenuItem1.Text = "Add Below";
             this.addBelowToolStripMenuItem1.Click += new System.EventHandler(this.addBelowToolStripMenuItem1_Click);
             // 
@@ -5023,7 +5049,7 @@ namespace NitroStudio2 {
             this.moveUpToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.moveUpToolStripMenuItem1.Image = global::NitroStudio2.Properties.Resources.Save;
             this.moveUpToolStripMenuItem1.Name = "moveUpToolStripMenuItem1";
-            this.moveUpToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.moveUpToolStripMenuItem1.Size = new System.Drawing.Size(189, 32);
             this.moveUpToolStripMenuItem1.Text = "Move Up";
             this.moveUpToolStripMenuItem1.Click += new System.EventHandler(this.moveUpToolStripMenuItem1_Click);
             // 
@@ -5033,7 +5059,7 @@ namespace NitroStudio2 {
             this.moveDownToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.moveDownToolStripMenuItem1.Image = global::NitroStudio2.Properties.Resources.Save_As;
             this.moveDownToolStripMenuItem1.Name = "moveDownToolStripMenuItem1";
-            this.moveDownToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.moveDownToolStripMenuItem1.Size = new System.Drawing.Size(189, 32);
             this.moveDownToolStripMenuItem1.Text = "Move Down";
             this.moveDownToolStripMenuItem1.Click += new System.EventHandler(this.moveDownToolStripMenuItem1_Click);
             // 
@@ -5042,7 +5068,7 @@ namespace NitroStudio2 {
             this.replaceFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.replaceFileToolStripMenuItem.Image = global::NitroStudio2.Properties.Resources.Import;
             this.replaceFileToolStripMenuItem.Name = "replaceFileToolStripMenuItem";
-            this.replaceFileToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.replaceFileToolStripMenuItem.Size = new System.Drawing.Size(189, 32);
             this.replaceFileToolStripMenuItem.Text = "Replace";
             this.replaceFileToolStripMenuItem.Click += new System.EventHandler(this.replaceFileToolStripMenuItem_Click);
             // 
@@ -5052,7 +5078,7 @@ namespace NitroStudio2 {
             this.exportToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.exportToolStripMenuItem1.Image = global::NitroStudio2.Properties.Resources.Export;
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(189, 32);
             this.exportToolStripMenuItem1.Text = "Export";
             this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem1_Click);
             // 
@@ -5062,13 +5088,14 @@ namespace NitroStudio2 {
             this.deleteToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.deleteToolStripMenuItem1.Image = global::NitroStudio2.Properties.Resources.Close;
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(189, 32);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
             // 
             // sarEntryMenu
             // 
             this.sarEntryMenu.BackColor = System.Drawing.Color.Black;
+            this.sarEntryMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.sarEntryMenu.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.sarEntryMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sarAddAbove,
@@ -5080,7 +5107,7 @@ namespace NitroStudio2 {
             this.sarRename,
             this.sarDelete});
             this.sarEntryMenu.Name = "contextMenuStrip1";
-            this.sarEntryMenu.Size = new System.Drawing.Size(139, 180);
+            this.sarEntryMenu.Size = new System.Drawing.Size(190, 260);
             // 
             // sarAddAbove
             // 
@@ -5088,7 +5115,7 @@ namespace NitroStudio2 {
             this.sarAddAbove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarAddAbove.Image = global::NitroStudio2.Properties.Resources.New;
             this.sarAddAbove.Name = "sarAddAbove";
-            this.sarAddAbove.Size = new System.Drawing.Size(138, 22);
+            this.sarAddAbove.Size = new System.Drawing.Size(189, 32);
             this.sarAddAbove.Text = "Add Above";
             this.sarAddAbove.Click += new System.EventHandler(this.SarAddAbove_Click);
             // 
@@ -5098,7 +5125,7 @@ namespace NitroStudio2 {
             this.sarAddBelow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarAddBelow.Image = global::NitroStudio2.Properties.Resources.Open;
             this.sarAddBelow.Name = "sarAddBelow";
-            this.sarAddBelow.Size = new System.Drawing.Size(138, 22);
+            this.sarAddBelow.Size = new System.Drawing.Size(189, 32);
             this.sarAddBelow.Text = "Add Below";
             this.sarAddBelow.Click += new System.EventHandler(this.SarAddBelow_Click);
             // 
@@ -5107,7 +5134,7 @@ namespace NitroStudio2 {
             this.sarMoveUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarMoveUp.Image = global::NitroStudio2.Properties.Resources.Save;
             this.sarMoveUp.Name = "sarMoveUp";
-            this.sarMoveUp.Size = new System.Drawing.Size(138, 22);
+            this.sarMoveUp.Size = new System.Drawing.Size(189, 32);
             this.sarMoveUp.Text = "Move Up";
             this.sarMoveUp.Click += new System.EventHandler(this.SarMoveUp_Click);
             // 
@@ -5116,7 +5143,7 @@ namespace NitroStudio2 {
             this.sarMoveDown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarMoveDown.Image = global::NitroStudio2.Properties.Resources.Save_As;
             this.sarMoveDown.Name = "sarMoveDown";
-            this.sarMoveDown.Size = new System.Drawing.Size(138, 22);
+            this.sarMoveDown.Size = new System.Drawing.Size(189, 32);
             this.sarMoveDown.Text = "Move Down";
             this.sarMoveDown.Click += new System.EventHandler(this.SarMoveDown_Click);
             // 
@@ -5125,7 +5152,7 @@ namespace NitroStudio2 {
             this.sarReplace.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarReplace.Image = global::NitroStudio2.Properties.Resources.Import;
             this.sarReplace.Name = "sarReplace";
-            this.sarReplace.Size = new System.Drawing.Size(138, 22);
+            this.sarReplace.Size = new System.Drawing.Size(189, 32);
             this.sarReplace.Text = "Replace";
             this.sarReplace.Click += new System.EventHandler(this.SarReplace_Click);
             // 
@@ -5134,7 +5161,7 @@ namespace NitroStudio2 {
             this.sarExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarExport.Image = global::NitroStudio2.Properties.Resources.Export;
             this.sarExport.Name = "sarExport";
-            this.sarExport.Size = new System.Drawing.Size(138, 22);
+            this.sarExport.Size = new System.Drawing.Size(189, 32);
             this.sarExport.Text = "Export";
             this.sarExport.Click += new System.EventHandler(this.SarExport_Click);
             // 
@@ -5143,7 +5170,7 @@ namespace NitroStudio2 {
             this.sarRename.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarRename.Image = global::NitroStudio2.Properties.Resources.Rename;
             this.sarRename.Name = "sarRename";
-            this.sarRename.Size = new System.Drawing.Size(138, 22);
+            this.sarRename.Size = new System.Drawing.Size(189, 32);
             this.sarRename.Text = "Rename";
             this.sarRename.Click += new System.EventHandler(this.SarRename_Click);
             // 
@@ -5153,7 +5180,7 @@ namespace NitroStudio2 {
             this.sarDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
             this.sarDelete.Image = global::NitroStudio2.Properties.Resources.Close;
             this.sarDelete.Name = "sarDelete";
-            this.sarDelete.Size = new System.Drawing.Size(138, 22);
+            this.sarDelete.Size = new System.Drawing.Size(189, 32);
             this.sarDelete.Text = "Delete";
             this.sarDelete.Click += new System.EventHandler(this.SarDelete_Click);
             // 
@@ -5430,7 +5457,7 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update the nodes in the tree. THIS MUST CONTAIN THE BEGIN AND END UPDATE NODES!
         /// </summary>
-        protected abstract void UpdateNodes();
+        protected virtual void UpdateNodes() {}
 
         /// <summary>
         /// Complete the updating of nodes.
@@ -5524,7 +5551,7 @@ namespace NitroStudio2 {
         }
 
         //Save.
-        protected virtual void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        public virtual void saveToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //File open test.
             if (!FileTest(sender, e, false, true)) {
