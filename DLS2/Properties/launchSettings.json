@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "DLS2": {
+      "commandName": "Project",
+      "sqlDebugging": true,
+      "nativeDebugging": true
+    }
+  }
+}
