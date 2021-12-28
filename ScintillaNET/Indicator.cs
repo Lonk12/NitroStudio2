@@ -13,7 +13,7 @@ namespace ScintillaNET
     {
         #region Fields
 
-        private readonly Scintilla scintilla;
+        private Scintilla scintilla;
 
         #endregion Fields
 

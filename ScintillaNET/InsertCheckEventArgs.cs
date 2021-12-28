@@ -10,10 +10,10 @@ namespace ScintillaNET
     /// </summary>
     public class InsertCheckEventArgs : EventArgs
     {
-        private readonly Scintilla scintilla;
-        private readonly int bytePosition;
-        private readonly int byteLength;
-        private readonly IntPtr textPtr;
+        private Scintilla scintilla;
+        private int bytePosition;
+        private int byteLength;
+        private IntPtr textPtr;
 
         internal int? CachedPosition { get; set; }
         internal string CachedText { get; set; }

@@ -10,8 +10,8 @@ namespace ScintillaNET
     /// </summary>
     public class DwellEventArgs : EventArgs
     {
-        private readonly Scintilla scintilla;
-        private readonly int bytePosition;
+        private Scintilla scintilla;
+        private int bytePosition;
         private int? position;
 
         /// <summary>

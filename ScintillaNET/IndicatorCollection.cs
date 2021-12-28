@@ -12,7 +12,7 @@ namespace ScintillaNET
     /// </summary>
     public class IndicatorCollection : IEnumerable<Indicator>
     {
-        private readonly Scintilla scintilla;
+        private Scintilla scintilla;
 
         /// <summary>
         /// Provides an enumerator that iterates through the collection.

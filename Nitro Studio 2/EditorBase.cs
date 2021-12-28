@@ -622,6 +622,7 @@ namespace NitroStudio2 {
             this.exportFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sequenceEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sequenceEditor = new ScintillaNET.Scintilla();
             this.sequenceArchiveEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bankEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waveArchiveEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();

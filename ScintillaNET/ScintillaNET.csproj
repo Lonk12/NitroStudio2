@@ -61,14 +61,11 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="x64\**" />
-    <Compile Remove="x86\**" />
-    <EmbeddedResource Remove="x64\**" />
-    <EmbeddedResource Remove="x86\**" />
-    <None Remove="x64\**" />
-    <None Remove="x86\**" />
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Scintilla.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -78,6 +75,32 @@
     <PackageReference Include="System.Drawing.Common">
       <Version>6.0.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="x64\SciLexer.dll.gz" />
+    <EmbeddedResource Include="x86\SciLexer.dll.gz" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\License.txt" />
+    <Content Include="x64\SciLexer.dll" />
+    <Content Include="x64\SciLexer.pdb" />
+    <Content Include="x64\version.txt" />
+    <Content Include="x86\License.txt" />
+    <Content Include="x86\version.txt" />
+    <Content Include="x86\SciLexer.dll" />
+    <Content Include="x86\SciLexer.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SciLexer.exp" />
+    <Content Include="x64\SciLexer.lib" />
+    <Content Include="x86\SciLexer.exp" />
+    <Content Include="x86\SciLexer.lib" />
   </ItemGroup>
   <PropertyGroup>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>

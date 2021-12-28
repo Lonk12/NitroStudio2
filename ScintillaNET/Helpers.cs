@@ -723,7 +723,7 @@ namespace ScintillaNET
                     // Terminator
                     ms.WriteByte(0);
 
-                    // var str = GetString(ms.Pointer, (int)ms.Length, Encoding.ASCII);
+                    var str = GetString(ms.Pointer, (int)ms.Length, Encoding.ASCII);
                     if (NativeMethods.SetClipboardData(CF_RTF, ms.Pointer) != IntPtr.Zero)
                         ms.FreeOnDispose = false; // Clipboard will free memory
                 }

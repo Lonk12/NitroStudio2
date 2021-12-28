@@ -35,37 +35,37 @@ namespace ScintillaNET
         private static NativeMethods.Scintilla_DirectFunction directFunction;
 
         // Events
-        private static readonly object scNotificationEventKey = new object();
-        private static readonly object insertCheckEventKey = new object();
-        private static readonly object beforeInsertEventKey = new object();
-        private static readonly object beforeDeleteEventKey = new object();
-        private static readonly object insertEventKey = new object();
-        private static readonly object deleteEventKey = new object();
-        private static readonly object updateUIEventKey = new object();
-        private static readonly object modifyAttemptEventKey = new object();
-        private static readonly object styleNeededEventKey = new object();
-        private static readonly object savePointReachedEventKey = new object();
-        private static readonly object savePointLeftEventKey = new object();
-        private static readonly object changeAnnotationEventKey = new object();
-        private static readonly object marginClickEventKey = new object();
-        private static readonly object marginRightClickEventKey = new object();
-        private static readonly object charAddedEventKey = new object();
-        private static readonly object autoCSelectionEventKey = new object();
-        private static readonly object autoCCompletedEventKey = new object();
-        private static readonly object autoCCancelledEventKey = new object();
-        private static readonly object autoCCharDeletedEventKey = new object();
-        private static readonly object dwellStartEventKey = new object();
-        private static readonly object dwellEndEventKey = new object();
-        private static readonly object borderStyleChangedEventKey = new object();
-        private static readonly object doubleClickEventKey = new object();
-        private static readonly object paintedEventKey = new object();
-        private static readonly object needShownEventKey = new object();
-        private static readonly object hotspotClickEventKey = new object();
-        private static readonly object hotspotDoubleClickEventKey = new object();
-        private static readonly object hotspotReleaseClickEventKey = new object();
-        private static readonly object indicatorClickEventKey = new object();
-        private static readonly object indicatorReleaseEventKey = new object();
-        private static readonly object zoomChangedEventKey = new object();
+        private static object scNotificationEventKey = new object();
+        private static object insertCheckEventKey = new object();
+        private static object beforeInsertEventKey = new object();
+        private static object beforeDeleteEventKey = new object();
+        private static object insertEventKey = new object();
+        private static object deleteEventKey = new object();
+        private static object updateUIEventKey = new object();
+        private static object modifyAttemptEventKey = new object();
+        private static object styleNeededEventKey = new object();
+        private static object savePointReachedEventKey = new object();
+        private static object savePointLeftEventKey = new object();
+        private static object changeAnnotationEventKey = new object();
+        private static object marginClickEventKey = new object();
+        private static object marginRightClickEventKey = new object();
+        private static object charAddedEventKey = new object();
+        private static object autoCSelectionEventKey = new object();
+        private static object autoCCompletedEventKey = new object();
+        private static object autoCCancelledEventKey = new object();
+        private static object autoCCharDeletedEventKey = new object();
+        private static object dwellStartEventKey = new object();
+        private static object dwellEndEventKey = new object();
+        private static object borderStyleChangedEventKey = new object();
+        private static object doubleClickEventKey = new object();
+        private static object paintedEventKey = new object();
+        private static object needShownEventKey = new object();
+        private static object hotspotClickEventKey = new object();
+        private static object hotspotDoubleClickEventKey = new object();
+        private static object hotspotReleaseClickEventKey = new object();
+        private static object indicatorClickEventKey = new object();
+        private static object indicatorReleaseEventKey = new object();
+        private static object zoomChangedEventKey = new object();
 
         // The goods
         private IntPtr sciPtr;
@@ -240,7 +240,7 @@ namespace ScintillaNET
             ((byte*)newFillUpChars)[count - 1] = 0; // Null terminate
             fillUpChars = newFillUpChars;
 
-            // var str = new String((sbyte*)fillUpChars, 0, count, Encoding);
+            var str = new String((sbyte*)fillUpChars, 0, count, Encoding);
 
             DirectMessage(NativeMethods.SCI_AUTOCSETFILLUPS, IntPtr.Zero, fillUpChars);
         }
@@ -1013,7 +1013,7 @@ namespace ScintillaNET
 
             return modulePath;
         }
-
+        
         /// <summary>
         /// Lookup a property value for the current <see cref="Lexer" />.
         /// </summary>
@@ -3447,7 +3447,7 @@ namespace ScintillaNET
             }
         }
 
-        /*
+        
         /// <summary>
         /// Gets or sets the current position of a call tip.
         /// </summary>
@@ -3471,7 +3471,6 @@ namespace ScintillaNET
                 DirectMessage(NativeMethods.SCI_CALLTIPSETPOSSTART, new IntPtr(value));
             }
         }
-        */
 
         /// <summary>
         /// Gets a value indicating whether there is a call tip window displayed.
@@ -6167,11 +6166,7 @@ namespace ScintillaNET
             base.SetStyle(ControlStyles.CacheText, true);
 
             // Necessary control styles (see TextBoxBase)
-            base.SetStyle(ControlStyles.StandardClick |
-                     ControlStyles.StandardDoubleClick |
-                     ControlStyles.UseTextForAccessibility |
-                     ControlStyles.UserPaint,
-                     false);
+            base.SetStyle(ControlStyles.StandardClick | ControlStyles.StandardDoubleClick | ControlStyles.UseTextForAccessibility | ControlStyles.UserPaint, false);
 
             this.borderStyle = BorderStyle.Fixed3D;
 

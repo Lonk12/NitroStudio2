@@ -140,7 +140,7 @@ namespace NitroStudio2 {
             Timer.Tick += PositionTick;
             Timer.Interval = 1000 / 30;
             Timer.Start();
-            //MyFindReplace.FindAllResults += MyFindReplace_FindAllResults;
+            MyFindReplace.FindAllResults += MyFindReplace_FindAllResults;
             seqEditorBankBox.Minimum = -1;
             if (MainWindow == null || MainWindow.SA == null) {
                 seqEditorBankComboBox.Enabled = false;

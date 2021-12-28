@@ -186,7 +186,8 @@ namespace NitroStudio2 {
             genericScintilla_KeyDown(sender, e);
         }
 
-        private void MyFindReplace_FindAllResults(object sender, FindResultsEventArgs FindAllResults) {
+        private void MyFindReplace_FindAllResults(object sender, FindResultsEventArgs FindAllResults)
+        {
             // Pass on find results
             //findAllResultsPanel1.UpdateFindAllResults(FindAllResults.FindReplace, FindAllResults.FindAllResults);
         }
@@ -202,23 +203,35 @@ namespace NitroStudio2 {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void genericScintilla_KeyDown(object sender, KeyEventArgs e) {
-            if (e.Control && e.KeyCode == Keys.F) {
+		private void genericScintilla_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
                 MyFindReplace.ShowFind();
                 e.SuppressKeyPress = true;
-            } else if (e.Shift && e.KeyCode == Keys.F3) {
+            } else if (e.Shift && e.KeyCode == Keys.F3)
+            
+            {
                 MyFindReplace.Window.FindPrevious();
                 e.SuppressKeyPress = true;
-            } else if (e.KeyCode == Keys.F3) {
+            } else if (e.KeyCode == Keys.F3)
+            
+            {
                 MyFindReplace.Window.FindNext();
                 e.SuppressKeyPress = true;
-            } else if (e.Control && e.KeyCode == Keys.H) {
+            } else if (e.Control && e.KeyCode == Keys.H)
+            
+            {
                 MyFindReplace.ShowReplace();
                 e.SuppressKeyPress = true;
-            } else if (e.Control && e.KeyCode == Keys.I) {
+            } else if (e.Control && e.KeyCode == Keys.I)
+            
+            {
                 MyFindReplace.ShowIncrementalSearch();
                 e.SuppressKeyPress = true;
-            } else if (e.Control && e.KeyCode == Keys.G) {
+            } else if (e.Control && e.KeyCode == Keys.G)
+            
+            {
                 GoTo MyGoTo = new GoTo((Scintilla)sender);
                 MyGoTo.ShowGoToDialog();
                 e.SuppressKeyPress = true;
@@ -231,7 +244,8 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="sender">The Scintilla receiving focus</param>
         /// <param name="e"></param>
-        private void genericScintilla1_Enter(object sender, EventArgs e) {
+        private void genericScintilla1_Enter(object sender, EventArgs e)
+        {
             MyFindReplace.Scintilla = (Scintilla)sender;
         }
 
@@ -240,7 +254,8 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SequenceEditor_Load(object sender, EventArgs e) {
+        private void SequenceEditor_Load(object sender, EventArgs e)
+        {
 
             //Init style.
             sequenceEditor.Dock = DockStyle.Fill;
@@ -272,17 +287,20 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SEQ_ChangedText(object sender, EventArgs e) {
+        private void SEQ_ChangedText(object sender, EventArgs e)
+        {
 
             //Remove comment area.
             string s = sequenceEditor.Lines[sequenceEditor.CurrentLine].Text;
-            if (s.Contains(";")) {
+            if (s.Contains(";"))
+            {
                 s = s.Split(';')[0];
             }
 
             //Remove spaces.
             var ss = sequenceEditor.Lines[sequenceEditor.CurrentLine].Text.Replace(" ", "").Replace("\t", "").Replace("\r", "").Replace("\n", "");
-            if (sequenceEditor.CurrentLine != prevLine || (prevLineBlank != (ss.EndsWith(":") || ss == ""))) {
+            if (sequenceEditor.CurrentLine != prevLine || (prevLineBlank != (ss.EndsWith(":") || ss == "")))
+            {
                 UpdateLineNumbers(sequenceEditor.CurrentLine, sequenceEditor.Lines.Count);
                 prevLine = sequenceEditor.CurrentLine;
                 prevLineBlank = (ss.EndsWith(":") || ss == "");
@@ -293,14 +311,21 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update sequence.
         /// </summary>
-        public void UpdateSequence() {
+        public void UpdateSequence()
+        {
 
             //Update all.
-            try {
+            try
+            {
                 List<SequenceCommand> commands = new List<SequenceCommand>();
                 SEQ.FromText(sequenceEditor.Text.Replace('\r', '\n').Split('\n').ToList());
                 UpdateNodes();
-            } catch (Exception exe) { MessageBox.Show(exe.Message); }
+            }
+            
+            catch (Exception exe) 
+            {
+                MessageBox.Show(exe.Message);
+            }
 
         }
 
@@ -309,12 +334,27 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SEQ_StyleNeeded(object sender, StyleNeededEventArgs e) {
+        private void SEQ_StyleNeeded(object sender, StyleNeededEventArgs e)
+        {
             var startPos = sequenceEditor.GetEndStyled();
             var endPos = e.Position;
 
-            if (startPos >= 500) { startPos -= 500; } else { startPos = 0; }
-            if ((sequenceEditor.Text.Length - endPos) >= 500) { endPos += 500; } else { endPos = sequenceEditor.Text.Length; }
+            if (startPos >= 500)
+            {
+                startPos -= 500;
+            }
+            else
+            {
+                startPos = 0;
+            }
+            if ((sequenceEditor.Text.Length - endPos) >= 500)
+            {
+                endPos += 500;
+            }
+            else
+            {
+                endPos = sequenceEditor.Text.Length;
+            }
 
             StyleSeq(startPos, endPos);
         }
@@ -324,7 +364,8 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="startPos"></param>
         /// <param name="endPos"></param>
-        public void StyleSeq(int startPos, int endPos) {
+        public void StyleSeq(int startPos, int endPos)
+        {
 
             //Syntax highlighting.
             sequenceEditor.Styles[(int)CommandStyleType.Regular].ForeColor = IntToColor(0xE7E7E7);
@@ -340,47 +381,56 @@ namespace NitroStudio2 {
 
             //Sum.
             int pos = startPos;
-            if (endPos > sequenceEditor.Text.Length) {
+            if (endPos > sequenceEditor.Text.Length)
+            {
                 endPos = sequenceEditor.Text.Length;
             }
             CommandStyleType style = CommandStyleType.Regular;
             string[] lines = sequenceEditor.Text.Substring(startPos, endPos - startPos).Split('\n');
-            foreach (string s in lines) {
+            foreach (string s in lines)
+            {
 
                 //Do each char.
                 style = CommandStyleType.Regular;
                 bool initialSpaceCut = false;
                 string withoutInitialSpace = s.Replace("\t", " ");
                 int numWhiteSpace = 0;
-                for (int j = 0; j < s.Length; j++) {
+                for (int j = 0; j < s.Length; j++)
+                {
 
                     //Convert tabs to spaces.
                     string l = s.Replace("\t", " ");
 
                     //Label.
-                    if (l.Contains(":") && j == 0) {
+                    if (l.Contains(":") && j == 0)
+                    {
                         sequenceEditor.StartStyling(pos);
                         sequenceEditor.SetStyling(l.IndexOf(':') + 1, (int)CommandStyleType.Label);
                         j += l.IndexOf(':') + 1;
-                        if (j >= l.Length) {
+                        if (j >= l.Length)
+                        {
                             break;
                         }
                     }
 
                     //Jump to cut off intro spaces.
                     bool kill = false;
-                    while ((l[j] == ' ') && !initialSpaceCut) {
+                    while ((l[j] == ' ') && !initialSpaceCut)
+                    {
                         j++;
-                        if (j >= l.Length) {
+                        if (j >= l.Length)
+                        {
                             kill = true;
                             break;
-                        } else {
+                        } else
+                        {
                             withoutInitialSpace = l.Substring(j, l.Length - j);
                             numWhiteSpace = j;
                         }
                     }
                     initialSpaceCut = true;
-                    if (kill) {
+                    if (kill)
+                    {
                         break;
                     }
 
@@ -389,7 +439,8 @@ namespace NitroStudio2 {
                     int ind = j + pos;
 
                     //Comment.
-                    if (c == ';') {
+                    if (c == ';')
+                    {
                         sequenceEditor.StartStyling(ind);
                         sequenceEditor.SetStyling(l.Length - j, (int)CommandStyleType.Comment);
                         break;
@@ -401,20 +452,29 @@ namespace NitroStudio2 {
                         //Check prefix.
                         string p = l.Substring(j, l.Length - j).Split(' ')[0];
                         bool afterSpace = false;
-                        if (withoutInitialSpace.Contains(" ")) {
-                            if (j > withoutInitialSpace.IndexOf(" ") + numWhiteSpace) { afterSpace = true; }
+                        if (withoutInitialSpace.Contains(" "))
+                        {
+                            if (j > withoutInitialSpace.IndexOf(" ") + numWhiteSpace)
+                            {
+                                afterSpace = true;
+                            }
                         }
-                        if (!afterSpace && (p.Contains("_if ") || p.Contains("_v ") || p.Contains("_r ") || p.Contains("_t ") || p.Contains("_tr ") || p.Contains("_tv ") || p.EndsWith("_if") || p.EndsWith("_v") || p.EndsWith("_t") || p.EndsWith("_tv") || p.EndsWith("_tr") || p.EndsWith("_r"))) {
+                        if (!afterSpace && (p.Contains("_if ") || p.Contains("_v ") || p.Contains("_r ") || p.Contains("_t ") || p.Contains("_tr ") || p.Contains("_tv ") || p.EndsWith("_if") || p.EndsWith("_v") || p.EndsWith("_t") || p.EndsWith("_tv") || p.EndsWith("_tr") || p.EndsWith("_r")))
+                        {
                             style = CommandStyleType.Prefix;
                         }
 
                     }
 
                     //Space.
-                    if (c == ' ') {
-                        if (j > 0) {
-                            if (l[j - 1] != ' ') {
-                                if (style < CommandStyleType.Prefix) {
+                    if (c == ' ')
+                    {
+                        if (j > 0)
+                        {
+                            if (l[j - 1] != ' ')
+                            {
+                                if (style < CommandStyleType.Prefix)
+                                {
                                     style = CommandStyleType.Prefix;
                                 }
                                 style++;
@@ -438,7 +498,8 @@ namespace NitroStudio2 {
         /// <summary>
         /// Command style.
         /// </summary>
-        public enum CommandStyleType {
+        public enum CommandStyleType
+        {
             Null, Regular, Comment, Label, Prefix, Value0, Value1, Value2, Value3, Value4, Value5
         }
 
@@ -447,7 +508,8 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="rgb"></param>
         /// <returns></returns>
-        public static Color IntToColor(int rgb) {
+        public static Color IntToColor(int rgb)
+        {
             return Color.FromArgb(255, (byte)(rgb >> 16), (byte)(rgb >> 8), (byte)rgb);
         }
 
@@ -461,7 +523,8 @@ namespace NitroStudio2 {
             sequenceEditor.Margins[0].Width = 35;
 
             //File is not null.
-            if (File != null) {
+            if (File != null)
+            {
 
                 //Not read only.
                 sequenceEditor.ReadOnly = false;
@@ -476,7 +539,8 @@ namespace NitroStudio2 {
             }
 
             //File is null.
-            else {
+            else
+            {
                 sequenceEditor.Text = "{ NULL FILE INFO }";
             }
 
@@ -490,31 +554,37 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="startingAtLine">Starting at line.</param>
         /// <param name="endingAtLine">Ending line.</param>
-        private void UpdateLineNumbers(int startingAtLine, int endingAtLine) {
+        private void UpdateLineNumbers(int startingAtLine, int endingAtLine)
+        {
 
             //Get previous number.
             int pastNum = 0;
-            if (startingAtLine != 0) {
+            if (startingAtLine != 0)
+            {
                 pastNum = int.Parse(sequenceEditor.Lines[startingAtLine - 1].MarginText);
                 var ss = sequenceEditor.Lines[startingAtLine - 1].Text.Replace(" ", "").Replace("\t", "").Replace("\r", "").Replace("\n", "");
-                if (ss != "" && !ss.EndsWith(":")) {
+                if (ss != "" && !ss.EndsWith(":"))
+                {
                     pastNum++;
                 }
             }
 
             //Add each command length.
             int sum = pastNum;
-            if (endingAtLine > sequenceEditor.Lines.Count) {
+            if (endingAtLine > sequenceEditor.Lines.Count)
+            {
                 endingAtLine = sequenceEditor.Lines.Count;
             }
-            for (int i = startingAtLine; i < endingAtLine; i++) {
+            for (int i = startingAtLine; i < endingAtLine; i++)
+            {
 
                 //Set style.
                 sequenceEditor.Lines[i].MarginStyle = Style.LineNumber;
 
                 //Remove comment area.
                 string s = sequenceEditor.Lines[i].Text;
-                if (s.Contains(";")) {
+                if (s.Contains(";"))
+                {
                     s = s.Split(';')[0];
                 }
 
@@ -525,28 +595,35 @@ namespace NitroStudio2 {
                 sequenceEditor.Lines[i].MarginText = "" + sum;
 
                 //Number to add.
-                if (s != "" && !s.EndsWith(":")) { sum += 1; }
+                if (s != "" && !s.EndsWith(":"))
+                {
+                    sum += 1;
+                }
 
             }
 
         }
 
-        private void scintilla_Insert(object sender, ModificationEventArgs e) {
+        private void scintilla_Insert(object sender, ModificationEventArgs e)
+        {
             // Only update line numbers if the number of lines changed
             if (e.LinesAdded != 0)
                 UpdateLineNumbers(0, sequenceEditor.Lines.Count);
         }
 
-        private void scintilla_Delete(object sender, ModificationEventArgs e) {
+        private void scintilla_Delete(object sender, ModificationEventArgs e)
+        {
             // Only update line numbers if the number of lines changed
             if (e.LinesAdded != 0)
                 UpdateLineNumbers(0, sequenceEditor.Lines.Count);
         }
 
-        protected override void newToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open and can save test.
-            if (!FileTest(sender, e, true)) {
+            if (!FileTest(sender, e, true))
+            {
                 return;
             }
 
@@ -563,10 +640,12 @@ namespace NitroStudio2 {
 
         }
 
-        protected override void openToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open and save test.
-            if (!FileTest(sender, e, true)) {
+            if (!FileTest(sender, e, true))
+            {
                 return;
             }
 
@@ -574,7 +653,8 @@ namespace NitroStudio2 {
             string path = GetFileOpenerPath(ExtensionDescription, Extension);
 
             //File is not null.
-            if (path != "") {
+            if (path != "")
+            {
 
                 //Set value.
                 File = (IOFile)Activator.CreateInstance(FileType);
@@ -594,11 +674,13 @@ namespace NitroStudio2 {
 
         }
 
-        public override void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        public override void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //Update.
             UpdateSequence();
-            if (!SEQ.WritingCommandSuccess) {
+            if (!SEQ.WritingCommandSuccess)
+            {
                 return;
             }
             SEQ.WriteCommandData();
@@ -608,10 +690,12 @@ namespace NitroStudio2 {
 
         }
 
-        protected override void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void importFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
                 return;
             }
 
@@ -620,13 +704,15 @@ namespace NitroStudio2 {
             o.RestoreDirectory = true;
             o.Filter = "Supported Sound Files|*.sseq;*.smft|Sound Sequence|*.sseq|SMF Text Format|*.smft";
 
-            if (o.ShowDialog() != DialogResult.OK) {
+            if (o.ShowDialog() != DialogResult.OK)
+            {
                 return;
             }
             string path = o.FileName;
 
             //File is not null.
-            if (path.EndsWith(".sseq")) {
+            if (path.EndsWith(".sseq"))
+            {
 
                 //Set value.
                 string name = SEQ.Name;
@@ -645,11 +731,13 @@ namespace NitroStudio2 {
 
         }
 
-        protected override void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void exportFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             
             //Update.
             UpdateSequence();
-            if (!SEQ.WritingCommandSuccess) {
+            if (!SEQ.WritingCommandSuccess)
+            {
                 return;
             }
             SEQ.WriteCommandData();
@@ -659,20 +747,25 @@ namespace NitroStudio2 {
             s.RestoreDirectory = true;
             s.Filter = "Supported Sound Files|*.sseq;*.smft|Sound Sequence|*.sseq|SMF Text Format|*.smft";
             s.OverwritePrompt = false;
-            if (s.ShowDialog() == DialogResult.OK) {
-                if (s.FileName.EndsWith(".smft")) {
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+                if (s.FileName.EndsWith(".smft"))
+                {
                     System.IO.File.WriteAllText(s.FileName, sequenceEditor.Text);
-                } else {
+                } else
+                {
                     SEQ.Write(s.FileName);
                 }
             }
 
         }
 
-        protected override void blankFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void blankFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open save test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
                 return;
             }
 
@@ -687,17 +780,21 @@ namespace NitroStudio2 {
         /// <summary>
         /// Play click.
         /// </summary>
-        public void PlayClick(object sender, EventArgs e) {
+        public void PlayClick(object sender, EventArgs e)
+        {
             UpdateSequence();
-            if (!SEQ.WritingCommandSuccess) {
+            if (!SEQ.WritingCommandSuccess)
+            {
                 return;
             }
-            if (MainWindow == null) {
+            if (MainWindow == null)
+            {
                 MessageBox.Show("There must be an SDAT connected to this file to play it.");
                 return;
             }
             var b = MainWindow.SA.Banks.Where(x => x.Index == (int)seqEditorBankBox.Value).FirstOrDefault();
-            if (b == null) {
+            if (b == null)
+            {
                 MessageBox.Show("Bank is not valid or doesn't exist.");
                 return;
             }
@@ -712,14 +809,16 @@ namespace NitroStudio2 {
         /// <summary>
         /// Pause click.
         /// </summary>
-        public void PauseClick(object sender, EventArgs e) {
+        public void PauseClick(object sender, EventArgs e)
+        {
             Player.Pause();
         }
 
         /// <summary>
         /// Stop click.
         /// </summary>
-        public void StopClick(object sender, EventArgs e) {
+        public void StopClick(object sender, EventArgs e)
+        {
             Player.Stop();
             track0Picture.BackgroundImage = Properties.Resources.Idle;
             track1Picture.BackgroundImage = Properties.Resources.Idle;
@@ -742,42 +841,52 @@ namespace NitroStudio2 {
         /// <summary>
         /// Volume changed.
         /// </summary>
-        public void VolumeChanged(object sender, EventArgs e) {
+        public void VolumeChanged(object sender, EventArgs e)
+        {
             Mixer.Volume = kermalisVolumeSlider.Value / 100f;
         }
 
         /// <summary>
         /// Loop changed.
         /// </summary>
-        public void LoopChanged(object sender, EventArgs e) {
+        public void LoopChanged(object sender, EventArgs e)
+        {
             Player.NumLoops = kermalisLoopBox.Checked ? 0xFFFFFFFF : 0;
         }
 
         /// <summary>
         /// Closing.
         /// </summary>
-        public void SEClosing(object sender, FormClosingEventArgs e) {
+        public void SEClosing(object sender, FormClosingEventArgs e)
+        {
             Player.Stop();
             Player.Dispose();
             Mixer.Dispose();
             Timer.Stop();
         }
 
-        public void BankComboChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        public void BankComboChanged(object sender, EventArgs e)
+        {
+            if (!WritingInfo)
+            {
                 WritingInfo = true;
-                if (seqEditorBankComboBox.SelectedIndex != 0) { 
+                if (seqEditorBankComboBox.SelectedIndex != 0)
+                { 
                     seqEditorBankBox.Value = int.Parse(((string)seqEditorBankComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
                 }
                 WritingInfo = false;
             }
         }
 
-        public void BankBoxChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        public void BankBoxChanged(object sender, EventArgs e)
+        {
+            if (!WritingInfo)
+            {
                 WritingInfo = true;
-                for (int i = 1; i < seqEditorBankComboBox.Items.Count; i++) { 
-                    if ((int)seqEditorBankBox.Value == int.Parse(((string)seqEditorBankComboBox.Items[i]).Split('[')[1].Split(']')[0])) {
+                for (int i = 1; i < seqEditorBankComboBox.Items.Count; i++)
+                { 
+                    if ((int)seqEditorBankBox.Value == int.Parse(((string)seqEditorBankComboBox.Items[i]).Split('[')[1].Split(']')[0]))
+                    {
                         seqEditorBankComboBox.SelectedIndex = i;
                         WritingInfo = false;
                         return;
@@ -788,7 +897,8 @@ namespace NitroStudio2 {
             }
         }
 
-        protected override void closeToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //Do base.
             base.closeToolStripMenuItem_Click(sender, e);
@@ -796,125 +906,152 @@ namespace NitroStudio2 {
 
         }
 
-        private void NotePressed(object sender, NoteEventArgs e) {
-            switch (e.TrackId) {
+        private void NotePressed(object sender, NoteEventArgs e)
+        {
+            switch (e.TrackId)
+            {
                 case 0:
-                    if (track0Box.Checked) {
+                    if (track0Box.Checked)
+                    {
                         track0Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 1:
-                    if (track1Box.Checked) {
+                    if (track1Box.Checked)
+                    {
                         track1Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 2:
-                    if (track2Box.Checked) {
+                    if (track2Box.Checked)
+                    {
                         track2Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 3:
-                    if (track3Box.Checked) {
+                    if (track3Box.Checked)
+                    {
                         track3Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 4:
-                    if (track4Box.Checked) {
+                    if (track4Box.Checked)
+                    {
                         track4Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 5:
-                    if (track5Box.Checked) {
+                    if (track5Box.Checked)
+                    {
                         track5Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 6:
-                    if (track6Box.Checked) {
+                    if (track6Box.Checked)
+                    {
                         track6Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 7:
-                    if (track7Box.Checked) {
+                    if (track7Box.Checked)
+                    {
                         track7Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 8:
-                    if (track8Box.Checked) {
+                    if (track8Box.Checked)
+                    {
                         track8Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 9:
-                    if (track9Box.Checked) {
+                    if (track9Box.Checked)
+                    {
                         track9Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 10:
-                    if (track10Box.Checked) {
+                    if (track10Box.Checked)
+                    {
                         track10Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 11:
-                    if (track11Box.Checked) {
+                    if (track11Box.Checked)
+                    {
                         track11Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 12:
-                    if (track12Box.Checked) {
+                    if (track12Box.Checked)
+                    {
                         track12Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 13:
-                    if (track13Box.Checked) {
+                    if (track13Box.Checked)
+                    {
                         track13Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 14:
-                    if (track14Box.Checked) {
+                    if (track14Box.Checked)
+                    {
                         track14Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
                 case 15:
-                    if (track15Box.Checked) {
+                    if (track15Box.Checked)
+                    {
                         track15Picture.BackgroundImage = Properties.Resources.NoteDown;
                     }
                     break;
             }
         }
 
-        private void NoteReleased(object sender, NoteEventArgs e) {
-            switch (e.TrackId) {
+        private void NoteReleased(object sender, NoteEventArgs e)
+        {
+            switch (e.TrackId)
+            {
                 case 0:
-                    if (track0Box.Checked) {
+                    if (track0Box.Checked)
+                    {
                         track0Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;
                 case 1:
-                    if (track1Box.Checked) {
+                    if (track1Box.Checked)
+                    {
                         track1Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;
                 case 2:
-                    if (track2Box.Checked) {
+                    if (track2Box.Checked)
+                    {
                         track2Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;
                 case 3:
-                    if (track3Box.Checked) {
+                    if (track3Box.Checked)
+                    {
                         track3Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;
                 case 4:
-                    if (track4Box.Checked) {
+                    if (track4Box.Checked)
+                    {
                         track4Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;
                 case 5:
-                    if (track5Box.Checked) {
+                    if (track5Box.Checked)
+                    {
                         track5Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;
                 case 6:
-                    if (track6Box.Checked) {
+                    if (track6Box.Checked)
+                    {
                         track6Picture.BackgroundImage = Properties.Resources.Idle;
                     }
                     break;

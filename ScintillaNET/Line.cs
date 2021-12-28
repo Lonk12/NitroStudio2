@@ -12,7 +12,7 @@ namespace ScintillaNET
     {
         #region Fields
 
-        private readonly Scintilla scintilla;
+        private Scintilla scintilla;
 
         #endregion Fields
 
@@ -26,9 +26,10 @@ namespace ScintillaNET
             scintilla.DirectMessage(NativeMethods.SCI_ENSUREVISIBLE, new IntPtr(Index));
         }
 
-        //public void ExpandChildren(int level)
-        //{
-        //}
+        public void ExpandChildren(int level)
+        {
+
+        }
 
         /// <summary>
         /// Performs the specified fold action on the current line and all child lines.
