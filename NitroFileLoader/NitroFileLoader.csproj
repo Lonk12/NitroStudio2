@@ -7,7 +7,7 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Platforms>x64</Platforms>
+    <Platforms>AnyCPU;x64</Platforms>
     <AnalysisLevel>latest</AnalysisLevel>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <ApplicationIcon />

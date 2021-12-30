@@ -71,6 +71,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScintillaNET\ScintillaNET.csproj" />
+    <ProjectReference Include="..\ScintillaNET-master\src\ScintillaNET\ScintillaNET.csproj" />
   </ItemGroup>
 </Project>

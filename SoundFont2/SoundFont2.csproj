@@ -10,7 +10,7 @@
     <AssemblyName>SoundFont2</AssemblyName>
     <RootNamespace>Kermalis.SoundFont2</RootNamespace>
     <Version>1.0.0.0</Version>
-    <Platforms>x64</Platforms>
+    <Platforms>AnyCPU;x64</Platforms>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>

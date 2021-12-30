@@ -110,8 +110,8 @@
     <ProjectReference Include="..\GotaSoundIODeluxe\GotaSoundIO.csproj" />
     <ProjectReference Include="..\NitroFileLoader\NitroFileLoader.csproj" />
     <ProjectReference Include="..\Sanford.Multimedia.Midi\Sanford.Multimedia.Midi.csproj" />
+    <ProjectReference Include="..\ScintillaNET-master\src\ScintillaNET\ScintillaNET.csproj" />
     <ProjectReference Include="..\ScintillaNetFindReplaceDialog\ScintillaNETFindReplaceDialog.csproj" />
-    <ProjectReference Include="..\ScintillaNET\ScintillaNET.csproj" />
     <ProjectReference Include="..\SoundFont2\SoundFont2.csproj" />
   </ItemGroup>
   <ItemGroup>

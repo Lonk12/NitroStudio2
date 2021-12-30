@@ -30,11 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundFont2", "SoundFont2\So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DLS2", "DLS2\DLS2.csproj", "{65F945D1-9571-45DA-9197-D65385025E8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScintillaNET", "ScintillaNET\ScintillaNET.csproj", "{944AE5B7-6048-4955-9B78-398420E9E084}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScintillaNETFindReplaceDialog", "ScintillaNetFindReplaceDialog\ScintillaNETFindReplaceDialog.csproj", "{5E457545-0D23-4CEC-ABDE-67FE449B84A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GotaFormsDefs", "GotaFormsDefs\GotaFormsDefs.csproj", "{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScintillaNET", "ScintillaNET-master\src\ScintillaNET\ScintillaNET.csproj", "{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,14 +106,6 @@ Global
 		{65F945D1-9571-45DA-9197-D65385025E8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{65F945D1-9571-45DA-9197-D65385025E8B}.Release|x64.ActiveCfg = Release|x64
 		{65F945D1-9571-45DA-9197-D65385025E8B}.Release|x64.Build.0 = Release|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Debug|Any CPU.Build.0 = Debug|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Debug|x64.ActiveCfg = Debug|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Debug|x64.Build.0 = Debug|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Release|Any CPU.ActiveCfg = Release|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Release|Any CPU.Build.0 = Release|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Release|x64.ActiveCfg = Release|x64
-		{944AE5B7-6048-4955-9B78-398420E9E084}.Release|x64.Build.0 = Release|x64
 		{5E457545-0D23-4CEC-ABDE-67FE449B84A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E457545-0D23-4CEC-ABDE-67FE449B84A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E457545-0D23-4CEC-ABDE-67FE449B84A2}.Debug|x64.ActiveCfg = Debug|x64
@@ -124,14 +114,14 @@ Global
 		{5E457545-0D23-4CEC-ABDE-67FE449B84A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E457545-0D23-4CEC-ABDE-67FE449B84A2}.Release|x64.ActiveCfg = Release|x64
 		{5E457545-0D23-4CEC-ABDE-67FE449B84A2}.Release|x64.Build.0 = Release|x64
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Debug|x64.Build.0 = Debug|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Release|x64.ActiveCfg = Release|Any CPU
-		{4B5D9F11-6A3E-4586-A275-AEFC87949B7F}.Release|x64.Build.0 = Release|Any CPU
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Debug|x64.ActiveCfg = Debug|x64
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Debug|x64.Build.0 = Debug|x64
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Release|x64.ActiveCfg = Release|x64
+		{9B5FF88A-CC41-419A-8DB8-C08DCE19C84A}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,94 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows10.0.22000.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\ScintillaNET.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DocumentationFile>bin\Release\ScintillaNET.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Signed|AnyCPU'">
+    <OutputPath>bin\Signed\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Signed\ScintillaNET.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ScintillaNET.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\ScintillaNET.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Signed|x64'">
+    <OutputPath>bin\x64\Signed\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Signed\ScintillaNET.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ScintillaNET.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Scintilla.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="x64\SciLexer.dll.gz" />
+    <EmbeddedResource Include="x86\SciLexer.dll.gz" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\License.txt" />
+    <Content Include="x64\SciLexer.dll" />
+    <Content Include="x64\SciLexer.pdb" />
+    <Content Include="x64\version.txt" />
+    <Content Include="x86\License.txt" />
+    <Content Include="x86\version.txt" />
+    <Content Include="x86\SciLexer.dll" />
+    <Content Include="x86\SciLexer.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SciLexer.exp" />
+    <Content Include="x64\SciLexer.lib" />
+    <Content Include="x86\SciLexer.exp" />
+    <Content Include="x86\SciLexer.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp">
+      <Version>4.7.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.Common">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.DataSetExtensions">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.261602">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+</Project>
