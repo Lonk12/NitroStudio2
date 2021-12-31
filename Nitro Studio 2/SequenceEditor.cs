@@ -380,12 +380,17 @@ namespace NitroStudio2 {
 
             //Sum.
             int pos = startPos;
+            
             if (endPos > sequenceEditor.Text.Length)
             {
+                
                 endPos = sequenceEditor.Text.Length;
+
             }
+            
             CommandStyleType style = CommandStyleType.Regular;
             string[] lines = sequenceEditor.Text.Substring(startPos, endPos - startPos).Split('\n');
+            
             foreach (string s in lines)
             {
 
@@ -394,6 +399,7 @@ namespace NitroStudio2 {
                 bool initialSpaceCut = false;
                 string withoutInitialSpace = s.Replace("\t", " ");
                 int numWhiteSpace = 0;
+                
                 for (int j = 0; j < s.Length; j++)
                 {
 
@@ -403,34 +409,51 @@ namespace NitroStudio2 {
                     //Label.
                     if (l.Contains(":") && j == 0)
                     {
+                        
                         sequenceEditor.StartStyling(pos);
                         sequenceEditor.SetStyling(l.IndexOf(':') + 1, (int)CommandStyleType.Label);
                         j += l.IndexOf(':') + 1;
+                        
                         if (j >= l.Length)
                         {
+                           
                             break;
+
                         }
+
                     }
 
                     //Jump to cut off intro spaces.
                     bool kill = false;
+                    
                     while ((l[j] == ' ') && !initialSpaceCut)
                     {
                         j++;
+                        
                         if (j >= l.Length)
                         {
+                            
                             kill = true;
                             break;
-                        } else
+
+                        }
+                        
+                        else
                         {
+                            
                             withoutInitialSpace = l.Substring(j, l.Length - j);
                             numWhiteSpace = j;
+
                         }
+
                     }
                     initialSpaceCut = true;
+                    
                     if (kill)
                     {
+                        
                         break;
+
                     }
 
                     //Get char and index.
@@ -440,27 +463,38 @@ namespace NitroStudio2 {
                     //Comment.
                     if (c == ';')
                     {
+                       
                         sequenceEditor.StartStyling(ind);
                         sequenceEditor.SetStyling(l.Length - j, (int)CommandStyleType.Comment);
                         break;
+
                     }
 
                     //Prefix.
-                    if (c == '_') {
+                    if (c == '_')
+                    {
 
                         //Check prefix.
                         string p = l.Substring(j, l.Length - j).Split(' ')[0];
                         bool afterSpace = false;
+                        
                         if (withoutInitialSpace.Contains(" "))
                         {
+                            
                             if (j > withoutInitialSpace.IndexOf(" ") + numWhiteSpace)
                             {
+                                
                                 afterSpace = true;
+
                             }
+
                         }
+                        
                         if (!afterSpace && (p.Contains("_if ") || p.Contains("_v ") || p.Contains("_r ") || p.Contains("_t ") || p.Contains("_tr ") || p.Contains("_tv ") || p.EndsWith("_if") || p.EndsWith("_v") || p.EndsWith("_t") || p.EndsWith("_tv") || p.EndsWith("_tr") || p.EndsWith("_r")))
                         {
+                            
                             style = CommandStyleType.Prefix;
+
                         }
 
                     }
@@ -468,17 +502,26 @@ namespace NitroStudio2 {
                     //Space.
                     if (c == ' ')
                     {
+                        
                         if (j > 0)
                         {
+                            
                             if (l[j - 1] != ' ')
                             {
+                                
                                 if (style < CommandStyleType.Prefix)
                                 {
+                                    
                                     style = CommandStyleType.Prefix;
+
                                 }
+                                
                                 style++;
+
                             }
+
                         }
+
                     }
 
                     //Do style.
