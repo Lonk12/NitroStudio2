@@ -14,7 +14,9 @@ namespace NitroStudio2
     {
         public AboutWindow()
         {
+            
             InitializeComponent();
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -27,7 +29,8 @@ namespace NitroStudio2
 
         }
 
-        private void AboutWindow_Load(object sender, EventArgs e) {
+        private void AboutWindow_Load(object sender, EventArgs e)
+        {
 
         }
 

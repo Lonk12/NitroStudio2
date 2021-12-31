@@ -17,12 +17,14 @@ using System.Windows.Forms;
 using GotaSoundBank.DLS;
 using GotaSoundBank.SF2;
 
-namespace NitroStudio2 {
+namespace NitroStudio2
+{
 
     /// <summary>
     /// Main window.
     /// </summary>
-    public class MainWindow : EditorBase {
+    public class MainWindow : EditorBase
+    {
 
         /// <summary>
         /// Nitro path.
@@ -62,19 +64,23 @@ namespace NitroStudio2 {
         /// <summary>
         /// Create a new main window.
         /// </summary>
-        public MainWindow() : base(typeof(SoundArchive), "Sound Archive", "dat", "Nitro Studio 2", null) {
+        public MainWindow() : base(typeof(SoundArchive), "Sound Archive", "dat", "Nitro Studio 2", null)
+        {
+            
             Init();
-            //InitializeComponent();
-            Text = "Nitro Studio 2";
+            Text = "Nitro Studio 2 Deluxe";
+
         }
 
         /// <summary>
         /// Create a new main window.
         /// </summary>
         /// <param name="fileToOpen">The file to open.</param>
-        public MainWindow(string fileToOpen) : base(typeof(SoundArchive), "Sound Archive", "dat", "Nitro Studio 2", fileToOpen, null) {
+        public MainWindow(string fileToOpen) : base(typeof(SoundArchive), "Sound Archive", "dat", "Nitro Studio 2", fileToOpen, null)
+        {
+            
             Init();
-            //InitializeComponent();
+
         }
 
         /// <summary>
@@ -82,7 +88,6 @@ namespace NitroStudio2 {
         /// </summary>
         public void Init()
         {
-            //InitializeComponent();
 
             //Window stuff.
             Icon = Properties.Resources.Icon;
@@ -182,13 +187,16 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update nodes.
         /// </summary>
-        protected override void UpdateNodes() {
+        protected override void UpdateNodes()
+        {
 
             //Begin update.
             BeginUpdateNodes();
 
             //Add waves if node doesn't exist.
-            if (tree.Nodes.Count < 9) {
+            if (tree.Nodes.Count < 9)
+            {
+                
                 tree.Nodes.RemoveAt(0);
                 tree.Nodes.Add("settings", "Settings", 1, 1);
                 tree.Nodes.Add("sequences", "Sound Sequences", 2, 2);
@@ -199,59 +207,105 @@ namespace NitroStudio2 {
                 tree.Nodes.Add("groups", "Groups", 7, 7);
                 tree.Nodes.Add("streamPlayers", "Stream Players", 8, 8);
                 tree.Nodes.Add("streams", "Sound Streams", 9, 9);
+
             }
 
             //File open and not null.
-            if (FileOpen && File != null) {
+            if (FileOpen && File != null)
+            {
 
                 //Root menus.
-                for (int i = 1; i < 9; i++) {
+                for (int i = 1; i < 9; i++)
+                {
+                    
                     tree.Nodes[i].ContextMenuStrip = rootMenu;
+
                 }
 
                 //Load data.
-                foreach (var e in SA.Sequences) {
+                foreach (var e in SA.Sequences)
+                {
+                    
                     tree.Nodes["sequences"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 2, 2);
                     tree.Nodes["sequences"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 4, 5, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Replace), new EventHandler(Export), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
-                foreach (var e in SA.SequenceArchives) {
+                
+                foreach (var e in SA.SequenceArchives)
+                {
+                    
                     tree.Nodes["sequenceArchives"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 3, 3);
                     tree.Nodes["sequenceArchives"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 4, 5, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Replace), new EventHandler(Export), new EventHandler(Rename), new EventHandler(Delete) });
-                    foreach (var s in e.File.Sequences) {
+
+                    foreach (var s in e.File.Sequences)
+                    {
+                        
                         tree.Nodes["sequenceArchives"].Nodes["entry" + e.Index].Nodes.Add("entry" + s.Index, "[" + s.Index + "] " + s.Name, 2, 2);
                         tree.Nodes["sequenceArchives"].Nodes["entry" + e.Index].Nodes["entry" + s.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 5, 6 }, new EventHandler[] { new EventHandler(Export), new EventHandler(Rename) });
+
                     }
+
                 }
-                foreach (var e in SA.Banks) {
+                
+                foreach (var e in SA.Banks)
+                {
+                    
                     tree.Nodes["banks"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 4, 4);
                     tree.Nodes["banks"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 4, 5, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Replace), new EventHandler(Export), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
-                foreach (var e in SA.WaveArchives) {
+                
+                foreach (var e in SA.WaveArchives)
+                {
+                    
                     tree.Nodes["waveArchives"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 5, 5);
                     tree.Nodes["waveArchives"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 4, 5, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Replace), new EventHandler(Export), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
-                foreach (var e in SA.Players) {
+                
+                foreach (var e in SA.Players)
+                {
+                    
                     tree.Nodes["players"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 6, 6);
                     tree.Nodes["players"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
-                foreach (var e in SA.Groups) {
+                
+                foreach (var e in SA.Groups)
+                {
+                    
                     tree.Nodes["groups"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 7, 7);
                     tree.Nodes["groups"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
-                foreach (var e in SA.StreamPlayers) {
+                
+                foreach (var e in SA.StreamPlayers)
+                {
+                    
                     tree.Nodes["streamPlayers"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 8, 8);
                     tree.Nodes["streamPlayers"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
-                foreach (var e in SA.Streams) {
+                
+                foreach (var e in SA.Streams)
+                {
+                    
                     tree.Nodes["streams"].Nodes.Add("entry" + e.Index, "[" + e.Index + "] " + e.Name, 9, 9);
                     tree.Nodes["streams"].Nodes["entry" + e.Index].ContextMenuStrip = CreateMenuStrip(sarEntryMenu, new int[] { 0, 1, 4, 5, 6, 7 }, new EventHandler[] { new EventHandler(AddAbove), new EventHandler(AddBelow), new EventHandler(Replace), new EventHandler(Export), new EventHandler(Rename), new EventHandler(Delete) });
+
                 }
 
-            } else {
+            }
+            
+            else
+            {
 
                 //Remove context menus.
-                foreach (TreeNode n in tree.Nodes) {
+                foreach (TreeNode n in tree.Nodes)
+                {
+                    
                     n.ContextMenuStrip = null;
+
                 }
 
             }
@@ -264,58 +318,80 @@ namespace NitroStudio2 {
         /// <summary>
         /// Do info stuff.
         /// </summary>
-        protected override void DoInfoStuff() {
+        protected override void DoInfoStuff()
+        {
 
             //The base.
             base.DoInfoStuff();
             WritingInfo = true;
 
             //Hide stuff.
-            void HideStuff() {
+            void HideStuff()
+            {
+                
                 kermalisSoundPlayerPanel.Hide();
                 indexPanel.Hide();
                 forceUniqueFilePanel.Hide();
                 kermalisSoundPlayerPanel.SendToBack();
                 indexPanel.SendToBack();
                 forceUniqueFilePanel.SendToBack();
+
             }
 
             //If file open.
-            if (!FileOpen || File == null) {
+            if (!FileOpen || File == null)
+            {
+                
                 HideStuff();
-                if (Player != null) { StopClick(this, null); }
+                
+                if (Player != null)
+                {
+                    
+                    StopClick(this, null);
+
+                }
+                
                 return;
+
             }
 
             //Panel selected.
             bool panelSelected = false;
 
             //Parent is null.
-            if (tree.SelectedNode.Parent == null) {
+            if (tree.SelectedNode.Parent == null)
+            {
 
                 //If settings.
-                if (tree.SelectedNode == tree.Nodes["settings"]) {
+                if (tree.SelectedNode == tree.Nodes["settings"])
+                {
+                    
                     HideStuff();
                     settingsPanel.BringToFront();
                     settingsPanel.Show();
                     writeNamesBox.Checked = SA.SaveSymbols;
                     status.Text = "Editing Settings.";
                     panelSelected = true;
+
                 }
 
             }
 
             //Child.
-            else {
+            else
+            {
 
                 //Panel selected.
                 panelSelected = true;
 
                 //Not double entry.
-                if (tree.SelectedNode.Parent.Parent == null) {
+                if (tree.SelectedNode.Parent.Parent == null)
+                {
 
                     //Sequence.
-                    if (tree.SelectedNode.Parent.Name == "sequences") {
+                    if (tree.SelectedNode.Parent.Name == "sequences")
+                    {
+                        
                         seqPanel.BringToFront();
                         indexPanel.Show();
                         forceUniqueFilePanel.Show();
@@ -334,10 +410,13 @@ namespace NitroStudio2 {
                         SetPlayerIndex(SA, seqPlayerComboBox, e.Player == null ? e.ReadingPlayerId : (byte)e.Player.Index);
                         seqPlayerBox.Value = e.Player == null ? e.ReadingPlayerId : (byte)e.Player.Index;
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected. File Is " + GetBytesSize(e.File) + ".";
+
                     }
 
                     //Sequence archive.
-                    else if (tree.SelectedNode.Parent.Name == "sequenceArchives") {
+                    else if (tree.SelectedNode.Parent.Name == "sequenceArchives")
+                    {
+                        
                         kermalisSoundPlayerPanel.Hide();
                         seqArcPanel.BringToFront();
                         indexPanel.Show();
@@ -347,10 +426,13 @@ namespace NitroStudio2 {
                         itemIndexBox.Value = e.Index;
                         forceUniqueFileBox.Checked = e.ForceIndividualFile;
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected. File Is " + GetBytesSize(e.File) + ".";
+
                     }
 
                     //Bank.
-                    else if (tree.SelectedNode.Parent.Name == "banks") {
+                    else if (tree.SelectedNode.Parent.Name == "banks")
+                    {
+                       
                         kermalisSoundPlayerPanel.Hide();
                         bankPanel.BringToFront();
                         indexPanel.Show();
@@ -372,10 +454,13 @@ namespace NitroStudio2 {
                         SetWaveArchiveIndex(SA, bnkWar2Box, e.WaveArchives[2] == null ? e.ReadingWave2Id : (ushort)e.WaveArchives[2].Index);
                         SetWaveArchiveIndex(SA, bnkWar3Box, e.WaveArchives[3] == null ? e.ReadingWave3Id : (ushort)e.WaveArchives[3].Index);
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected. File Is " + GetBytesSize(e.File) + ".";
+
                     }
 
                     //Wave archive.
-                    else if (tree.SelectedNode.Parent.Name == "waveArchives") {
+                    else if (tree.SelectedNode.Parent.Name == "waveArchives")
+                    {
+                        
                         kermalisSoundPlayerPanel.Hide();
                         warPanel.BringToFront();
                         indexPanel.Show();
@@ -386,10 +471,13 @@ namespace NitroStudio2 {
                         forceUniqueFileBox.Checked = e.ForceIndividualFile;
                         loadIndividuallyBox.Checked = e.LoadIndividually;
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected. File Is " + GetBytesSize(e.File) + ".";
+
                     }
 
                     //Player.
-                    else if (tree.SelectedNode.Parent.Name == "players") {
+                    else if (tree.SelectedNode.Parent.Name == "players")
+                    {
+                        
                         kermalisSoundPlayerPanel.Hide();
                         playerPanel.BringToFront();
                         indexPanel.Show();
@@ -415,10 +503,13 @@ namespace NitroStudio2 {
                         playerFlag14Box.Checked = e.ChannelFlags[14];
                         playerFlag15Box.Checked = e.ChannelFlags[15];
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected.";
+
                     }
 
                     //Group.
-                    else if (tree.SelectedNode.Parent.Name == "groups") {
+                    else if (tree.SelectedNode.Parent.Name == "groups")
+                    {
+                        
                         kermalisSoundPlayerPanel.Hide();
                         grpPanel.BringToFront();
                         indexPanel.Show();
@@ -427,10 +518,13 @@ namespace NitroStudio2 {
                         itemIndexBox.Value = e.Index;
                         PopulateGroupGrid(grpEntries, e);
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected.";
+
                     }
 
                     //Stream player.
-                    else if (tree.SelectedNode.Parent.Name == "streamPlayers") {
+                    else if (tree.SelectedNode.Parent.Name == "streamPlayers")
+                    {
+                        
                         kermalisSoundPlayerPanel.Hide();
                         streamPlayerPanel.BringToFront();
                         indexPanel.Show();
@@ -439,24 +533,37 @@ namespace NitroStudio2 {
                         itemIndexBox.Value = e.Index;
                         stmPlayerChannelType.SelectedIndex = e.IsStereo ? 1 : 0;
                         stmPlayerLeftChannelBox.Value = e.LeftChannel;
-                        if (e.IsStereo) {
+                        
+                        if (e.IsStereo)
+                        {
+                            
                             leftChannelLabel.Text = "Channel:";
                             rightChannelLabel.Text = "Right Channel:";
                             stmPlayerRightChannelBox.Value = e.RightChannel;
                             rightChannelLabel.Enabled = true;
                             stmPlayerRightChannelBox.Enabled = true;
-                        } else {
+
+                        }
+                        
+                        else
+                        {
+                            
                             leftChannelLabel.Text = "Left Channel:";
                             rightChannelLabel.Text = "(Doesn't Exist)";
                             stmPlayerRightChannelBox.Value = 0;
                             rightChannelLabel.Enabled = false;
                             stmPlayerRightChannelBox.Enabled = false;
+
                         }
+                        
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected.";
+
                     }
 
                     //Stream.
-                    else if (tree.SelectedNode.Parent.Name == "streams") {
+                    else if (tree.SelectedNode.Parent.Name == "streams")
+                    {
+                        
                         kermalisSoundPlayerPanel.Hide();
                         stmPanel.BringToFront();
                         indexPanel.Show();
@@ -472,12 +579,15 @@ namespace NitroStudio2 {
                         SetStreamPlayerIndex(SA, stmPlayerComboBox, e.Player == null ? e.ReadingPlayerId : (byte)e.Player.Index);
                         stmPlayerBox.Value = e.Player == null ? e.ReadingPlayerId : e.Player.Index;
                         status.Text = "[" + e.Index + "] " + e.Name + " Selected. File Is " + GetBytesSize(e.File) + ".";
+
                     }
 
                 }
 
                 //Sequence archive sequence.
-                else {
+                else
+                {
+                   
                     indexPanel.Hide();
                     forceUniqueFilePanel.Hide();
                     indexPanel.SendToBack();
@@ -487,16 +597,20 @@ namespace NitroStudio2 {
                     blankPanel.Show();
                     var e = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode.Parent)).FirstOrDefault().File.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     status.Text = "[" + e.Index + "] " + e.Name + " Selected.";
+
                 }
             
             }
 
             //No panel selected.
-            if (!panelSelected) {
+            if (!panelSelected)
+            {
+                
                 HideStuff();
                 noInfoPanel.BringToFront();
                 noInfoPanel.Show();
                 status.Text = "No Valid Info Selected!";
+
             }
 
             //Done.
@@ -506,39 +620,51 @@ namespace NitroStudio2 {
 
         public void UpdateThingy()
         {
+            
             UpdateNodes();
             DoInfoStuff();
+
         }
 
         /// <summary>
         /// Double click a node.
         /// </summary>
-        protected override void NodeMouseDoubleClick() {
+        protected override void NodeMouseDoubleClick()
+        {
 
             //Do base.
             base.NodeMouseDoubleClick();
 
             //Open file.
-            if (tree.SelectedNode.Parent != null) {
+            if (tree.SelectedNode.Parent != null)
+            {
 
                 //Sequence.
-                if (tree.SelectedNode.Parent == tree.Nodes["sequences"]) {
+                if (tree.SelectedNode.Parent == tree.Nodes["sequences"])
+                {
+                    
                     var e = SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     SequenceEditor ed = new SequenceEditor(e.File, this, e.Name);
                     SetBankIndex(SA, ed.seqEditorBankComboBox, e.Bank == null ? e.ReadingBankId : (uint)e.Bank.Index);
                     ed.seqEditorBankBox.Value = e.Bank == null ? e.ReadingBankId : (uint)e.Bank.Index;
                     ed.Show();
+
                 }
 
                 //Sequence archive.
-                else if (tree.SelectedNode.Parent == tree.Nodes["sequenceArchives"]) {
+                else if (tree.SelectedNode.Parent == tree.Nodes["sequenceArchives"])
+                {
+                   
                     var e = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     SequenceArchiveEditor ed = new SequenceArchiveEditor(e.File, this, e.Name);
                     ed.Show();
+
                 }
 
                 //Bank.
-                else if (tree.SelectedNode.Parent == tree.Nodes["banks"]) {
+                else if (tree.SelectedNode.Parent == tree.Nodes["banks"])
+                {
+                    
                     var e = SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     BankEditor ed = new BankEditor(e.File, this, e.Name);
                     SetWaveArchiveIndex(SA, ed.war0ComboBox, e.WaveArchives[0] == null ? e.ReadingWave0Id : (ushort)e.WaveArchives[0].Index);
@@ -551,23 +677,30 @@ namespace NitroStudio2 {
                     SetWaveArchiveIndex(SA, ed.war3Box, e.WaveArchives[3] == null ? e.ReadingWave3Id : (ushort)e.WaveArchives[3].Index);
                     ed.LoadWaveArchives();
                     ed.Show();
+
                 }
 
                 //Wave archive.
-                else if (tree.SelectedNode.Parent == tree.Nodes["waveArchives"]) {
+                else if (tree.SelectedNode.Parent == tree.Nodes["waveArchives"])
+                {
+                    
                     var e = SA.WaveArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     WaveArchiveEditor ed = new WaveArchiveEditor(e.File, this, e.Name);
                     ed.Show();
+
                 }
 
                 //Stream.
-                else if (tree.SelectedNode.Parent == tree.Nodes["streams"]) {
+                else if (tree.SelectedNode.Parent == tree.Nodes["streams"])
+                {
+                    
                     var s = SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     RiffWave r = new RiffWave();
                     r.FromOtherStreamFile(s.File);
                     r.Write(NitroPath + "/" + "tmpStream" + StreamTempCount++ + ".wav");
                     StreamPlayer p = new StreamPlayer(this, NitroPath + "/" + "tmpStream" + (StreamTempCount - 1) + ".wav", s.Name);
                     p.Show();
+
                 }
 
             }
@@ -579,17 +712,26 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="n">The node.</param>
         /// <returns>The Id.</returns>
-        public static int GetIdFromNode(TreeNode n) { 
+        public static int GetIdFromNode(TreeNode n)
+        { 
+            
             return int.Parse(n.Text.Split('[')[1].Split(']')[0]);
+
         }
 
         /// <summary>
         /// Write names changed.
         /// </summary>
-        public void WriteNamesChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void WriteNamesChanged(object sender, EventArgs e)
+        {
+           
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.SaveSymbols = writeNamesBox.Checked;
+
             }
+
         }
 
         /// <summary>
@@ -597,187 +739,347 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="f">The file.</param>
         /// <returns>The amount of bytes.</returns>
-        public static string GetBytesSize(IOFile f) {
+        public static string GetBytesSize(IOFile f)
+        {
+            
             long byteCount = f.Write().Length;
             string[] suf = { "Bytes", "KB", "MB", "GB", "TB", "PB", "EB" }; //Longs run out around EB
+            
             if (byteCount == 0)
                 return "0" + suf[0];
+            
             long bytes = Math.Abs(byteCount);
             int place = Convert.ToInt32(Math.Floor(Math.Log(bytes, 1024)));
             double num = Math.Round(bytes / Math.Pow(1024, place), 1);
+            
             return (Math.Sign(byteCount) * num).ToString() + " " + suf[place];
+
         }
 
         /// <summary>
         /// Swap the entry at the index.
         /// </summary>
-        public void SwapAtIndexButtonPressed(object sender, EventArgs e) {
+        public void SwapAtIndexButtonPressed(object sender, EventArgs e)
+        {
 
             //Get index.
             int index = (int)itemIndexBox.Value;
             int bakIndex = GetIdFromNode(tree.SelectedNode);
 
             //Get the type.
-            switch (tree.SelectedNode.Parent.Name) {
+            switch (tree.SelectedNode.Parent.Name)
+            {
 
                 //Sequences.
                 case "sequences":
-                    if ((uint)index > SoundArchive.MaxSequenceId) {
+                    
+                    if ((uint)index > SoundArchive.MaxSequenceId)
+                    {
+                        
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevSeq = SA.Sequences.Where(x => x.Index == index).FirstOrDefault();
                     SA.Sequences.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevSeq != null) {
+                    
+                    if (prevSeq != null)
+                    {
+                       
                         prevSeq.Index = bakIndex;
+
                     }
+                    
                     SA.Sequences = SA.Sequences.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                            
                             tree.SelectedNode = n;
+
                         }
+
                     }
+                    
                     DoInfoStuff();
+                    
                     break;
 
                 //Sequence archives.
                 case "sequenceArchives":
-                    if ((uint)index > SoundArchive.MaxSequenceArchiveId) {
+                    
+                    if ((uint)index > SoundArchive.MaxSequenceArchiveId)
+                    {
+                        
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevSeqArc = SA.SequenceArchives.Where(x => x.Index == index).FirstOrDefault();
                     SA.SequenceArchives.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevSeqArc != null) {
+                    
+                    if (prevSeqArc != null)
+                    {
+                        
                         prevSeqArc.Index = bakIndex;
+
                     }
+                    
                     SA.SequenceArchives = SA.SequenceArchives.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                            
                             tree.SelectedNode = n;
+
                         }
+
                     }
+                    
                     DoInfoStuff();
+                    
                     break;
 
                 //Banks.
                 case "banks":
-                    if ((uint)index > SoundArchive.MaxBankId) {
+                    
+                    if ((uint)index > SoundArchive.MaxBankId)
+                    {
+                       
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevBnk = SA.Banks.Where(x => x.Index == index).FirstOrDefault();
                     SA.Banks.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevBnk != null) {
+                    
+                    if (prevBnk != null)
+                    {
+                       
                         prevBnk.Index = bakIndex;
+
                     }
+                    
                     SA.Banks = SA.Banks.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                            
                             tree.SelectedNode = n;
+
                         }
+
                     }
+                    
                     DoInfoStuff();
+                    
                     break;
 
                 //Wave archives.
                 case "waveArchives":
-                    if ((uint)index > SoundArchive.MaxWaveArchiveId) {
+                    
+                    if ((uint)index > SoundArchive.MaxWaveArchiveId)
+                    {
+                        
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevWar = SA.WaveArchives.Where(x => x.Index == index).FirstOrDefault();
                     SA.WaveArchives.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevWar != null) {
+                    
+                    if (prevWar != null)
+                    {
+                       
                         prevWar.Index = bakIndex;
+
                     }
+                   
                     SA.WaveArchives = SA.WaveArchives.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                       
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                           
                             tree.SelectedNode = n;
+
                         }
+
                     }
+
                     DoInfoStuff();
+                    
                     break;
 
                 //Players.
                 case "players":
-                    if ((uint)index > SoundArchive.MaxPlayerId) {
+                    
+                    if ((uint)index > SoundArchive.MaxPlayerId)
+                    {
+                        
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevPly = SA.Players.Where(x => x.Index == index).FirstOrDefault();
                     SA.Players.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevPly != null) {
+                    
+                    if (prevPly != null)
+                    {
+                       
                         prevPly.Index = bakIndex;
+
                     }
+                    
                     SA.Players = SA.Players.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                           
                             tree.SelectedNode = n;
+
                         }
+
                     }
+                    
                     DoInfoStuff();
+                    
                     break;
 
                 //Groups.
                 case "groups":
-                    if ((uint)index > SoundArchive.MaxGroupId) {
+                    
+                    if ((uint)index > SoundArchive.MaxGroupId)
+                    {
+                        
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                   
                     var prevGrp = SA.Groups.Where(x => x.Index == index).FirstOrDefault();
                     SA.Groups.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevGrp != null) {
+                   
+                    if (prevGrp != null)
+                    {
+                       
                         prevGrp.Index = bakIndex;
+
                     }
+                    
                     SA.Groups = SA.Groups.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                           
                             tree.SelectedNode = n;
+
                         }
+
                     }
+                    
                     DoInfoStuff();
+                   
                     break;
 
                 //Stream players.
                 case "streamPlayers":
-                    if ((uint)index > SoundArchive.MaxStreamPlayerId) {
+                   
+                    if ((uint)index > SoundArchive.MaxStreamPlayerId)
+                    {
+                       
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevStmPly = SA.StreamPlayers.Where(x => x.Index == index).FirstOrDefault();
                     SA.StreamPlayers.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevStmPly != null) {
+                    
+                    if (prevStmPly != null)
+                    {
+                        
                         prevStmPly.Index = bakIndex;
+
                     }
+                   
                     SA.StreamPlayers = SA.StreamPlayers.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                            
                             tree.SelectedNode = n;
+
                         }
+
                     }
+
                     DoInfoStuff();
+
                     break;
 
                 //Streams.
                 case "streams":
-                    if ((uint)index > SoundArchive.MaxStreamId) {
+                    
+                    if ((uint)index > SoundArchive.MaxStreamId)
+                    {
+                       
                         MessageBox.Show("Index is outside the max possible Id!");
+
                     }
+                    
                     var prevStm = SA.Streams.Where(x => x.Index == index).FirstOrDefault();
                     SA.Streams.Where(x => x.Index == bakIndex).FirstOrDefault().Index = index;
-                    if (prevStm != null) {
+                   
+                    if (prevStm != null)
+                    {
+                        
                         prevStm.Index = bakIndex;
+
                     }
+                    
                     SA.Streams = SA.Streams.OrderBy(x => x.Index).ToList();
                     UpdateNodes();
-                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                        if (n.Text.Contains("[" + index + "]")) {
+                    
+                    foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                    {
+                        
+                        if (n.Text.Contains("[" + index + "]"))
+                        {
+                            
                             tree.SelectedNode = n;
+
                         }
+
                     }
+
                     DoInfoStuff();
+
                     break;
 
             }
@@ -787,35 +1089,54 @@ namespace NitroStudio2 {
         /// <summary>
         /// Force unique Id changed.
         /// </summary>
-        public void ForceUniqueIdChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
-                switch (tree.SelectedNode.Parent.Name) {
+        public void ForceUniqueIdChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
+                switch (tree.SelectedNode.Parent.Name)
+                {
+                    
                     case "sequences":
                         SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ForceIndividualFile = forceUniqueFileBox.Checked;
                         break;
+                    
                     case "sequenceArchives":
                         SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ForceIndividualFile = forceUniqueFileBox.Checked;
                         break;
+                    
                     case "banks":
                         SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ForceIndividualFile = forceUniqueFileBox.Checked;
                         break;
+                   
                     case "waveArchives":
                         SA.WaveArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ForceIndividualFile = forceUniqueFileBox.Checked;
                         break;
+                    
                     case "streams":
                         SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ForceIndividualFile = forceUniqueFileBox.Checked;
                         break;
+
                 }
+
             }
+
         }
 
         /// <summary>
         /// Load individual changed.
         /// </summary>
-        public void WarLoadIndividualChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void WarLoadIndividualChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.WaveArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().LoadIndividually = loadIndividuallyBox.Checked;
+
             }
+
         }
 
         /// <summary>
@@ -823,13 +1144,20 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
-        public static void PopulateWaveArchiveBox(SoundArchive a, ComboBox c) {
+        public static void PopulateWaveArchiveBox(SoundArchive a, ComboBox c)
+        {
+            
             c.Items.Clear();
             c.Items.Add("FFFF - Blank");
             c.Items.Add("Other Index");
-            foreach (var w in a.WaveArchives) {
+            
+            foreach (var w in a.WaveArchives)
+            {
+               
                 c.Items.Add("[" + w.Index + "] - " + w.Name);
+
             }
+
         }
 
         /// <summary>
@@ -838,17 +1166,37 @@ namespace NitroStudio2 {
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
         /// <param name="id">The Id.</param>
-        public static void SetWaveArchiveIndex(SoundArchive a, ComboBox c, ushort id) {
+        public static void SetWaveArchiveIndex(SoundArchive a, ComboBox c, ushort id)
+        {
+            
             var e = a.WaveArchives.Where(x => x.Index == id).FirstOrDefault();
-            if (e == null) {
-                if (id == 0xFFFF) {
+            
+            if (e == null)
+            {
+                
+                if (id == 0xFFFF)
+                {
+                    
                     c.SelectedIndex = 0;
-                } else {
-                    c.SelectedIndex = 1;
+
                 }
-            } else {
-                c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+                
+                else
+                {
+                    
+                    c.SelectedIndex = 1;
+
+                }
+
             }
+            
+            else
+            {
+               
+                c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+
+            }
+
         }
 
         /// <summary>
@@ -857,148 +1205,267 @@ namespace NitroStudio2 {
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
         /// <param name="id">The Id.</param>
-        public static void SetWaveArchiveIndex(SoundArchive a, NumericUpDown n, ushort id) {
-            if (id == 0xFFFF) {
+        public static void SetWaveArchiveIndex(SoundArchive a, NumericUpDown n, ushort id)
+        {
+            
+            if (id == 0xFFFF)
+            {
+                
                 n.Value = -1;
-            } else {
-                n.Value = id;
+
             }
+            
+            else
+            {
+                
+                n.Value = id;
+
+            }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar0BoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar0BoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave0Id = (ushort)(bnkWar0Box.Value == -1 ? 0xFFFF : bnkWar0Box.Value);
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar0ComboBox, (ushort)(bnkWar0Box.Value == -1 ? 0xFFFF : bnkWar0Box.Value));
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 0);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar1BoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar1BoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave1Id = (ushort)(bnkWar1Box.Value == -1 ? 0xFFFF : bnkWar1Box.Value);
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar1ComboBox, (ushort)(bnkWar1Box.Value == -1 ? 0xFFFF : bnkWar1Box.Value));
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 1);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar2BoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar2BoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave2Id = (ushort)(bnkWar2Box.Value == -1 ? 0xFFFF : bnkWar2Box.Value);
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar2ComboBox, (ushort)(bnkWar2Box.Value == -1 ? 0xFFFF : bnkWar2Box.Value));
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 2);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar3BoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar3BoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+               
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave3Id = (ushort)(bnkWar3Box.Value == -1 ? 0xFFFF : bnkWar3Box.Value);
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar3ComboBox, (ushort)(bnkWar3Box.Value == -1 ? 0xFFFF : bnkWar3Box.Value));
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 3);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar0ComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar0ComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 ushort val = (ushort)bnkWar0ComboBox.SelectedIndex;
-                if (val == 0) {
+                
+                if (val == 0)
+                {
+                    
                     val = 0xFFFF;
-                } else if (val == 1) {
-                    return;
-                } else {
-                    val = ushort.Parse(((string)bnkWar0ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
                 }
+                
+                else if (val == 1)
+                {
+                    
+                    return;
+
+                }
+                
+                else
+                {
+                    
+                    val = ushort.Parse(((string)bnkWar0ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
+                }
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave0Id = val;
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar0Box, val);
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 0);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar1ComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar1ComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+               
                 ushort val = (ushort)bnkWar1ComboBox.SelectedIndex;
-                if (val == 0) {
+                
+                if (val == 0)
+                {
+                    
                     val = 0xFFFF;
-                } else if (val == 1) {
-                    return;
-                } else {
-                    val = ushort.Parse(((string)bnkWar1ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
                 }
+                
+                else if (val == 1)
+                {
+                   
+                    return;
+
+                }
+                
+                else
+                {
+                   
+                    val = ushort.Parse(((string)bnkWar1ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
+                }
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave1Id = val;
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar1Box, val);
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 1);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar2ComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar2ComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 ushort val = (ushort)bnkWar2ComboBox.SelectedIndex;
-                if (val == 0) {
+
+                if (val == 0)
+                {
+                    
                     val = 0xFFFF;
-                } else if (val == 1) {
-                    return;
-                } else {
-                    val = ushort.Parse(((string)bnkWar2ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
                 }
+                
+                else if (val == 1)
+                {
+                    
+                    return;
+
+                }
+                
+                else
+                {
+                    
+                    val = ushort.Parse(((string)bnkWar2ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
+                }
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave2Id = val;
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar2Box, val);
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 2);
+
             }
+
         }
 
         /// <summary>
         /// Changed.
         /// </summary>
-        public void BnkWar3ComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void BnkWar3ComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 ushort val = (ushort)bnkWar3ComboBox.SelectedIndex;
-                if (val == 0) {
+                
+                if (val == 0)
+                {
+                    
                     val = 0xFFFF;
-                } else if (val == 1) {
-                    return;
-                } else {
-                    val = ushort.Parse(((string)bnkWar3ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
                 }
+                
+                else if (val == 1)
+                {
+                    
+                    return;
+
+                }
+                
+                else
+                {
+                    
+                    val = ushort.Parse(((string)bnkWar3ComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
+
+                }
+                
                 SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingWave3Id = val;
                 WritingInfo = true;
                 SetWaveArchiveIndex(SA, bnkWar3Box, val);
                 WritingInfo = false;
                 SetNewWaveArchiveInBank(SA, GetIdFromNode(tree.SelectedNode), 3);
+
             }
+
         }
 
         /// <summary>
@@ -1007,22 +1474,32 @@ namespace NitroStudio2 {
         /// <param name="s">Sound archive.</param>
         /// <param name="bankId">Bank Id.</param>
         /// <param name="warId">Wave archive Id.</param>
-        public static void SetNewWaveArchiveInBank(SoundArchive s, int bankId, int warId) {
+        public static void SetNewWaveArchiveInBank(SoundArchive s, int bankId, int warId)
+        {
+            
             var b = s.Banks.Where(x => x.Index == bankId).FirstOrDefault();
-            switch (warId) {
+            
+            switch (warId)
+            {
+                
                 case 0:
                     b.WaveArchives[warId] = s.WaveArchives.Where(x => x.Index == b.ReadingWave0Id).FirstOrDefault();
                     break;
+                
                 case 1:
                     b.WaveArchives[warId] = s.WaveArchives.Where(x => x.Index == b.ReadingWave1Id).FirstOrDefault();
                     break;
+                
                 case 2:
                     b.WaveArchives[warId] = s.WaveArchives.Where(x => x.Index == b.ReadingWave2Id).FirstOrDefault();
                     break;
+                
                 case 3:
                     b.WaveArchives[warId] = s.WaveArchives.Where(x => x.Index == b.ReadingWave3Id).FirstOrDefault();
                     break;
+
             }
+
         }
 
         /// <summary>
@@ -1030,7 +1507,8 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="v">The data grid view.</param>
         /// <param name="g">The group.</param>
-        public void PopulateGroupGrid(DataGridView v, GroupInfo g) {
+        public void PopulateGroupGrid(DataGridView v, GroupInfo g)
+        {
 
             //Clear.
             v.Rows.Clear();
@@ -1038,27 +1516,46 @@ namespace NitroStudio2 {
             //Get combo box list.
             var c = (v.Columns[0] as DataGridViewComboBoxColumn);
             c.Items.Clear();
-            foreach (var e in SA.Sequences) {
+            
+            foreach (var e in SA.Sequences)
+            {
+                
                 c.Items.Add("[" + e.Index + "] " + e.Name + " (Sequence)");
+
             }
-            foreach (var e in SA.SequenceArchives) {
+            
+            foreach (var e in SA.SequenceArchives)
+            {
+               
                 c.Items.Add("[" + e.Index + "] " + e.Name + " (Sequence Archive)");
+
             }
-            foreach (var e in SA.Banks) {
+            
+            foreach (var e in SA.Banks)
+            {
+                
                 c.Items.Add("[" + e.Index + "] " + e.Name + " (Bank)");
+
             }
-            foreach (var e in SA.WaveArchives) {
+           
+            foreach (var e in SA.WaveArchives)
+            {
+               
                 c.Items.Add("[" + e.Index + "] " + e.Name + " (Wave Archive)");
+
             }
 
             //For each item.
-            foreach (var e in g.Entries) {
+            foreach (var e in g.Entries)
+            {
 
                 //Add row.
                 v.Rows.Add(new DataGridViewRow());
 
                 //Switch type.
-                switch (e.Type) {
+                switch (e.Type)
+                {
+                    
                     case GroupEntryType.Sequence:
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[0]).Value = "[" + (e.Entry as SequenceInfo).Index + "] " + (e.Entry as SequenceInfo).Name + " (Sequence)";
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Sequence");
@@ -1068,40 +1565,93 @@ namespace NitroStudio2 {
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Sequence + Wave Archive");
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Bank + Wave Archive");
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Sequence + Bank + Wave Archive");
-                        if (e.LoadSequence && e.LoadBank && e.LoadWaveArchive) {
+                        
+                        if (e.LoadSequence && e.LoadBank && e.LoadWaveArchive)
+                        {
+                            
                             ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence + Bank + Wave Archive";
-                        } else if (e.LoadBank && e.LoadWaveArchive) {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank + Wave Archive";
-                        } else if (e.LoadSequence && e.LoadWaveArchive) {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence + Wave Archive";
-                        } else if (e.LoadSequence && e.LoadBank) {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence + Bank";
-                        } else if (e.LoadWaveArchive) {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Wave Archive";
-                        } else if (e.LoadBank) {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank";
-                        } else {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence";
+
                         }
+                        
+                        else if (e.LoadBank && e.LoadWaveArchive)
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank + Wave Archive";
+
+                        }
+                        
+                        else if (e.LoadSequence && e.LoadWaveArchive)
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence + Wave Archive";
+
+                        }
+                        
+                        else if (e.LoadSequence && e.LoadBank)
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence + Bank";
+
+                        }
+                        
+                        else if (e.LoadWaveArchive)
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Wave Archive";
+
+                        }
+                        
+                        else if (e.LoadBank)
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank";
+
+                        }
+                        
+                        else
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence";
+
+                        }
+                        
                         break;
+                    
                     case GroupEntryType.SequenceArchive:
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[0]).Value = "[" + (e.Entry as SequenceArchiveInfo).Index + "] " + (e.Entry as SequenceArchiveInfo).Name + " (Sequence Archive)";
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Sequence Archive");
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Sequence Archive";
                         break;
+                    
                     case GroupEntryType.Bank:
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[0]).Value = "[" + (e.Entry as BankInfo).Index + "] " + (e.Entry as BankInfo).Name + " (Bank)";
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Bank");
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Wave Archive");
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Bank + Wave Archive");
-                        if (e.LoadBank && e.LoadWaveArchive) {
+                        
+                        if (e.LoadBank && e.LoadWaveArchive)
+                        {
+                            
                             ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank + Wave Archive";
-                        } else if (e.LoadWaveArchive) {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Wave Archive";
-                        } else {
-                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank";
+
                         }
+                        
+                        else if (e.LoadWaveArchive)
+                        {
+                           
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Wave Archive";
+
+                        }
+                        
+                        else
+                        {
+                            
+                            ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Value = "Bank";
+
+                        }
+                        
                         break;
+                    
                     case GroupEntryType.WaveArchive:
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[0]).Value = "[" + (e.Entry as WaveArchiveInfo).Index + "] " + (e.Entry as WaveArchiveInfo).Name + " (Wave Archive)";
                         ((DataGridViewComboBoxCell)v.Rows[v.Rows.Count - 2].Cells[1]).Items.Add("Wave Archive");
@@ -1116,10 +1666,12 @@ namespace NitroStudio2 {
         /// <summary>
         /// Group entries changed.
         /// </summary>
-        public void GroupEntriesChanged(object sender, EventArgs e) {
+        public void GroupEntriesChanged(object sender, EventArgs e)
+        {
 
             //If to write data.
-            if (FileOpen && File != null && !WritingInfo) {
+            if (FileOpen && File != null && !WritingInfo)
+            {
 
                 //Writing info.
                 WritingInfo = true;
@@ -1128,7 +1680,8 @@ namespace NitroStudio2 {
                 List<GroupEntry> entries = new List<GroupEntry>();
 
                 //For each row.
-                for (int i = 1; i < grpEntries.Rows.Count; i++) {
+                for (int i = 1; i < grpEntries.Rows.Count; i++)
+                {
 
                     //Get the cells.
                     var itemCell = (DataGridViewComboBoxCell)grpEntries.Rows[i - 1].Cells[0];
@@ -1143,66 +1696,153 @@ namespace NitroStudio2 {
                     bool loadSeqArc = false;
                     bool loadSeq = false;             
                     string bakFlags = "";
-                    try { bakFlags = (string)flagsCell.Value; } catch { }
-                    try { flagsCell.Value = flagsCell.Items[0]; } catch { bakFlags = ""; }
-                    while (flagsCell.Items.Count > 1) {
-                        flagsCell.Items.RemoveAt(flagsCell.Items.Count - 1);
+                    
+                    try
+                    {
+                        
+                        bakFlags = (string)flagsCell.Value;
+
                     }
-                    switch (((string)itemCell.Value).Split('(')[1].Split(')')[0]) {
+                    
+                    catch
+                    {
+                    
+                    }
+                    
+                    try
+                    {
+                       
+                        flagsCell.Value = flagsCell.Items[0];
+
+                    }
+                    
+                    catch
+                    {
+                        
+                        bakFlags = "";
+
+                    }
+                    
+                    while (flagsCell.Items.Count > 1)
+                    {
+                        
+                        flagsCell.Items.RemoveAt(flagsCell.Items.Count - 1);
+
+                    }
+                    
+                    switch (((string)itemCell.Value).Split('(')[1].Split(')')[0])
+                    {
+                        
                         case "Sequence":
                             t = GroupEntryType.Sequence;
                             entry = SA.Sequences.Where(x => x.Index == int.Parse(((string)itemCell.Value).Split('[')[1].Split(']')[0])).FirstOrDefault();
                             readingId = (uint)(entry as SequenceInfo).Index;
-                            if (flagsCell.Items.Count < 1) {
+                            
+                            if (flagsCell.Items.Count < 1)
+                            {
+                                
                                 flagsCell.Items.Add("Sequence");
-                            } else {
-                                flagsCell.Items[0] = "Sequence";
+
                             }
+                            
+                            else
+                            {
+                                
+                                flagsCell.Items[0] = "Sequence";
+
+                            }
+
                             flagsCell.Items.Add("Bank");
                             flagsCell.Items.Add("Wave Archive");
                             flagsCell.Items.Add("Sequence + Bank");
                             flagsCell.Items.Add("Sequence + Wave Archive");
                             flagsCell.Items.Add("Bank + Wave Archive");
                             flagsCell.Items.Add("Sequence + Bank + Wave Archive");
+                            
                             break;
+                        
                         case "Sequence Archive":
                             t = GroupEntryType.SequenceArchive;
                             entry = SA.SequenceArchives.Where(x => x.Index == int.Parse(((string)itemCell.Value).Split('[')[1].Split(']')[0])).FirstOrDefault();
                             readingId = (uint)(entry as SequenceArchiveInfo).Index;
-                            if (flagsCell.Items.Count < 1) {
+                            
+                            if (flagsCell.Items.Count < 1)
+                            {
+                                
                                 flagsCell.Items.Add("Sequence Archive");
-                            } else {
-                                flagsCell.Items[0] = "Sequence Archive";
+
                             }
+                            
+                            else
+                            {
+                                
+                                flagsCell.Items[0] = "Sequence Archive";
+
+                            }
+                            
                             break;
+                        
                         case "Bank":
                             t = GroupEntryType.Bank;
                             entry = SA.Banks.Where(x => x.Index == int.Parse(((string)itemCell.Value).Split('[')[1].Split(']')[0])).FirstOrDefault();
                             readingId = (uint)(entry as BankInfo).Index;
-                            if (flagsCell.Items.Count < 1) {
+                            
+                            if (flagsCell.Items.Count < 1)
+                            {
+                                
                                 flagsCell.Items.Add("Bank");
-                            } else {
-                                flagsCell.Items[0] = "Bank";
+
                             }
+                            
+                            else
+                            {
+                                
+                                flagsCell.Items[0] = "Bank";
+
+                            }
+
                             flagsCell.Items.Add("Wave Archive");
                             flagsCell.Items.Add("Bank + Wave Archive");
+                            
                             break;
+                        
                         case "Wave Archive":
                             t = GroupEntryType.WaveArchive;
                             entry = SA.WaveArchives.Where(x => x.Index == int.Parse(((string)itemCell.Value).Split('[')[1].Split(']')[0])).FirstOrDefault();
                             readingId = (uint)(entry as WaveArchiveInfo).Index;
-                            if (flagsCell.Items.Count < 1) {
+                            
+                            if (flagsCell.Items.Count < 1)
+                            {
+                               
                                 flagsCell.Items.Add("Wave Archive");
-                            } else {
-                                flagsCell.Items[0] = "Wave Archive";
+
                             }
+                            
+                            else
+                            {
+                                
+                                flagsCell.Items[0] = "Wave Archive";
+
+                            }
+                            
                             break;
+
                     }
 
                     //Set flag.
-                    if (flagsCell.Items.Contains(bakFlags)) {
+                    if (flagsCell.Items.Contains(bakFlags))
+                    {
+                        
                         flagsCell.Value = bakFlags;
-                    } else { flagsCell.Value = flagsCell.Items[0]; }
+
+                    }
+                    
+                    else
+                    {
+                        
+                        flagsCell.Value = flagsCell.Items[0];
+
+                    }
 
                     //Flags.
                     loadSeq = ((string)flagsCell.Value).Contains("Sequence");
@@ -1228,46 +1868,79 @@ namespace NitroStudio2 {
         /// <summary>
         /// Stream player type changed.
         /// </summary>
-        public void StreamPlayerTypeChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamPlayerTypeChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 WritingInfo = true;
-                if (stmPlayerChannelType.SelectedIndex == 0) {
+                
+                if (stmPlayerChannelType.SelectedIndex == 0)
+                {
+                   
                     leftChannelLabel.Text = "Channel:";
                     rightChannelLabel.Text = "(Doesn't Exist)";
                     stmPlayerRightChannelBox.Value = 0;
                     rightChannelLabel.Enabled = false;
                     stmPlayerRightChannelBox.Enabled = false;
-                } else {
+
+                }
+                
+                else
+                {
+                    
                     leftChannelLabel.Text = "Left Channel:";
                     rightChannelLabel.Text = "Right Channel:";
                     rightChannelLabel.Enabled = true;
                     stmPlayerRightChannelBox.Enabled = true;
-                    if (SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().LeftChannel != 15) {
+                    
+                    if (SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().LeftChannel != 15)
+                    {
+                        
                         SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().RightChannel = (byte)(SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().LeftChannel + 1);
+
                     }
+
                     stmPlayerRightChannelBox.Value = SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().RightChannel;
+
                 }
+                
                 WritingInfo = false;
                 SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().IsStereo = stmPlayerChannelType.SelectedIndex == 1;
+
             }
+
         }
 
         /// <summary>
         /// Stream player channel changed.
         /// </summary>
-        public void StreamPlayerLeftChannelChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamPlayerLeftChannelChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().LeftChannel = (byte)stmPlayerLeftChannelBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Stream player channel changed.
         /// </summary>
-        public void StreamPlayerRightChannelChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamPlayerRightChannelChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+               
                 SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().RightChannel = (byte)stmPlayerRightChannelBox.Value;
+
             }
+
         }
 
         /// <summary>
@@ -1275,12 +1948,19 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
-        public static void PopulateStreamPlayerBox(SoundArchive a, ComboBox c) {
+        public static void PopulateStreamPlayerBox(SoundArchive a, ComboBox c)
+        {
+            
             c.Items.Clear();
             c.Items.Add("Other Index");
-            foreach (var w in a.StreamPlayers) {
+            
+            foreach (var w in a.StreamPlayers)
+            {
+                
                 c.Items.Add("[" + w.Index + "] - " + w.Name);
+
             }
+
         }
 
         /// <summary>
@@ -1289,94 +1969,155 @@ namespace NitroStudio2 {
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
         /// <param name="id">The Id.</param>
-        public static void SetStreamPlayerIndex(SoundArchive a, ComboBox c, byte id) {
+        public static void SetStreamPlayerIndex(SoundArchive a, ComboBox c, byte id)
+        {
+            
             var e = a.StreamPlayers.Where(x => x.Index == id).FirstOrDefault();
-            if (e == null) {
+            
+            if (e == null)
+            {
+               
                 c.SelectedIndex = 0;
-            } else {
-                c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+
             }
+            
+            else
+            {
+               
+                c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+
+            }
+
         }
 
         /// <summary>
         /// Stream volume changed.
         /// </summary>
-        public void StreamVolumeChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamVolumeChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Volume = (byte)stmVolumeBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Stream priority.
         /// </summary>
-        public void StreamPriorityChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamPriorityChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Priority = (byte)stmPriorityBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Mono to stereo changed.
         /// </summary>
-        public void StreamMonoToStereoChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamMonoToStereoChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+               
                 SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().MonoToStereo = stmMonoToStereoBox.Checked;
+
             }
+
         }
 
         /// <summary>
         /// Stream player combo box changed.
         /// </summary>
-        public void StreamPlayerComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
-                if (stmPlayerComboBox.SelectedIndex != 0) {
+        public void StreamPlayerComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
+                if (stmPlayerComboBox.SelectedIndex != 0)
+                {
+                    
                     WritingInfo = true;
                     byte index = byte.Parse(((string)stmPlayerComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
                     stmPlayerBox.Value = index;
                     SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingPlayerId = index;
                     SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Player = SA.StreamPlayers.Where(x => x.Index == index).FirstOrDefault();
                     WritingInfo = false;
+
                 }
+
             }
+
         }
 
         /// <summary>
         /// Stream player box changed.
         /// </summary>
-        public void StreamPlayerBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void StreamPlayerBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 WritingInfo = true;
                 SetStreamPlayerIndex(SA, stmPlayerComboBox, (byte)stmPlayerBox.Value);
                 SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Player = SA.StreamPlayers.Where(x => x.Index == (byte)stmPlayerBox.Value).FirstOrDefault();
                 SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingPlayerId = (byte)stmPlayerBox.Value;
                 WritingInfo = false;
+
             }
+
         }
 
         /// <summary>
         /// Player changed.
         /// </summary>
-        public void PlayerSequenceMaxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void PlayerSequenceMaxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Players.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().SequenceMax = (ushort)playerMaxSequencesBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Player changed.
         /// </summary>
-        public void PlayerHeapSizeChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void PlayerHeapSizeChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Players.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().HeapSize = (uint)playerHeapSizeBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Player changed.
         /// </summary>
-        public void PlayerFlagsChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void PlayerFlagsChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 var p = SA.Players.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                 p.ChannelFlags[0] = playerFlag0Box.Checked;
                 p.ChannelFlags[1] = playerFlag1Box.Checked;
@@ -1394,7 +2135,9 @@ namespace NitroStudio2 {
                 p.ChannelFlags[13] = playerFlag13Box.Checked;
                 p.ChannelFlags[14] = playerFlag14Box.Checked;
                 p.ChannelFlags[15] = playerFlag15Box.Checked;
+
             }
+
         }
 
         /// <summary>
@@ -1402,12 +2145,19 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
-        public static void PopulateBankBox(SoundArchive a, ComboBox c) {
+        public static void PopulateBankBox(SoundArchive a, ComboBox c)
+        {
+            
             c.Items.Clear();
             c.Items.Add("Other Index");
-            foreach (var w in a.Banks) {
+            
+            foreach (var w in a.Banks)
+            {
+               
                 c.Items.Add("[" + w.Index + "] - " + w.Name);
+
             }
+
         }
 
         /// <summary>
@@ -1416,13 +2166,25 @@ namespace NitroStudio2 {
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
         /// <param name="id">The Id.</param>
-        public static void SetBankIndex(SoundArchive a, ComboBox c, uint id) {
+        public static void SetBankIndex(SoundArchive a, ComboBox c, uint id)
+        {
+            
             var e = a.Banks.Where(x => x.Index == id).FirstOrDefault();
-            if (e == null) {
+            
+            if (e == null)
+            {
+               
                 c.SelectedIndex = 0;
-            } else {
-                c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+
             }
+            
+            else
+            {
+               
+                c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+
+            }
+
         }
 
         /// <summary>
@@ -1430,12 +2192,19 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
-        public static void PopulatePlayerBox(SoundArchive a, ComboBox c) {
+        public static void PopulatePlayerBox(SoundArchive a, ComboBox c)
+        {
+            
             c.Items.Clear();
             c.Items.Add("Other Index");
-            foreach (var w in a.Players) {
+            
+            foreach (var w in a.Players)
+            {
+               
                 c.Items.Add("[" + w.Index + "] - " + w.Name);
+
             }
+
         }
 
         /// <summary>
@@ -1444,343 +2213,613 @@ namespace NitroStudio2 {
         /// <param name="a">The sound archive.</param>
         /// <param name="c">The combo box.</param>
         /// <param name="id">The Id.</param>
-        public static void SetPlayerIndex(SoundArchive a, ComboBox c, byte id) {
+        public static void SetPlayerIndex(SoundArchive a, ComboBox c, byte id)
+        {
+            
             var e = a.Players.Where(x => x.Index == id).FirstOrDefault();
-            if (e == null) {
+            
+            if (e == null)
+            {
+               
                 c.SelectedIndex = 0;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 c.SelectedItem = "[" + e.Index + "] - " + e.Name;
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequenceVolumeChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void SequenceVolumeChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+               
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Volume = (byte)seqVolumeBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequenceChannelPriorityChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void SequenceChannelPriorityChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ChannelPriority = (byte)seqChannelPriorityBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequencePlayerPriorityChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void SequencePlayerPriorityChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().PlayerPriority = (byte)seqPlayerPriorityBox.Value;
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequenceBankComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
-                if (seqBankComboBox.SelectedIndex != 0) {
+        public void SequenceBankComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
+                if (seqBankComboBox.SelectedIndex != 0)
+                {
+                    
                     WritingInfo = true;
                     ushort index = ushort.Parse(((string)seqBankComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
                     seqBankBox.Value = index;
                     SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingBankId = index;
                     SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Bank = SA.Banks.Where(x => x.Index == index).FirstOrDefault();
                     WritingInfo = false;
+
                 }
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequenceBankBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void SequenceBankBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 WritingInfo = true;
                 SetBankIndex(SA, seqBankComboBox, (ushort)seqBankBox.Value);
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Bank = SA.Banks.Where(x => x.Index == (ushort)seqBankBox.Value).FirstOrDefault();
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingBankId = (ushort)seqBankBox.Value;
                 WritingInfo = false;
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequencePlayerComboBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
-                if (seqPlayerComboBox.SelectedIndex != 0) {
+        public void SequencePlayerComboBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
+                if (seqPlayerComboBox.SelectedIndex != 0)
+                {
+                    
                     WritingInfo = true;
                     byte index = byte.Parse(((string)seqPlayerComboBox.SelectedItem).Split('[')[1].Split(']')[0]);
                     seqPlayerBox.Value = index;
                     SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingPlayerId = index;
                     SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Player = SA.Players.Where(x => x.Index == index).FirstOrDefault();
                     WritingInfo = false;
+
                 }
+
             }
+
         }
 
         /// <summary>
         /// Sequence info changed.
         /// </summary>
-        public void SequencePlayerBoxChanged(object sender, EventArgs e) {
-            if (FileOpen && File != null && !WritingInfo) {
+        public void SequencePlayerBoxChanged(object sender, EventArgs e)
+        {
+            
+            if (FileOpen && File != null && !WritingInfo)
+            {
+                
                 WritingInfo = true;
                 SetPlayerIndex(SA, seqPlayerComboBox, (byte)seqPlayerBox.Value);
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().Player = SA.Players.Where(x => x.Index == (byte)seqPlayerBox.Value).FirstOrDefault();
                 SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault().ReadingPlayerId = (byte)seqPlayerBox.Value;
                 WritingInfo = false;
+
             }
+
         }
 
         /// <summary>
         /// Play click.
         /// </summary>
-        protected void PlayClick(object sender, EventArgs e) {
-            if (tree.SelectedNode.Parent.Name == "sequences") {
+        protected void PlayClick(object sender, EventArgs e)
+        {
+            
+            if (tree.SelectedNode.Parent.Name == "sequences")
+            {
+                
                 var s = SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
-                try { Player.PrepareForSong(new PlayableBank[] { s.Bank.File }, s.Bank.GetAssociatedWaves()); } catch { MessageBox.Show("Sequence entry has no valid bank hooked up to it!"); return; }
+                
+                try
+                {
+                    
+                    Player.PrepareForSong(new PlayableBank[] { s.Bank.File }, s.Bank.GetAssociatedWaves());
+                
+                }
+                
+                catch
+                {
+                    
+                    MessageBox.Show("Sequence entry has no valid bank hooked up to it!");
+                    return;
+
+                }
+                
                 s.File.ReadCommandData();
                 Player.LoadSong(s.File.Commands);
                 kermalisPosition.Maximum = (int)Player.MaxTicks;
                 kermalisPosition.TickFrequency = kermalisPosition.Maximum / 10;
                 kermalisPosition.LargeChange = kermalisPosition.Maximum / 20;
                 Player.Play();
-            } else {
+
+            }
+            
+            else
+            {
+                
                 var a = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode.Parent)).FirstOrDefault();
                 var s = a.File.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
-                try { Player.PrepareForSong(new PlayableBank[] { s.Bank.File }, s.Bank.GetAssociatedWaves()); } catch { MessageBox.Show("Sequence Archive entry has no valid bank hooked up to it!"); return; }
+                
+                try
+                {
+                    
+                    Player.PrepareForSong(new PlayableBank[] { s.Bank.File }, s.Bank.GetAssociatedWaves());
+                
+                }
+                
+                catch
+                {
+                    
+                    MessageBox.Show("Sequence Archive entry has no valid bank hooked up to it!");
+                    return;
+                
+                }
+                
                 a.File.ReadCommandData(true);
                 Player.LoadSong(a.File.Commands, a.File.PublicLabels.Values.ElementAt(a.File.Sequences.IndexOf(s)));
                 kermalisPosition.Maximum = (int)Player.MaxTicks;
                 kermalisPosition.TickFrequency = kermalisPosition.Maximum / 10;
                 kermalisPosition.LargeChange = kermalisPosition.Maximum / 20;
                 Player.Play();
+
             }
+
         }
 
         /// <summary>
         /// Position tick.
         /// </summary>
-        public void PositionTick(object sender, EventArgs e) {
-            if (Player != null && PositionBarFree) {
+        public void PositionTick(object sender, EventArgs e)
+        {
+            
+            if (Player != null && PositionBarFree)
+            {
+                
                 kermalisPosition.Value = Player.GetCurrentPosition() > kermalisPosition.Maximum ? kermalisPosition.Maximum : (int)Player.GetCurrentPosition();
+
             }
+
         }
 
         /// <summary>
         /// Mouse down.
         /// </summary>
-        public void PositionMouseDown(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left) {
+        public void PositionMouseDown(object sender, MouseEventArgs e)
+        {
+            
+            if (e.Button == MouseButtons.Left)
+            {
+                
                 PositionBarFree = false;
+
             }
+
         }
 
         /// <summary>
         /// Mouse up.
         /// </summary>
-        public void PositionMouseUp(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left && Player != null && Player.Events != null) {
+        public void PositionMouseUp(object sender, MouseEventArgs e)
+        {
+            
+            if (e.Button == MouseButtons.Left && Player != null && Player.Events != null)
+            {
+                
                 Player.SetCurrentPosition(kermalisPosition.Value);
                 PositionBarFree = true;
+
             }
+
         }
 
         /// <summary>
         /// Pause click.
         /// </summary>
-        public void PauseClick(object sender, EventArgs e) {
+        public void PauseClick(object sender, EventArgs e)
+        {
+            
             Player.Pause();
+
         }
 
         /// <summary>
         /// Stop click.
         /// </summary>
-        public void StopClick(object sender, EventArgs e) {
+        public void StopClick(object sender, EventArgs e)
+        {
+            
             Player.Stop();
+
         }
 
         /// <summary>
         /// Volume changed.
         /// </summary>
-        public void VolumeChanged(object sender, EventArgs e) {
+        public void VolumeChanged(object sender, EventArgs e)
+        {
+            
             Mixer.Volume = kermalisVolumeSlider.Value / 100f;
+
         }
 
         /// <summary>
         /// Loop changed.
         /// </summary>
-        public void LoopChanged(object sender, EventArgs e) {
+        public void LoopChanged(object sender, EventArgs e)
+        {
+            
             Player.NumLoops = kermalisLoopBox.Checked ? 0xFFFFFFFF : 0;
+
         }
 
         /// <summary>
         /// Closing.
         /// </summary>
-        public void SAClosing(object sender, FormClosingEventArgs e) {
+        public void SAClosing(object sender, FormClosingEventArgs e)
+        {
+           
             Player.Stop();
             Player.Dispose();
             Mixer.Dispose();
             Timer.Stop();
             Environment.Exit(Environment.ExitCode);
+
         }
 
         /// <summary>
         /// Key press.
         /// </summary>
-        public void KeyPress(object sender, KeyPressEventArgs e) {
-            if (e.KeyChar == ' ' && tree.SelectedNode.Parent != null) {
-                if (tree.SelectedNode.Parent.Parent != null || tree.SelectedNode.Parent.Name == "sequences") {
+        public void KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            if (e.KeyChar == ' ' && tree.SelectedNode.Parent != null)
+            {
+                
+                if (tree.SelectedNode.Parent.Parent != null || tree.SelectedNode.Parent.Name == "sequences")
+                {
+                    
                     PlayClick(sender, e);
+
                 }
+
             }
+
         }
 
         /// <summary>
         /// Add above.
         /// </summary>
-        public void AddAbove(object sender, EventArgs e) {
+        public void AddAbove(object sender, EventArgs e)
+        {
 
             //Sequences.
-            if (tree.SelectedNode.Parent.Name.Equals("sequences")) {
+            if (tree.SelectedNode.Parent.Name.Equals("sequences"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxSequenceId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddSequence(ind);
                 SA.Sequences = SA.Sequences.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Sequence archives.
-            else if (tree.SelectedNode.Parent.Name.Equals("sequenceArchives")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("sequenceArchives"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxSequenceArchiveId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddSequenceArchive(ind);
                 SA.SequenceArchives = SA.SequenceArchives.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                   
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                       
                         tree.SelectedNode = n;
+
                     }
                 }
+
                 DoInfoStuff();
+
             }
 
             //Banks.
-            else if (tree.SelectedNode.Parent.Name.Equals("banks")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("banks"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxBankId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddBank(ind);
                 SA.Banks = SA.Banks.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                       
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Wave archives.
-            else if (tree.SelectedNode.Parent.Name.Equals("waveArchives")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("waveArchives"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxWaveArchiveId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddWaveArchive(ind);
                 SA.WaveArchives = SA.WaveArchives.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                       
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Player.
-            else if (tree.SelectedNode.Parent.Name.Equals("players")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("players"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxPlayerId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddSequencePlayer(ind);
                 SA.Players = SA.Players.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Group.
-            else if (tree.SelectedNode.Parent.Name.Equals("groups")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("groups"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxGroupId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+               
                 AddGroup(ind);
                 SA.Groups = SA.Groups.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
                 }
+
                 DoInfoStuff();
+
             }
 
             //Stream player.
-            else if (tree.SelectedNode.Parent.Name.Equals("streamPlayers")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("streamPlayers"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxStreamPlayerId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddStreamPlayer(ind);
                 SA.StreamPlayers = SA.StreamPlayers.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Stream.
-            else if (tree.SelectedNode.Parent.Name.Equals("streams")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("streams"))
+            {
+                
                 int ind = GetNextAvailablePreviousId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxStreamId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddStream(ind);
                 SA.Streams = SA.Streams.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
         }
@@ -1788,142 +2827,268 @@ namespace NitroStudio2 {
         /// <summary>
         /// Add below.
         /// </summary>
-        public void AddBelow(object sender, EventArgs e) {
+        public void AddBelow(object sender, EventArgs e)
+        {
 
             //Sequences.
-            if (tree.SelectedNode.Parent.Name.Equals("sequences")) {
+            if (tree.SelectedNode.Parent.Name.Equals("sequences"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxSequenceId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddSequence(ind);
                 SA.Sequences = SA.Sequences.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Sequence archives.
-            else if (tree.SelectedNode.Parent.Name.Equals("sequenceArchives")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("sequenceArchives"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxSequenceArchiveId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+
                 AddSequenceArchive(ind);
                 SA.SequenceArchives = SA.SequenceArchives.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                   
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Banks.
-            else if (tree.SelectedNode.Parent.Name.Equals("banks")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("banks"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxBankId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddBank(ind);
                 SA.Banks = SA.Banks.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Wave archives.
-            else if (tree.SelectedNode.Parent.Name.Equals("waveArchives")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("waveArchives"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxWaveArchiveId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddWaveArchive(ind);
                 SA.WaveArchives = SA.WaveArchives.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Player.
-            else if (tree.SelectedNode.Parent.Name.Equals("players")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("players"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxPlayerId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddSequencePlayer(ind);
                 SA.Players = SA.Players.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
                 }
+
                 DoInfoStuff();
+
             }
 
             //Group.
-            else if (tree.SelectedNode.Parent.Name.Equals("groups")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("groups"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxGroupId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddGroup(ind);
                 SA.Groups = SA.Groups.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Stream player.
-            else if (tree.SelectedNode.Parent.Name.Equals("streamPlayers")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("streamPlayers"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxStreamPlayerId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddStreamPlayer(ind);
                 SA.StreamPlayers = SA.StreamPlayers.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Stream.
-            else if (tree.SelectedNode.Parent.Name.Equals("streams")) {
+            else if (tree.SelectedNode.Parent.Name.Equals("streams"))
+            {
+                
                 int ind = GetNextAvailableForwardId(GetIdFromNode(tree.SelectedNode), SoundArchive.MaxStreamId, tree.SelectedNode.Parent.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddStream(ind);
                 SA.Streams = SA.Streams.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Parent.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
                         tree.SelectedNode = n;
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
         }

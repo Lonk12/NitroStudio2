@@ -11,8 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NitroStudio2 {
-    public partial class InstrumentSelector : Form {
+namespace NitroStudio2
+{
+
+    public partial class InstrumentSelector : Form
+    {
 
         /// <summary>
         /// Selected instruments.
@@ -40,7 +43,8 @@ namespace NitroStudio2 {
         /// <param name="waves">Waves.</param>
         /// <param name="insts">Ids.</param>
         /// <param name="insts">Names.</param>
-        public InstrumentSelector(List<RiffWave> waves, List<int> insts, List<string> names) {
+        public InstrumentSelector(List<RiffWave> waves, List<int> insts, List<string> names)
+        {
 
             //Init.
             InitializeComponent();
@@ -53,15 +57,31 @@ namespace NitroStudio2 {
 
             //Add instruments.
             int ind = 0;
-            foreach (var inst in insts) {
+            
+            foreach (var inst in insts)
+            {
+                
                 instGrid.Rows.Add(new DataGridViewRow());
                 var v = instGrid.Rows[instGrid.Rows.Count - 1];
                 ((DataGridViewTextBoxCell)v.Cells[1]).Value = inst;
                 string name = "Instrument " + inst;
-                try { name = names[ind]; } catch { }
+                
+                try
+                {
+                    
+                    name = names[ind];
+                
+                }
+                
+                catch
+                {
+                
+                }
+                
                 ind++;
                 ((DataGridViewTextBoxCell)v.Cells[2]).Value = name;
                 ((DataGridViewCheckBoxCell)v.Cells[3]).Value = true;
+
             }
 
         }
@@ -69,47 +89,81 @@ namespace NitroStudio2 {
         /// <summary>
         /// Finished.
         /// </summary>
-        private void finishedButton_Click(object sender, EventArgs e) {
+        private void finishedButton_Click(object sender, EventArgs e)
+        {
+            
             SelectedInstruments = new List<int>();
-            foreach (DataGridViewRow r in instGrid.Rows) {
-                if ((bool)((DataGridViewCheckBoxCell)r.Cells[3]).Value) {
+            
+            foreach (DataGridViewRow r in instGrid.Rows)
+            {
+                
+                if ((bool)((DataGridViewCheckBoxCell)r.Cells[3]).Value)
+                {
+                    
                     SelectedInstruments.Add(int.Parse(r.Cells[1].Value.ToString()));
+
                 }
+
             }
-            Close();        
+
+            Close();   
+            
         }
 
         /// <summary>
         /// Play region button.
         /// </summary>
-        public void PlayRegionButtonClick(object sender, DataGridViewCellEventArgs e) {
-            if (e.ColumnIndex != 0 || e.RowIndex < 0) {
+        public void PlayRegionButtonClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (e.ColumnIndex != 0 || e.RowIndex < 0)
+            {
+               
                 return;
+
             }
+            
             Player.Stop();
             Player.WaveArchives[0][0] = wavs[e.RowIndex];
             Player.Play();
+
         }
 
-        private void checkAllToolStripMenuItem_Click(object sender, EventArgs e) {
-            foreach (DataGridViewRow r in instGrid.Rows) {
+        private void checkAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            foreach (DataGridViewRow r in instGrid.Rows)
+            {
+                
                 r.Cells[3].Value = true;
+
             }
+
         }
 
-        private void uncheckAllToolStripMenuItem_Click(object sender, EventArgs e) {
-            foreach (DataGridViewRow r in instGrid.Rows) {
+        private void uncheckAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            foreach (DataGridViewRow r in instGrid.Rows)
+            {
+                
                 r.Cells[3].Value = false;
+
             }
+
         }
 
         /// <summary>
         /// On closing.
         /// </summary>
-        private void OnClosing(object sender, EventArgs e) {
+        private void OnClosing(object sender, EventArgs e)
+        {
+            
             Mixer.Dispose();
             Player.Dispose();
+
         }
 
     }
+
 }

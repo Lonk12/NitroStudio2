@@ -15,12 +15,14 @@ using NitroFileLoader;
 using GotaSoundBank.SF2;
 using GotaSoundBank.DLS;
 
-namespace NitroStudio2 {
+namespace NitroStudio2
+{
 
     /// <summary>
     /// An editor base for files.
     /// </summary>
-    public class EditorBase : Form {
+    public class EditorBase : Form
+    {
 
         /// <summary>
         /// File type to use.
@@ -185,6 +187,7 @@ namespace NitroStudio2 {
         private Label label5;
         protected NumericUpDown itemIndexBox;
         protected Button swapAtIndexButton;
+        protected Button insertAtIndexButton;
         protected Panel forceUniqueFilePanel;
         protected CheckBox forceUniqueFileBox;
         private Label label8;
@@ -411,151 +414,6 @@ namespace NitroStudio2 {
         private TableLayoutPanel tableLayoutPanel36;
         protected Button exportWavButton;
         protected Button exportMidiButton;
-
-        /// <summary>
-        /// Main window.
-        /// </summary>
-        protected static MainWindow MainWindow;
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="fileType">Type of file.</param>
-        /// <param name="extensionDescription">Description of the extension.</param>
-        /// <param name="extension">File extension type.</param>
-        /// <param name="editorName">Editor name.</param>
-        /// <param name="mainWindow">Main window.</param>
-        private EditorBase()
-        {
-            //Initialize component.
-            InitializeComponent();
-        }
-        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, MainWindow mainWindow)
-            : this()
-        {
-
-            //Set main window.
-            MainWindow = mainWindow;
-
-            //Set file type.
-            FileType = fileType;
-
-            //Extension description.
-            ExtensionDescription = extensionDescription;
-
-            //Extension.
-            Extension = extension;
-
-            //Editor name.
-            EditorName = editorName;
-            Text = EditorName;
-
-            Load += OnLoad;
-
-        }
-
-        private void OnLoad(object sender, EventArgs e)
-        {
-            //Update nodes.
-            UpdateNodes();
-
-            //Do info stuff.
-            DoInfoStuff();
-        }
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="fileType">Type of file.</param>
-        /// <param name="extensionDescription">Description of the extension.</param>
-        /// <param name="extension">File extension type.</param>
-        /// <param name="editorName">Editor name.</param>
-        /// <param name="fileToOpen">File to open.</param>
-        /// <param name="mainWindow">Main window.</param>
-        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, string fileToOpen, MainWindow mainWindow) {
-
-            //Initialize component.
-            InitializeComponent();
-
-            //Set main window.
-            MainWindow = mainWindow;
-
-            //Set file type.
-            FileType = fileType;
-
-            //Extension description.
-            ExtensionDescription = extensionDescription;
-
-            //Extension.
-            Extension = extension;
-
-            //Editor name.
-            EditorName = editorName;
-
-            //Open file.
-            File = (GotaSoundIO.IO.IOFile)Activator.CreateInstance(FileType);
-            FilePath = fileToOpen;
-            Text = EditorName + " - " + Path.GetFileName(fileToOpen);
-            FileOpen = true;
-            FileName = Path.GetFileNameWithoutExtension(FilePath);
-
-            //Read data.
-            File.Read(fileToOpen);
-
-            //Update.
-            UpdateNodes();
-            DoInfoStuff();
-
-        }
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="fileType">Type of file.</param>
-        /// <param name="extensionDescription">Description of the extension.</param>
-        /// <param name="extension">File extension type.</param>
-        /// <param name="editorName">Editor name.</param>
-        /// <param name="fileToOpen">File to open.</param>
-        /// <param name="mainWindow">Main window.</param>
-        /// <param name="fileName">Filename.</param>
-        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, IOFile fileToOpen, MainWindow mainWindow, string fileName) {
-
-            //Initialize component.
-            InitializeComponent();
-
-            //Set main window.
-            MainWindow = mainWindow;
-
-            //Set file type.
-            FileType = fileType;
-
-            //Extension description.
-            ExtensionDescription = extensionDescription;
-
-            //Extension.
-            Extension = extension;
-
-            //Editor name.
-            EditorName = editorName;
-
-            //Open file.
-            ExtFile = fileToOpen;
-            File = (IOFile)Activator.CreateInstance(ExtFile.GetType());
-            File.Read(ExtFile.Write());
-            FilePath = "";
-            string name = fileName;
-            if (name == null) {
-                name = "{ Null File Name }";
-            }
-            Text = EditorName + " - " + name + ".s" + extension;
-            FileOpen = true;
-            FileName = fileName;
-
-            //Update.
-            UpdateNodes();
-            DoInfoStuff();
-
-        }
         protected MenuStrip menuStrip;
         protected ToolStripMenuItem newToolStripMenuItem;
         protected ToolStripMenuItem openToolStripMenuItem;
@@ -604,8 +462,161 @@ namespace NitroStudio2 {
         private ToolStripMenuItem sarRename;
         private ToolStripMenuItem sarDelete;
 
+        /// <summary>
+        /// Main window.
+        /// </summary>
+        protected static MainWindow MainWindow;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="fileType">Type of file.</param>
+        /// <param name="extensionDescription">Description of the extension.</param>
+        /// <param name="extension">File extension type.</param>
+        /// <param name="editorName">Editor name.</param>
+        /// <param name="mainWindow">Main window.</param>
+        private EditorBase()
+        {
+            //Initialize component.
+            InitializeComponent();
+        }
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, MainWindow mainWindow) : this()
+        {
+
+            //Set main window.
+            MainWindow = mainWindow;
+
+            //Set file type.
+            FileType = fileType;
+
+            //Extension description.
+            ExtensionDescription = extensionDescription;
+
+            //Extension.
+            Extension = extension;
+
+            //Editor name.
+            EditorName = editorName;
+            Text = EditorName;
+
+            Load += OnLoad;
+
+        }
+
+        private void OnLoad(object sender, EventArgs e)
+        {
+            
+            //Update nodes.
+            UpdateNodes();
+
+            //Do info stuff.
+            DoInfoStuff();
+
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="fileType">Type of file.</param>
+        /// <param name="extensionDescription">Description of the extension.</param>
+        /// <param name="extension">File extension type.</param>
+        /// <param name="editorName">Editor name.</param>
+        /// <param name="fileToOpen">File to open.</param>
+        /// <param name="mainWindow">Main window.</param>
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, string fileToOpen, MainWindow mainWindow)
+        {
+
+            //Initialize component.
+            InitializeComponent();
+
+            //Set main window.
+            MainWindow = mainWindow;
+
+            //Set file type.
+            FileType = fileType;
+
+            //Extension description.
+            ExtensionDescription = extensionDescription;
+
+            //Extension.
+            Extension = extension;
+
+            //Editor name.
+            EditorName = editorName;
+
+            //Open file.
+            File = (GotaSoundIO.IO.IOFile)Activator.CreateInstance(FileType);
+            FilePath = fileToOpen;
+            Text = EditorName + " - " + Path.GetFileName(fileToOpen);
+            FileOpen = true;
+            FileName = Path.GetFileNameWithoutExtension(FilePath);
+
+            //Read data.
+            File.Read(fileToOpen);
+
+            //Update.
+            UpdateNodes();
+            DoInfoStuff();
+
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="fileType">Type of file.</param>
+        /// <param name="extensionDescription">Description of the extension.</param>
+        /// <param name="extension">File extension type.</param>
+        /// <param name="editorName">Editor name.</param>
+        /// <param name="fileToOpen">File to open.</param>
+        /// <param name="mainWindow">Main window.</param>
+        /// <param name="fileName">Filename.</param>
+        protected EditorBase(Type fileType, string extensionDescription, string extension, string editorName, IOFile fileToOpen, MainWindow mainWindow, string fileName)
+        {
+
+            //Initialize component.
+            InitializeComponent();
+
+            //Set main window.
+            MainWindow = mainWindow;
+
+            //Set file type.
+            FileType = fileType;
+
+            //Extension description.
+            ExtensionDescription = extensionDescription;
+
+            //Extension.
+            Extension = extension;
+
+            //Editor name.
+            EditorName = editorName;
+
+            //Open file.
+            ExtFile = fileToOpen;
+            File = (IOFile)Activator.CreateInstance(ExtFile.GetType());
+            File.Read(ExtFile.Write());
+            FilePath = "";
+            string name = fileName;
+            Text = EditorName + " - " + name + ".s" + extension;
+            FileOpen = true;
+            FileName = fileName;
+
+            if (name == null)
+            {
+                
+                name = "{ Null File Name }";
+
+            }
+
+            //Update.
+            UpdateNodes();
+            DoInfoStuff();
+
+        }
+
         protected void InitializeComponent()
         {
+            
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditorBase));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("File Information", 10, 10);
@@ -5412,7 +5423,8 @@ namespace NitroStudio2 {
         /// <param name="description">File description.</param>
         /// <param name="extension">File extension.</param>
         /// <returns>Path of the file to open.</returns>
-        protected string GetFileOpenerPath(string description, string extension) {
+        protected string GetFileOpenerPath(string description, string extension)
+        {
 
             //Set filer.
             openFileDialog.FileName = "";
@@ -5430,7 +5442,8 @@ namespace NitroStudio2 {
         /// <param name="description">File description.</param>
         /// <param name="extension">File extension.</param>
         /// <returns>Path of the file to save.</returns>
-        protected string GetFileSaverPath(string description, string extension) {
+        protected string GetFileSaverPath(string description, string extension)
+        {
 
             //Set filer.
             saveFileDialog.FileName = "";
@@ -5438,11 +5451,15 @@ namespace NitroStudio2 {
             saveFileDialog.ShowDialog();            
 
             //Set write mode.
-            if (saveFileDialog.FileName != "") {
+            if (saveFileDialog.FileName != "")
+            {
 
                 //Fix extension.
-                if (Path.GetExtension(saveFileDialog.FileName) == "") {
+                if (Path.GetExtension(saveFileDialog.FileName) == "")
+                {
+                    
                     saveFileDialog.FileName += ".s" + extension.ToLower();
+
                 }
 
             }
@@ -5455,21 +5472,29 @@ namespace NitroStudio2 {
         /// <summary>
         /// On closing hook.
         /// </summary>
-        private void form_Close(object sender, FormClosingEventArgs e) {
+        private void form_Close(object sender, FormClosingEventArgs e)
+        {
+            
             OnClosing();
+
         }
 
         /// <summary>
         /// On closing.
         /// </summary>
-        protected virtual void OnClosing() {}
+        protected virtual void OnClosing()
+        {
+        
+        }
 
-        protected ContextMenuStrip CreateMenuStrip(ContextMenuStrip orig, int[] indices, EventHandler[] eventHandlers) {
+        protected ContextMenuStrip CreateMenuStrip(ContextMenuStrip orig, int[] indices, EventHandler[] eventHandlers)
+        {
 
             ContextMenuStrip c = new ContextMenuStrip();
 
             int num = 0;
-            foreach (int ind in indices) {
+            foreach (int ind in indices)
+            {
 
                 var i = orig.Items[ind];
                 c.Items.Add(i.Text, i.Image, eventHandlers[num++]);
@@ -5486,15 +5511,20 @@ namespace NitroStudio2 {
         /// <summary>
         /// Do the info stuff on node selected.
         /// </summary>
-        protected virtual void DoInfoStuff() {
+        protected virtual void DoInfoStuff()
+        {
 
             //Fix selected node issue.
-            if (tree.SelectedNode == null) {
+            if (tree.SelectedNode == null)
+            {
+                
                 tree.SelectedNode = tree.Nodes[0];
+
             }
 
             //Not file open.
-            if (!FileOpen) {
+            if (!FileOpen)
+            {
 
                 //Show no info panel.
                 noInfoPanel.BringToFront();
@@ -5513,7 +5543,8 @@ namespace NitroStudio2 {
         /// <summary>
         /// Begin the updating of nodes.
         /// </summary>
-        protected void BeginUpdateNodes() {
+        protected void BeginUpdateNodes()
+        {
 
             //Begin update.
             tree.BeginUpdate();
@@ -5522,21 +5553,31 @@ namespace NitroStudio2 {
             expandedNodes = collectExpandedNodes(tree.Nodes);
 
             //Safety.
-            if (tree.SelectedNode == null) {
+            if (tree.SelectedNode == null)
+            {
+                
                 tree.SelectedNode = tree.Nodes[0];
+
             }
 
             //Get the selected index.
             nodeIndices = new Stack<int>();
             nodeIndices.Push(tree.SelectedNode.Index);
-            while (tree.SelectedNode.Parent != null) {
+            
+            while (tree.SelectedNode.Parent != null)
+            {
+                
                 tree.SelectedNode = tree.SelectedNode.Parent;
                 nodeIndices.Push(tree.SelectedNode.Index);
+
             }
 
             //Clear each node.
-            for (int i = 0; i < tree.Nodes.Count; i++) {
+            for (int i = 0; i < tree.Nodes.Count; i++)
+            {
+                
                 tree.Nodes[i].Nodes.Clear();
+
             }
 
         }
@@ -5544,32 +5585,52 @@ namespace NitroStudio2 {
         /// <summary>
         /// Update the nodes in the tree. THIS MUST CONTAIN THE BEGIN AND END UPDATE NODES!
         /// </summary>
-        protected virtual void UpdateNodes() {}
+        protected virtual void UpdateNodes()
+        {
+        
+        }
 
         /// <summary>
         /// Complete the updating of nodes.
         /// </summary>
-        protected void EndUpdateNodes() {
+        protected void EndUpdateNodes()
+        {
 
             //Restore the expanded nodes if they exist.
-            if (expandedNodes.Count > 0) {
+            if (expandedNodes.Count > 0)
+            {
                 TreeNode IamExpandedNode;
-                for (int i = 0; i < expandedNodes.Count; i++) {
+                
+                for (int i = 0; i < expandedNodes.Count; i++)
+                {
+                    
                     IamExpandedNode = FindNodeByName(tree.Nodes, expandedNodes[i]);
                     expandNodePath(IamExpandedNode);
+
                 }
 
             }
 
             //Set the selected node.
             tree.SelectedNode = tree.Nodes[nodeIndices.Pop()];
-            while (nodeIndices.Count > 0) {
-                try {
+            while (nodeIndices.Count > 0)
+            {
+                
+                try
+                {
+                    
                     tree.SelectedNode = tree.SelectedNode.Nodes[nodeIndices.Pop()];
-                } catch {
+
+                }
+                
+                catch
+                {
+                    
                     nodeIndices.Clear();
+
                 }
             }
+            
             tree.SelectedNode.EnsureVisible();
 
             //End update.
@@ -5583,11 +5644,15 @@ namespace NitroStudio2 {
         #region fileMenu
 
         //New.
-        protected virtual void newToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open and can save test.
-            if (!FileTest(sender, e, true)) {
+            if (!FileTest(sender, e, true))
+            {
+                
                 return;
+
             }
 
             //Create instance of file.
@@ -5606,18 +5671,23 @@ namespace NitroStudio2 {
         }
 
         //Open.
-        protected virtual void openToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open and save test.
-            if (!FileTest(sender, e, true)) {
+            if (!FileTest(sender, e, true))
+            {
+                
                 return;
+
             }
 
             //Open the file.
             string path = GetFileOpenerPath(ExtensionDescription, Extension);
 
             //File is not null.
-            if (path != "") {
+            if (path != "")
+            {
 
                 //Set value.
                 File = (IOFile)Activator.CreateInstance(FileType);
@@ -5638,15 +5708,20 @@ namespace NitroStudio2 {
         }
 
         //Save.
-        public virtual void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+        public virtual void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //No where to save.
-            if (ExtFile == null && FilePath == "") {
+            if (ExtFile == null && FilePath == "")
+            {
 
                 //Save as.
                 saveAsToolStripMenuItem_Click(sender, e);
@@ -5657,25 +5732,34 @@ namespace NitroStudio2 {
             }
 
             //External file is not null.
-            if (ExtFile != null) {
+            if (ExtFile != null)
+            {
 
                 //Set the file.
                 ExtFile.Read(File.Write());
 
                 //Update the main window.
-                if (MainWindow != null) {
+                if (MainWindow != null)
+                {
+                    
                     MainWindow.UpdateNodes();
                     MainWindow.DoInfoStuff();
+
                 }
-                if (OtherEditor != null) {
+                
+                if (OtherEditor != null)
+                {
+                    
                     OtherEditor.UpdateNodes();
                     OtherEditor.DoInfoStuff();
+
                 }
 
             }
 
             //External file is null.
-            else {
+            else
+            {
 
                 //Write the file.
                 File.Write(FilePath);
@@ -5685,18 +5769,23 @@ namespace NitroStudio2 {
         }
 
         //Save as.
-        protected void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //Get the save file name.
             string path = GetFileSaverPath(ExtensionDescription, Extension);
 
             //If the path is valid.
-            if (path != "") {
+            if (path != "")
+            {
 
                 //Set values.
                 FilePath = path;
@@ -5711,11 +5800,15 @@ namespace NitroStudio2 {
         }
 
         //Close.
-        protected virtual void closeToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open and can save test.
-            if (!FileTest(sender, e, true, true)) {
+            if (!FileTest(sender, e, true, true))
+            {
+                
                 return;
+
             }
 
             //Close the file.
@@ -5732,13 +5825,20 @@ namespace NitroStudio2 {
         }
 
         //Quit.
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //Quit if wanted.
-            if (FileOpen) {
+            if (FileOpen)
+            {
+                
                 SaveQuitDialog q = new SaveQuitDialog(this);
                 q.ShowDialog();
-            } else {
+
+            }
+            
+            else
+            {
                 Close();
             }
 
@@ -5750,11 +5850,15 @@ namespace NitroStudio2 {
         #region editMenu
 
         //Blank the file.
-        protected virtual void blankFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void blankFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open save test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //Create instance of file.
@@ -5767,18 +5871,23 @@ namespace NitroStudio2 {
         }
 
         //Import data from another file.
-        protected virtual void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void importFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //Open the file.
             string path = GetFileOpenerPath(ExtensionDescription, Extension);
 
             //File is not null.
-            if (path != "") {
+            if (path != "")
+            {
 
                 //Set value.
                 File = (IOFile)Activator.CreateInstance(FileType);
@@ -5795,18 +5904,23 @@ namespace NitroStudio2 {
         }
 
         //Export data to somewhere.
-        protected virtual void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected virtual void exportFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //Get the save file name.
             string path = GetFileSaverPath(ExtensionDescription, Extension);
 
             //If the path is valid.
-            if (path != "") {
+            if (path != "")
+            {
 
                 //Write the file.
                 File.Write(path);
@@ -5816,15 +5930,20 @@ namespace NitroStudio2 {
         }
 
         //Set file data to null.
-        private void nullifyFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void nullifyFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //External file cannot be null.
-            if (ExtFile == null) {
+            if (ExtFile == null)
+            {
 
                 //Call out the user.
                 MessageBox.Show("You can't nullify data that is not in a parent file!", "Notice:");
@@ -5844,16 +5963,20 @@ namespace NitroStudio2 {
         /// <summary>
         /// Returns true if the user wants to continue.
         /// </summary>
-        protected bool FileTest(object sender, EventArgs e, bool save, bool forceOpen = false) {
+        protected bool FileTest(object sender, EventArgs e, bool save, bool forceOpen = false)
+        {
 
             //File is open.
-            if (FileOpen) {
+            if (FileOpen)
+            {
 
                 //Ask user if they want to save.
-                if (save) {
+                if (save)
+                {
 
                     SaveCloseDialog c = new SaveCloseDialog();
-                    switch (c.getValue()) {
+                    switch (c.getValue())
+                    {
 
                         //Save.
                         case 0:
@@ -5875,13 +5998,24 @@ namespace NitroStudio2 {
                 //Passed test.
                 return true;
 
-            } else {
+            }
+            
+            else
+            {
 
-                if (forceOpen) {
+                if (forceOpen)
+                {
+                    
                     MessageBox.Show("There must be a file open to do this!", "Notice:");
                     return false;
-                } else {
+
+                }
+                
+                else
+                {
+                    
                     return true;
+
                 }
 
             }
@@ -5895,15 +6029,25 @@ namespace NitroStudio2 {
         #region nodeShit
 
         //Expand node and parents.
-        void expandNodePath(TreeNode node) {
+        void expandNodePath(TreeNode node)
+        {
+            
             if (node == null)
                 return;
+            
             if (node.Level != 0) //check if it is not root
             {
+                
                 node.Expand();
                 expandNodePath(node.Parent);
-            } else {
+
+            }
+            
+            else
+            {
+                
                 node.Expand(); // this is root 
+
             }
 
 
@@ -5911,28 +6055,47 @@ namespace NitroStudio2 {
         }
 
         //Make right click actually select, and show infoViewer.
-        void tree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-            if (e.Button == MouseButtons.Right) {
+        void tree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            
+            if (e.Button == MouseButtons.Right)
+            {
+                
                 // Select the clicked node
                 tree.SelectedNode = tree.GetNodeAt(e.X, e.Y);
-            } else if (e.Button == MouseButtons.Left) {
+
+            }
+            
+            else if (e.Button == MouseButtons.Left)
+            {
+                
                 // Select the clicked node
                 tree.SelectedNode = tree.GetNodeAt(e.X, e.Y);
+
             }
 
             DoInfoStuff();
 
         }
 
-        void tree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
+        void tree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
 
             //Select.
-            if (e.Button == MouseButtons.Right) {
+            if (e.Button == MouseButtons.Right)
+            {
+                
                 // Select the clicked node
                 tree.SelectedNode = tree.GetNodeAt(e.X, e.Y);
-            } else if (e.Button == MouseButtons.Left) {
+
+            }
+            
+            else if (e.Button == MouseButtons.Left)
+            {
+                
                 // Select the clicked node
                 tree.SelectedNode = tree.GetNodeAt(e.X, e.Y);
+
             }
 
             //Do info stuff.
@@ -5943,24 +6106,34 @@ namespace NitroStudio2 {
 
         }
 
-        protected virtual void NodeMouseDoubleClick() {}
+        protected virtual void NodeMouseDoubleClick()
+        {
+        
+        }
 
-        void tree_NodeKey(object sender, KeyEventArgs e) {
+        void tree_NodeKey(object sender, KeyEventArgs e)
+        {
 
             DoInfoStuff();
 
         }
 
         //Get expanded nodes.
-        List<string> collectExpandedNodes(TreeNodeCollection Nodes) {
+        List<string> collectExpandedNodes(TreeNodeCollection Nodes)
+        {
             List<string> _lst = new List<string>();
-            foreach (TreeNode checknode in Nodes) {
+            
+            foreach (TreeNode checknode in Nodes)
+            {
                 if (checknode.IsExpanded)
                     _lst.Add(checknode.Name);
+                
                 if (checknode.Nodes.Count > 0)
                     _lst.AddRange(collectExpandedNodes(checknode.Nodes));
             }
+            
             return _lst;
+
         }
 
 
@@ -5970,24 +6143,36 @@ namespace NitroStudio2 {
         /// <param name="NodesCollection"></param>
         /// <param name="Name"></param>
         /// <returns></returns>
-        TreeNode FindNodeByName(TreeNodeCollection NodesCollection, string Name) {
+        TreeNode FindNodeByName(TreeNodeCollection NodesCollection, string Name)
+        {
+            
             TreeNode returnNode = null; // Default value to return
-            foreach (TreeNode checkNode in NodesCollection) {
+            
+            foreach (TreeNode checkNode in NodesCollection)
+            {
+                
                 if (checkNode.Name == Name)  //checks if this node name is correct
                     returnNode = checkNode;
+                
                 else if (checkNode.Nodes.Count > 0) //node has child
                 {
+                    
                     returnNode = FindNodeByName(checkNode.Nodes, Name);
+
                 }
 
                 if (returnNode != null) //check if founded do not continue and break
                 {
+                    
                     return returnNode;
+
                 }
 
             }
+            
             //not found
             return returnNode;
+
         }
 
         #endregion
@@ -5997,23 +6182,41 @@ namespace NitroStudio2 {
         #region soundPlayerDeluxe
 
         //Play.
-        private void playSoundTrack_Click(object sender, EventArgs e) {
+        private void playSoundTrack_Click(object sender, EventArgs e)
+        {
+            
             Play();
+
         }
 
         //Pause.
-        private void pauseSoundTrack_Click(object sender, EventArgs e) {
+        private void pauseSoundTrack_Click(object sender, EventArgs e)
+        {
+            
             Pause();
+
         }
 
         //Stop.
-        private void stopSoundTrack_Click(object sender, EventArgs e) {
+        private void stopSoundTrack_Click(object sender, EventArgs e)
+        {
+            
             Stop();
+
         }
 
-        protected virtual void Play() {}
-        protected virtual void Pause() {}
-        protected virtual void Stop() {}
+        protected virtual void Play()
+        {
+        
+        }
+        protected virtual void Pause()
+        {
+        
+        }
+        protected virtual void Stop()
+        {
+        
+        }
 
         #endregion
 
@@ -6021,11 +6224,17 @@ namespace NitroStudio2 {
         //Other buttons.
         #region otherButtons
 
-        private void forceWaveVersionButton_Click(object sender, EventArgs e) {
+        private void forceWaveVersionButton_Click(object sender, EventArgs e)
+        {
+            
             ForceWaveVersionButtonClick();
+
         }
 
-        protected virtual void ForceWaveVersionButtonClick() {}
+        protected virtual void ForceWaveVersionButtonClick()
+        {
+        
+        }
 
         #endregion
 
@@ -6033,19 +6242,31 @@ namespace NitroStudio2 {
         //Root menu.
         #region rootMenu
 
-        private void addToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             RootAdd();
+
         }
 
-        protected void expandToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void expandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             tree.SelectedNode.Expand();
+
         }
 
-        protected void collapseToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void collapseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             tree.SelectedNode.Collapse();
+
         }
 
-        protected virtual void RootAdd() {}
+        protected virtual void RootAdd()
+        {
+        
+        }
 
         #endregion
 
@@ -6053,51 +6274,113 @@ namespace NitroStudio2 {
         //Node menu.
         #region nodeMenu
 
-        protected void addAboveToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void addAboveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeAddAbove();
+
         }
 
-        protected void addBelowToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void addBelowToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeAddBelow();
+
         }
 
-        protected void moveUpToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void moveUpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeMoveUp();
+
         }
 
-        protected void moveDownToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void moveDownToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeMoveDown();
+
         }
 
-        protected void blankToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void blankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             NodeBlank();
+
         }
 
-        protected void replaceFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected void replaceFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             NodeReplace();
+
         }
 
-        protected void exportToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void exportToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeExport();
+
         }
 
-        protected void nullifyToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void nullifyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeNullify();
+
         }
 
-        protected void deleteToolStripMenuItem1_Click(object sender, EventArgs e) {
+        protected void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
             NodeDelete();
+
         }
 
-        protected virtual void NodeAddAbove() {}
-        protected virtual void NodeAddBelow() {}
-        protected virtual void NodeMoveUp() {}
-        protected virtual void NodeMoveDown() {}
-        protected virtual void NodeBlank() {}
-        protected virtual void NodeReplace() {}
-        protected virtual void NodeExport() {}
-        protected virtual void NodeNullify() {}
-        protected virtual void NodeDelete() {}
+        protected virtual void NodeAddAbove()
+        {
+        
+        }
+        
+        protected virtual void NodeAddBelow()
+        {
+        
+        }
+        
+        protected virtual void NodeMoveUp()
+        {
+        
+        }
+        
+        protected virtual void NodeMoveDown()
+        {
+        
+        }
+        
+        protected virtual void NodeBlank()
+        {
+        
+        }
+        
+        protected virtual void NodeReplace()
+        {
+        
+        }
+        
+        protected virtual void NodeExport()
+        {
+        
+        }
+        
+        protected virtual void NodeNullify()
+        {
+        
+        }
+        
+        protected virtual void NodeDelete()
+        {
+        
+        }
 
         /// <summary>
         /// Swap the a and b objects.
@@ -6105,11 +6388,15 @@ namespace NitroStudio2 {
         /// <param name="objects">Objects list.</param>
         /// <param name="a">Object a to swap.</param>
         /// <param name="b">Object b to swap.</param>
-        protected bool Swap<T>(IList<T> objects, int a, int b) {
+        protected bool Swap<T>(IList<T> objects, int a, int b)
+        {
 
             //Make sure it is possible.
-            if (a < 0 || a >= objects.Count || b < 0 || b >= objects.Count) {
+            if (a < 0 || a >= objects.Count || b < 0 || b >= objects.Count)
+            {
+                
                 return false;
+
             }
 
             //Swap objects.
@@ -6126,36 +6413,77 @@ namespace NitroStudio2 {
         //War boxes.
         #region warBoxes
 
-        private void vMajBoxWar_ValueChanged(object sender, EventArgs e) {
+        private void vMajBoxWar_ValueChanged(object sender, EventArgs e)
+        {
+            
             BoxWarMajChanged();
+
         }
 
-        private void vMinBoxWar_ValueChanged(object sender, EventArgs e) {
+        private void vMinBoxWar_ValueChanged(object sender, EventArgs e)
+        {
+            
             BoxWarMinChanged();
+
         }
 
-        private void vRevBoxWar_ValueChanged(object sender, EventArgs e) {
+        private void vRevBoxWar_ValueChanged(object sender, EventArgs e)
+        {
+            
             BoxWarRevChanged();
+
         }
 
-        private void vWavMajBox_ValueChanged(object sender, EventArgs e) {
+        private void vWavMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
             BoxWavMajChanged();
+
         }
 
-        private void vWavMinBox_ValueChanged(object sender, EventArgs e) {
+        private void vWavMinBox_ValueChanged(object sender, EventArgs e)
+        {
+            
             BoxWavMinChanged();
+
         }
 
-        private void vWavRevBox_ValueChanged(object sender, EventArgs e) {
+        private void vWavRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
             BoxWavRevChanged();
+
         }
 
-        protected virtual void BoxWarMajChanged() {}
-        protected virtual void BoxWarMinChanged() {}
-        protected virtual void BoxWarRevChanged() {}
-        protected virtual void BoxWavMajChanged() {}
-        protected virtual void BoxWavMinChanged() {}
-        protected virtual void BoxWavRevChanged() {}
+        protected virtual void BoxWarMajChanged()
+        {
+        
+        }
+        
+        protected virtual void BoxWarMinChanged()
+        {
+        
+        }
+        
+        protected virtual void BoxWarRevChanged()
+        {
+        
+        }
+        
+        protected virtual void BoxWavMajChanged()
+        {
+        
+        }
+        
+        protected virtual void BoxWavMinChanged()
+        {
+        
+        }
+        
+        protected virtual void BoxWavRevChanged()
+        {
+        
+        }
 
         #endregion
 
@@ -6163,31 +6491,65 @@ namespace NitroStudio2 {
         //War tools.
         #region warTools
 
-        private void batchExtractWavesToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void batchExtractWavesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             WarExtractWave();
+
         }
 
-        private void batchExtract3dsWavesToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void batchExtract3dsWavesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             WarExtractWave3ds();
+
         }
 
-        private void batchExtractWiiUWavesToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void batchExtractWiiUWavesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             WarExtractWaveWiiU();
+
         }
 
-        private void batchExtractSwitchWavesToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void batchExtractSwitchWavesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             WarExtractWaveSwitch();
+
         }
 
-        private void batchImportToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void batchImportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             WarBatchImport();
+
         }
 
-        protected virtual void WarExtractWave() {}
-        protected virtual void WarExtractWave3ds() {}
-        protected virtual void WarExtractWaveWiiU() {}
-        protected virtual void WarExtractWaveSwitch() {}
-        protected virtual void WarBatchImport() {}
+        protected virtual void WarExtractWave()
+        {
+        
+        }
+        
+        protected virtual void WarExtractWave3ds()
+        {
+        
+        }
+        
+        protected virtual void WarExtractWaveWiiU()
+        {
+        
+        }
+        
+        protected virtual void WarExtractWaveSwitch()
+        {
+        
+        }
+        
+        protected virtual void WarBatchImport()
+        {
+        
+        }
 
         #endregion
 
@@ -6195,150 +6557,311 @@ namespace NitroStudio2 {
         //Group versions.
         #region grpVersions
 
-        private void grpSeqForceButton_Click(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpSeqForceButton_Click(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupForceSequenceVersion();
+
             }
+
         }
 
-        private void grpBnkForceButton_Click(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpBnkForceButton_Click(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupForceBankVersion();
+
             }
+
         }
 
-        private void grpWarForceButton_Click(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWarForceButton_Click(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupForceWaveArchiveVersion();
+
             }
+
         }
 
-        private void grpWsdForceButton_Click(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWsdForceButton_Click(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupForceWaveSoundDataVersion();
+
             }
+
         }
 
-        private void grpStpForceButton_Click(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpStpForceButton_Click(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupForcePrefetchVersion();
+
             }
+
         }
 
-        private void grpMajBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpMinBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpMinBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpRevBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpSeqMajBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpSeqMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpSeqMinBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpSeqMinBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpSeqRevBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpSeqRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpBnkMajBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpBnkMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpBnkMinBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpBnkMinBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpBnkRevBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpBnkRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpWarMajBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWarMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpWarMinBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWarMinBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpWarRevBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWarRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpWsdMajBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWsdMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpWsdMinBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWsdMinBox_ValueChanged(object sender, EventArgs e)
+        {
+           
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpWsdRevBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpWsdRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpStpMajBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpStpMajBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpStpMinBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpStpMinBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        private void grpStpRevBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpStpRevBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupVersionChanged();
+
             }
+
         }
 
-        protected virtual void GroupForceSequenceVersion() {}
-        protected virtual void GroupForceBankVersion() {}
-        protected virtual void GroupForceWaveArchiveVersion() {}
-        protected virtual void GroupForceWaveSoundDataVersion() {}
-        protected virtual void GroupForcePrefetchVersion() {}
-        protected virtual void GroupVersionChanged() {}
+        protected virtual void GroupForceSequenceVersion()
+        {
+        
+        }
+        
+        protected virtual void GroupForceBankVersion()
+        {
+        
+        }
+        
+        protected virtual void GroupForceWaveArchiveVersion()
+        {
+        
+        }
+        
+        protected virtual void GroupForceWaveSoundDataVersion()
+        {
+        
+        }
+        
+        protected virtual void GroupForcePrefetchVersion()
+        {
+        
+        }
+        
+        protected virtual void GroupVersionChanged()
+        {
+        
+        }
 
         #endregion
 
@@ -6346,27 +6869,56 @@ namespace NitroStudio2 {
         //Group file data.
         #region grpFile
 
-        private void grpFileIdComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpFileIdComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupFileIdComboChanged();
+
             }
+
         }
 
-        private void grpFileIdBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpFileIdBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupFileIdNumBoxChanged();
+
             }
+
         }
 
-        private void grpEmbedModeBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpEmbedModeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupFileIdEmbedModeChanged();
+
             }
+
         }
 
-        protected virtual void GroupFileIdComboChanged() {}
-        protected virtual void GroupFileIdNumBoxChanged() {}
-        protected virtual void GroupFileIdEmbedModeChanged() {}
+        protected virtual void GroupFileIdComboChanged()
+        {
+        
+        }
+        
+        protected virtual void GroupFileIdNumBoxChanged()
+        {
+        
+        }
+        
+        protected virtual void GroupFileIdEmbedModeChanged()
+        {
+        
+        }
 
         #endregion
 
@@ -6374,835 +6926,2017 @@ namespace NitroStudio2 {
         //Group dependency.
         #region grpDependency
 
-        private void grpDepEntryTypeBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpDepEntryTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupDependencyTypeChanged();
+
             }
+
         }
 
-        private void grpDepEntryNumComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpDepEntryNumComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 GroupDependencyEntryComboChanged();
+
             }
+
         }
 
-        private void grpDepEntryNumBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpDepEntryNumBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupDependencyEntryNumBoxChanged();
+
             }
+
         }
 
-        private void grpDepLoadFlagsBox_SelectedIndexChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void grpDepLoadFlagsBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 GroupDependencyFlagsChanged();
+
             }
+
         }
 
-        protected virtual void GroupDependencyTypeChanged() {}
-        protected virtual void GroupDependencyEntryComboChanged() {}
-        protected virtual void GroupDependencyEntryNumBoxChanged() {}
-        protected virtual void GroupDependencyFlagsChanged() {}
+        protected virtual void GroupDependencyTypeChanged()
+        {
+        
+        }
+        
+        protected virtual void GroupDependencyEntryComboChanged()
+        {
+        
+        }
+        
+        protected virtual void GroupDependencyEntryNumBoxChanged()
+        {
+        
+        }
+        
+        protected virtual void GroupDependencyFlagsChanged()
+        {
+        
+        }
 
         #endregion
 
         //SAR Project info.
         #region SARProjectInfo
 
-        private void MaxSeqNumBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxSeqNumBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void MaxSeqTrackNumBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxSeqTrackNumBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void MaxStreamNumBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxStreamNumBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void MaxStreamNumTracksBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxStreamNumTracksBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void MaxStreamNumChannelsBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxStreamNumChannelsBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void MaxWaveNumBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxWaveNumBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void MaxWaveNumTracksBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void MaxWaveNumTracksBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void StreamBufferTimesBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void StreamBufferTimesBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+               
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void OptionsPIBox_ValueChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void OptionsPIBox_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        private void SarIncludeStringBlock_CheckedChanged(object sender, EventArgs e) {
-            if (!WritingInfo) {
+        private void SarIncludeStringBlock_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            if (!WritingInfo)
+            {
+                
                 SarProjectInfoUpdated();
+
             }
+
         }
 
-        protected virtual void SarProjectInfoUpdated() { }
+        protected virtual void SarProjectInfoUpdated()
+        {
+        
+        }
 
         #endregion
 
-        protected virtual void StmSound3dButton_Click(object sender, EventArgs e) {}
-
-        protected virtual void WsdSound3dButton_Click(object sender, EventArgs e) {}
-
-        protected virtual void SeqEditSound3dInfoButton_Click(object sender, EventArgs e) {}
-
-        protected virtual void SeqEditSoundInfoButton_Click(object sender, EventArgs e) {}
-
-        protected virtual void WsdEditSoundInfoButton_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmSoundInfoButton_Click(object sender, EventArgs e) {}
-
-        protected virtual void FileTypeBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void PlayerSoundLimitBox_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void PlayerEnableSoundLimitBox_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void PlayerHeapSizeBox_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarGrpFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarWarFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void WarLoadIndividuallyBox_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void WarIncludeWaveCountBox_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarBnkFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void BnkWarsChanged(object sender, EventArgs e) {}
-
-        protected virtual void SoundGrpStartIndex_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void SoundGrpEndIndex_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void SoundGroupFilesChanged(object sender, EventArgs e) {}
-
-        protected virtual void SoundGroupWarsChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarSeqFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarSeqPlay_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarSeqPause_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarSeqStop_Click(object sender, EventArgs e) {}
-
-        protected virtual void SeqSound3dInfoExists_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqBank0Box_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqBank1Box_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqBank2Box_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqBank3Box_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqOffsetFromLabelButton_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqOffsetManualButton_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqOffsetFromLabelBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqOffsetManualBox_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqChannelPriorityBox_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqIsReleasePriorityBox_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC0_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC1_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC2_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC3_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC4_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC5_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC6_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC7_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC8_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC9_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC10_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC11_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC12_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC13_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC14_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqC15_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarWsdFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void SarWsdPlay_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarWsdPause_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarWsdStop_Click(object sender, EventArgs e) {}
-
-        protected virtual void WsdSound3dEnable_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void WsdWaveIndex_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void WsdTracksToAllocate_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void WsdCopyCount_Click(object sender, EventArgs e) {}
-
-        protected virtual void WsdChannelPriority_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void WsdFixPriority_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmPlay_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmPause_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmStop_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmSound3dEnable_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmWriteTrackInfo_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmUpdateTrackInfo_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack0_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack1_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack2_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack3_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack4_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack5_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack6_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack7_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack8_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack9_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack10_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack11_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack12_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack13_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack14_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmTrack15_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmStreamType_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmAllocateChannelsNum_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmCopyChannelCountFromFile_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmPitch_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmIncludeExtension_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmLoopStartFrame_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmLoopEndFrame_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmCopyExtensionFromFile_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmGeneratePrefetch_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmPrefetchFileIdBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmUpdatePrefetchInfo_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmCreateUniquePrefetchFile_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmSendMain_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmSendA_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmSendB_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void StmSendC_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackVolume_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackPan_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackSpan_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackSurround_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackLPFFrequency_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackBiquadType_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackBiquadValue_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackSendMain_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackSendA_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackSendB_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackSendC_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void TrackChannelsChanged(object sender, EventArgs e) {}
-
-        protected virtual void ByteOrderBox_SelectedIndexChanged(object sender, EventArgs e) {}
-
-        protected virtual void VersionMax_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void VersionMin_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void VersionRev_ValueChanged(object sender, EventArgs e) {}
-
-        protected virtual void SeqVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void BankVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void WarVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void WsdVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void GrpVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void StmVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void StpVersionUpdate_Click(object sender, EventArgs e) {}
-
-        protected virtual void FilesIncludeGroups_CheckedChanged(object sender, EventArgs e) {}
-
-        protected virtual void FilesGroupGridCellChanged(object sender, EventArgs e) {}
-
-        protected virtual void ReplaceToolStripMenuItem_Click(object sender, EventArgs e) {}
-
-        protected virtual void ExportToolStripMenuItem_Click(object sender, EventArgs e) {}
-
-        protected virtual void ChangeExternalPathToolStripMenuItem_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarAddAbove_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarAddBelow_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarAddInside_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarMoveUp_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarMoveDown_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarReplace_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarExport_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarRename_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarNullify_Click(object sender, EventArgs e) {}
-
-        protected virtual void SarDelete_Click(object sender, EventArgs e) {}
+        protected virtual void StmSound3dButton_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdSound3dButton_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqEditSound3dInfoButton_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqEditSoundInfoButton_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdEditSoundInfoButton_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmSoundInfoButton_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void FileTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void PlayerSoundLimitBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void PlayerEnableSoundLimitBox_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void PlayerHeapSizeBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarGrpFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarWarFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WarLoadIndividuallyBox_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WarIncludeWaveCountBox_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarBnkFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void BnkWarsChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SoundGrpStartIndex_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SoundGrpEndIndex_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SoundGroupFilesChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SoundGroupWarsChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarSeqFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarSeqPlay_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarSeqPause_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarSeqStop_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqSound3dInfoExists_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqBank0Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqBank1Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqBank2Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqBank3Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqOffsetFromLabelButton_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqOffsetManualButton_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqOffsetFromLabelBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqOffsetManualBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqChannelPriorityBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqIsReleasePriorityBox_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC0_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC1_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC2_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC3_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC4_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC5_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC6_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC7_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC8_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC9_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC10_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC11_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC12_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC13_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC14_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqC15_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarWsdFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarWsdPlay_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarWsdPause_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarWsdStop_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdSound3dEnable_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdWaveIndex_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdTracksToAllocate_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdCopyCount_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdChannelPriority_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdFixPriority_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmPlay_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmPause_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmStop_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmSound3dEnable_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmWriteTrackInfo_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmUpdateTrackInfo_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack0_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack1_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack2_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack3_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack4_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack5_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack6_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack7_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack8_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack9_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack10_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack11_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack12_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack13_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack14_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmTrack15_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmStreamType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmAllocateChannelsNum_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmCopyChannelCountFromFile_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmPitch_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmIncludeExtension_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmLoopStartFrame_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmLoopEndFrame_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmCopyExtensionFromFile_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmGeneratePrefetch_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmPrefetchFileIdBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmUpdatePrefetchInfo_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmCreateUniquePrefetchFile_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmSendMain_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmSendA_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmSendB_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmSendC_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackVolume_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackPan_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackSpan_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackSurround_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackLPFFrequency_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackBiquadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackBiquadValue_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackSendMain_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackSendA_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackSendB_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackSendC_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void TrackChannelsChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void ByteOrderBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void VersionMax_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void VersionMin_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void VersionRev_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SeqVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void BankVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WarVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void WsdVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void GrpVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StmVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void StpVersionUpdate_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void FilesIncludeGroups_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void FilesGroupGridCellChanged(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void ReplaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void ExportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void ChangeExternalPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarAddAbove_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarAddBelow_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarAddInside_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarMoveUp_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarMoveDown_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarReplace_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarExport_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarRename_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarNullify_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        protected virtual void SarDelete_Click(object sender, EventArgs e)
+        {
+        
+        }
 
         //Wsd editor.
         #region WsdEditor
 
-        protected virtual void WsdTrackPlay_Click(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPlay_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdTrackPause_Click(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPause_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdTrackStop_Click(object sender, EventArgs e) {}
+        protected virtual void WsdTrackStop_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdTrackPlayOnce_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPlayOnce_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdTrackPlayLoop_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdTrackPlayLoop_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdPlayNext_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdPlayNext_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEventGrid_CellChange(object sende, EventArgs e) {}
+        protected virtual void WsdEventGrid_CellChange(object sende, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEntryPlay_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlay_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEntryPause_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPause_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEntryStop_Click(object sender, EventArgs e) {}
+        protected virtual void WsdEntryStop_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEntryPlayOnce_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlayOnce_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEntryPlayLoop_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlayLoop_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdEntryPlayNext_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdEntryPlayNext_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdAttack_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdAttack_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdDecay_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdDecay_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdSustain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSustain_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdRelease_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRelease_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdHold_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdHold_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdLPF_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdLPF_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdBiquadType_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void WsdBiquadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdBiquadValue_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdBiquadValue_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdSendMain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendMain_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdSendA_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendA_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdSendB_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendB_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdSendC_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSendC_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdPan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdPan_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdSpan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdSpan_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdPitch_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdPitch_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReference_CellChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReference_CellChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReferencePlay_Click(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlay_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReferencePause_Click(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePause_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReferenceStop_Click(object sender, EventArgs e) {}
+        protected virtual void WsdReferenceStop_Click(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReferencePlayOnce_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlayOnce_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReferencePlayLoop_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlayLoop_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdReferencePlayNext_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void WsdReferencePlayNext_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdRefArchiveCombo_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefArchiveCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdRefArchiveBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefArchiveBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdRefWaveCombo_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefWaveCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void WsdRefWaveBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void WsdRefWaveBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
         #endregion
 
         //Version change.
         #region VersionChange
 
-        protected virtual void VMajBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VMajBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void VMinBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VMinBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void VRevBox_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void VRevBox_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
         #endregion
 
         //Note info.
         #region NoteInfo
 
-        protected virtual void NoteReferenceWave_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void NoteReferenceWave_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteInterpolationType_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void NoteInterpolationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NotePercussionMode_CheckedChanged(object sender, EventArgs e) {}
+        protected virtual void NotePercussionMode_CheckedChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NotePitchSemitones_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NotePitchSemitones_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NotePitchCents_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NotePitchCents_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteVolume_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteVolume_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NotePan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NotePan_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteSurroundPan_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteSurroundPan_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteOriginalKey_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteOriginalKey_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteKeyGroup_SelectedIndexChanged(object sender, EventArgs e) {}
+        protected virtual void NoteKeyGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteAttack_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteAttack_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteDecay_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteDecay_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteSustain_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteSustain_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteRelease_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteRelease_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void NoteHold_ValueChanged(object sender, EventArgs e) {}
+        protected virtual void NoteHold_ValueChanged(object sender, EventArgs e)
+        {
+        
+        }
 
-        protected virtual void InstrumentApplyChanges_Click(object sender, EventArgs e) {}
+        protected virtual void InstrumentApplyChanges_Click(object sender, EventArgs e)
+        {
+        
+        }
 
         #endregion
 
-        private void PianoChanged(object sender, EventArgs e) {
-            if (pkeyC1.IsKeyOn()) {
+        private void PianoChanged(object sender, EventArgs e)
+        {
+            
+            if (pkeyC1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn1;
                 OnPianoPress();
-            } else if (pkeyC2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn2;
                 OnPianoPress();
-            } else if (pkeyC3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn3;
                 OnPianoPress();
-            } else if (pkeyC4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn4;
                 OnPianoPress();
-            } else if (pkeyC5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn5;
                 OnPianoPress();
-            } else if (pkeyC6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn6;
                 OnPianoPress();
-            } else if (pkeyC7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn7;
                 OnPianoPress();
-            } else if (pkeyC8.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyC8.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cn8;
                 OnPianoPress();
-            } else if (pkeyD1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn1;
                 OnPianoPress();
-            } else if (pkeyD2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn2;
                 OnPianoPress();
-            } else if (pkeyD3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn3;
                 OnPianoPress();
-            } else if (pkeyD4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn4;
                 OnPianoPress();
-            } else if (pkeyD5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn5;
                 OnPianoPress();
-            } else if (pkeyD6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn6;
                 OnPianoPress();
-            } else if (pkeyD7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyD7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.dn7;
                 OnPianoPress();
-            } else if (pkeyE1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en1;
                 OnPianoPress();
-            } else if (pkeyE2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en2;
                 OnPianoPress();
-            } else if (pkeyE3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en3;
                 OnPianoPress();
-            } else if (pkeyE4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en4;
                 OnPianoPress();
-            } else if (pkeyE5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en5;
                 OnPianoPress();
-            } else if (pkeyE6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en6;
                 OnPianoPress();
-            } else if (pkeyE7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyE7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.en7;
                 OnPianoPress();
-            } else if (pkeyF1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn1;
                 OnPianoPress();
-            } else if (pkeyF2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn2;
                 OnPianoPress();
-            } else if (pkeyF3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn3;
                 OnPianoPress();
-            } else if (pkeyF4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn4;
                 OnPianoPress();
-            } else if (pkeyF5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn5;
                 OnPianoPress();
-            } else if (pkeyF6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn6;
                 OnPianoPress();
-            } else if (pkeyF7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyF7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fn7;
                 OnPianoPress();
-            } else if (pkeyG1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn1;
                 OnPianoPress();
-            } else if (pkeyG2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn2;
                 OnPianoPress();
-            } else if (pkeyG3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn3;
                 OnPianoPress();
-            } else if (pkeyG4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn4;
                 OnPianoPress();
-            } else if (pkeyG5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn5;
                 OnPianoPress();
-            } else if (pkeyG6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn6;
                 OnPianoPress();
-            } else if (pkeyG7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyG7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gn7;
                 OnPianoPress();
-            } else if (pkeyA1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an1;
                 OnPianoPress();
-            } else if (pkeyA2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an2;
                 OnPianoPress();
-            } else if (pkeyA3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an3;
                 OnPianoPress();
-            } else if (pkeyA4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an4;
                 OnPianoPress();
-            } else if (pkeyA5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an5;
                 OnPianoPress();
-            } else if (pkeyA6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an6;
                 OnPianoPress();
-            } else if (pkeyA7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyA7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.an7;
                 OnPianoPress();
-            } else if (pkeyB1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.bn1;
                 OnPianoPress();
-            } else if (pkeyB2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.bn2;
                 OnPianoPress();
-            } else if (pkeyB3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.bn3;
                 OnPianoPress();
-            } else if (pkeyB4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.bn4;
                 OnPianoPress();
-            } else if (pkeyB5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.bn5;
                 OnPianoPress();
-            } else if (pkeyB6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.bn6;
                 OnPianoPress();
-            } else if (pkeyB7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyB7.IsKeyOn())
+            {
                 NoteDown = Notes.bn7;
                 OnPianoPress();
-            } else if (pkeyCSharp1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp1.IsKeyOn())
+            {
+               
                 NoteDown = Notes.cs1;
                 OnPianoPress();
-            } else if (pkeyCSharp2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cs2;
                 OnPianoPress();
-            } else if (pkeyCSharp3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cs3;
                 OnPianoPress();
-            } else if (pkeyCSharp4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cs4;
                 OnPianoPress();
-            } else if (pkeyCSharp5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cs5;
                 OnPianoPress();
-            } else if (pkeyCSharp6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cs6;
                 OnPianoPress();
-            } else if (pkeyCSharp7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyCSharp7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.cs7;
                 OnPianoPress();
-            } else if (pkeyDSharp1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds1;
                 OnPianoPress();
-            } else if (pkeyDSharp2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds2;
                 OnPianoPress();
-            } else if (pkeyDSharp3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds3;
                 OnPianoPress();
-            } else if (pkeyDSharp4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds4;
                 OnPianoPress();
-            } else if (pkeyDSharp5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds5;
                 OnPianoPress();
-            } else if (pkeyDSharp6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds6;
                 OnPianoPress();
-            } else if (pkeyDSharp7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyDSharp7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.ds7;
                 OnPianoPress();
-            } else if (pkeyFSharp1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs1;
                 OnPianoPress();
-            } else if (pkeyFSharp2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs2;
                 OnPianoPress();
-            } else if (pkeyFSharp3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs3;
                 OnPianoPress();
-            } else if (pkeyFSharp4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs4;
                 OnPianoPress();
-            } else if (pkeyFSharp5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs5;
                 OnPianoPress();
-            } else if (pkeyFSharp6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs6;
                 OnPianoPress();
-            } else if (pkeyFSharp7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyFSharp7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.fs7;
                 OnPianoPress();
-            } else if (pkeyGSharp1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gs1;
                 OnPianoPress();
-            } else if (pkeyGSharp2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gs2;
                 OnPianoPress();
-            } else if (pkeyGSharp3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gs3;
                 OnPianoPress();
-            } else if (pkeyGSharp4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp4.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gs4;
                 OnPianoPress();
-            } else if (pkeyGSharp5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gs5;
                 OnPianoPress();
-            } else if (pkeyGSharp6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.gs6;
                 OnPianoPress();
-            } else if (pkeyGSharp7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyGSharp7.IsKeyOn())
+            {
+               
                 NoteDown = Notes.gs7;
                 OnPianoPress();
-            } else if (pkeyASharp1.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp1.IsKeyOn())
+            {
+                
                 NoteDown = Notes.as1;
                 OnPianoPress();
-            } else if (pkeyASharp2.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp2.IsKeyOn())
+            {
+                
                 NoteDown = Notes.as2;
                 OnPianoPress();
-            } else if (pkeyASharp3.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp3.IsKeyOn())
+            {
+                
                 NoteDown = Notes.as3;
                 OnPianoPress();
-            } else if (pkeyASharp4.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp4.IsKeyOn())
+            {
+               
                 NoteDown = Notes.as4;
                 OnPianoPress();
-            } else if (pkeyASharp5.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp5.IsKeyOn())
+            {
+                
                 NoteDown = Notes.as5;
                 OnPianoPress();
-            } else if (pkeyASharp6.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp6.IsKeyOn())
+            {
+                
                 NoteDown = Notes.as6;
                 OnPianoPress();
-            } else if (pkeyASharp7.IsKeyOn()) {
+
+            }
+            
+            else if (pkeyASharp7.IsKeyOn())
+            {
+                
                 NoteDown = Notes.as7;
                 OnPianoPress();
-            } else {
-                OnPianoRelease();
+
             }
+            
+            else
+            {
+                
+                OnPianoRelease();
+
+            }
+
         }
 
-        protected virtual void OnPianoPress() {}
+        protected virtual void OnPianoPress()
+        {
+        
+        }
 
-        protected virtual void OnPianoRelease() {}
+        protected virtual void OnPianoRelease()
+        {
+        
+        }
 
-        private void ExportStringsToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void ExportStringsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             ExportStrings();
+
         }
 
-        protected virtual void ExportStrings() {}
+        protected virtual void ExportStrings()
+        {
+        
+        }
 
-        private void SequenceEditorToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void SequenceEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             var ed = new SequenceEditor(this as MainWindow);
             ed.Show();
+
         }
 
-        private void SequenceArchiveEditorToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void SequenceArchiveEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             var ed = new SequenceArchiveEditor(this as MainWindow);
             ed.Show();
+
         }
 
-        private void BankEditorToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void BankEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             var ed = new BankEditor(this as MainWindow);
             ed.Show();
+
         }
 
-        private void WaveArchiveEditorToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void WaveArchiveEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
             var ed = new WaveArchiveEditor(this as MainWindow);
             ed.Show();
+
         }
 
-        private void BankGeneratorToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (!FileOpen || File == null) {
+        private void BankGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            if (!FileOpen || File == null)
+            {
+                
                 MessageBox.Show("There must be a file open to do this!");
                 return;
+
             }
+            
             var ed = new BankGenerator(this as MainWindow);
             ed.Show();
+
         }
 
-        private void CreaveWaveToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void CreaveWaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             CreateStreamTool ed = new CreateStreamTool(true);
             ed.Show();
+
         }
 
-        private void CreateStreamToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void CreateStreamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             CreateStreamTool ed = new CreateStreamTool(false);
             ed.Show();
+
         }
 
-        private void ExportSDKProjectToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void ExportSDKProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             SaveFileDialog s = new SaveFileDialog();
             s.Filter = "Sound Project|*.sprj";
-            if (FilePath != null && FilePath != "") { s.FileName = Path.GetFileNameWithoutExtension(FilePath) + ".sprj"; }
-            s.RestoreDirectory = true;
-            if (s.ShowDialog() == DialogResult.OK) {
-                (File as SoundArchive).ExportSDKProject(Path.GetDirectoryName(s.FileName), Path.GetFileNameWithoutExtension(s.FileName));
+            
+            if (FilePath != null && FilePath != "")
+            {
+                
+                s.FileName = Path.GetFileNameWithoutExtension(FilePath) + ".sprj";
+
             }
+            
+            s.RestoreDirectory = true;
+            
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+                
+                (File as SoundArchive).ExportSDKProject(Path.GetDirectoryName(s.FileName), Path.GetFileNameWithoutExtension(s.FileName));
+
+            }
+
         }
 
-        private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e) {
-            try {
+        private void GetHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                
                 Process.Start("https://gota7.github.io/NitroStudio2/#guide");
-            } catch { }
+
+            }
+            
+            catch
+            {
+            
+            }
+
         }
 
         /// <summary>
@@ -7211,17 +8945,35 @@ namespace NitroStudio2 {
         /// <param name="color">Color.</param>
         /// <param name="start">Start note.</param>
         /// <param name="end">End note.</param>
-        protected void ColorRegion(Color color, byte start, byte end) {
-            for (byte b = start; b <= end; b++) {
+        protected void ColorRegion(Color color, byte start, byte end)
+        {
+            
+            for (byte b = start; b <= end; b++)
+            {
+                
                 var n = GetKey((Notes)b);
-                if (n != null) {
-                    if (n.Shape == PianoKeyShape.RectShape && n != pkeyC8) {
+                
+                if (n != null)
+                {
+                    
+                    if (n.Shape == PianoKeyShape.RectShape && n != pkeyC8)
+                    {
+                        
                         n.KeyOffColor = Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
-                    } else {
-                        n.KeyOffColor = color;
+
                     }
+                    
+                    else
+                    {
+                        
+                        n.KeyOffColor = color;
+
+                    }
+
                 }
+
             }
+
         }
 
         /// <summary>
@@ -7229,8 +8981,12 @@ namespace NitroStudio2 {
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        protected PianoKey GetKey(Notes n) {
-            switch (n) {
+        protected PianoKey GetKey(Notes n)
+        {
+            
+            switch (n)
+            {
+                
                 case Notes.an1:
                     return pkeyA1;
                 case Notes.an2:
@@ -7403,44 +9159,71 @@ namespace NitroStudio2 {
                     return pkeyGSharp7;
                 default:
                     return null;
+
             }
+
         }
 
-        private void AboutNitroStudio2ToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void AboutNitroStudio2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             AboutWindow a = new AboutWindow();
             a.ShowDialog();
+
         }
 
-        private void sF2ToDLSToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void sF2ToDLSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             OpenFileDialog o = new OpenFileDialog();
             o.RestoreDirectory = true;
             o.Filter = "Sound Font|*.sf2";
-            if (o.ShowDialog() == DialogResult.OK) {
+            
+            if (o.ShowDialog() == DialogResult.OK)
+            {
+                
                 SaveFileDialog s = new SaveFileDialog();
                 s.Filter = "Downloadable Sounds|*.dls";
                 s.RestoreDirectory = true;
                 s.FileName = Path.GetFileNameWithoutExtension(o.FileName) + ".dls";
-                if (s.ShowDialog() == DialogResult.OK) {
+                
+                if (s.ShowDialog() == DialogResult.OK)
+                {
+                    
                     var h = new SoundFont(o.FileName);
                     new DownloadableSounds(h).Write(s.FileName);
+
                 }
+
             }
+
         }
 
-        private void dLSToSF2ToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void dLSToSF2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
             OpenFileDialog o = new OpenFileDialog();
             o.RestoreDirectory = true;
             o.Filter = "Downloadable Sounds|*.dls";
-            if (o.ShowDialog() == DialogResult.OK) {
+            
+            if (o.ShowDialog() == DialogResult.OK)
+            {
+                
                 SaveFileDialog s = new SaveFileDialog();
                 s.Filter = "Sound Font|*.sf2";
                 s.RestoreDirectory = true;
                 s.FileName = Path.GetFileNameWithoutExtension(o.FileName) + ".sf2";
-                if (s.ShowDialog() == DialogResult.OK) {
+                
+                if (s.ShowDialog() == DialogResult.OK)
+                {
+                    
                     var h = new DownloadableSounds(o.FileName);
                     new SoundFont(h).Write(s.FileName);
+
                 }
+
             }
+
         }
 
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
@@ -7453,5 +9236,7 @@ namespace NitroStudio2 {
         {
          
         }
+
     }
+
 }

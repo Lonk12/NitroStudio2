@@ -39,7 +39,6 @@ namespace NitroStudio2 {
         /// <param name="mainWindow">The main window.</param>
         public SequenceEditor(MainWindow mainWindow) : base(typeof(Sequence), "Sequence", "seq", "Sequence Editor", mainWindow) {
             Init();
-            //InitializeComponent();
             LoadSequenceText();
         }
 
