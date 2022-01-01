@@ -7,12 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NitroStudio2 {
+namespace NitroStudio2
+{
 
     /// <summary>
     /// Nitro Studio Instrument.
     /// </summary>
-    public class NitroStudioInstrument : IOFile {
+    public class NitroStudioInstrument : IOFile
+    {
 
         /// <summary>
         /// Instrument.
@@ -23,37 +25,52 @@ namespace NitroStudio2 {
         /// Read the file.
         /// </summary>
         /// <param name="r">The reader.</param>
-        public override void Read(FileReader r) {
+        public override void Read(FileReader r)
+        {
 
             //Skip header.
             r.ReadUInt32();
 
             //Get type.
             byte type = r.ReadByte();
-            switch ((InstrumentType)type) {
+            
+            switch ((InstrumentType)type)
+            {
+                
                 case InstrumentType.Blank:
                     break;
+               
                 case InstrumentType.DrumSet:
                     Inst = new DrumSetInstrument();
                     break;
+               
                 case InstrumentType.KeySplit:
                     Inst = new KeySplitInstrument();
                     break;
+                
                 default:
                     Inst = new DirectInstrument();
                     break;
+
             }
 
             //Placeholder.
-            if (r.ReadBoolean()) {
+            if (r.ReadBoolean())
+            {
+                
                 MessageBox.Show("An empty instrument cannot be used!");
                 return;
+
             }
 
             //Read data.
             Inst.Read(r);
-            if (Inst as DirectInstrument != null) {
+            
+            if (Inst as DirectInstrument != null)
+            {
+               
                 Inst.NoteInfo[0].InstrumentType = (InstrumentType)type;
+
             }
 
         }
@@ -62,13 +79,20 @@ namespace NitroStudio2 {
         /// Write the file.
         /// </summary>
         /// <param name="w">The writer.</param>
-        public override void Write(FileWriter w) {
+        public override void Write(FileWriter w)
+        {
 
             //Write header.
             w.Write("NIST".ToCharArray());
             w.Write((byte)(Inst == null ? 0 : Inst.Type()));
             w.Write(Inst == null);
-            if (Inst != null) { w.Write(Inst); }
+            
+            if (Inst != null)
+            {
+                
+                w.Write(Inst);
+            
+            }
 
         }
 

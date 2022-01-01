@@ -9,8 +9,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NitroStudio2 {
-    static class Program {
+namespace NitroStudio2
+{
+    
+    static class Program
+    {
 
         /// <summary>
         /// Path.
@@ -21,17 +24,20 @@ namespace NitroStudio2 {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
             
             //Start.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Argument mode.
-            if (args.Length > 0) {
+            if (args.Length > 0)
+            {
 
                 //Switch type.
-                switch (Path.GetExtension(args[0])) {
+                switch (Path.GetExtension(args[0]))
+                {
 
                     //Sound archive.
                     case ".sdat":
@@ -70,7 +76,10 @@ namespace NitroStudio2 {
 
                 }
 
-            } else {
+            }
+            
+            else
+            {
 
                 //Start the editor.
                 Application.Run(new MainWindow());
@@ -78,5 +87,7 @@ namespace NitroStudio2 {
             }
 
         }
+
     }
+
 }

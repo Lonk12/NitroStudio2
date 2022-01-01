@@ -3082,7 +3082,9 @@ namespace NitroStudio2
                     
                     if (n.Text.Contains("[" + ind + "]"))
                     {
+                        
                         tree.SelectedNode = n;
+
                     }
 
                 }
@@ -3096,7 +3098,8 @@ namespace NitroStudio2
         /// <summary>
         /// Replace.
         /// </summary>
-        public void Replace(object sender, EventArgs e) {
+        public void Replace(object sender, EventArgs e)
+        {
 
             //Open file dialog.
             OpenFileDialog o = new OpenFileDialog();
@@ -3104,7 +3107,8 @@ namespace NitroStudio2
             int ind = GetIdFromNode(tree.SelectedNode);
 
             //Switch the type.
-            switch (tree.SelectedNode.Parent.Name) {
+            switch (tree.SelectedNode.Parent.Name)
+            {
 
                 //Sequence.
                 case "sequences":
@@ -3134,10 +3138,12 @@ namespace NitroStudio2
             }
 
             //Import the file.
-            if (o.ShowDialog() == DialogResult.OK) {
+            if (o.ShowDialog() == DialogResult.OK)
+            {
 
                 //Switch extension.
-                switch (Path.GetExtension(o.FileName)) {
+                switch (Path.GetExtension(o.FileName))
+                {
 
                     //SSEQ.
                     case ".sseq":
@@ -3156,7 +3162,9 @@ namespace NitroStudio2
 
                     //MIDI.
                     case ".mid":
-                        switch (seqImportModeBox.SelectedIndex) {
+                        
+                        switch (seqImportModeBox.SelectedIndex)
+                        {
 
                             //Nitro Studio.
                             case 0:
@@ -3166,10 +3174,15 @@ namespace NitroStudio2
 
                             //LoveEmu.
                             case 1:
-                                if (!System.IO.File.Exists(NitroPath + "/midi2sseq.exe")) {
+                                
+                                if (!System.IO.File.Exists(NitroPath + "/midi2sseq.exe"))
+                                {
+                                    
                                     MessageBox.Show("Cannot find midi2sseq.exe!");
                                     return;
+
                                 }
+                                
                                 System.IO.File.Copy(o.FileName, "temp.mid", true);
                                 Process pro = new Process();
                                 pro.StartInfo.FileName = NitroPath + "/midi2sseq.exe";
@@ -3184,14 +3197,23 @@ namespace NitroStudio2
 
                             //Nintendo tools.
                             case 2:
-                                if (!System.IO.File.Exists(NitroPath + "/smfconv.exe")) {
+                                
+                                if (!System.IO.File.Exists(NitroPath + "/smfconv.exe"))
+                                {
+                                    
                                     MessageBox.Show("Cannot find smfconv.exe!");
                                     return;
+
                                 }
-                                if (!System.IO.File.Exists(NitroPath + "/seqconv.exe")) {
+                                
+                                if (!System.IO.File.Exists(NitroPath + "/seqconv.exe"))
+                                {
+                                    
                                     MessageBox.Show("Cannot find seqconv.exe!");
                                     return;
+
                                 }
+                                
                                 System.IO.File.Copy(o.FileName, "temp.mid", true);
                                 Process pr = new Process();
                                 pr.StartInfo.FileName = NitroPath + "/smfconv.exe";
@@ -3213,6 +3235,7 @@ namespace NitroStudio2
                                 break;
 
                         }
+                        
                         break;
 
                     //SSAR.
@@ -3298,7 +3321,8 @@ namespace NitroStudio2
         /// <summary>
         /// Export.
         /// </summary>
-        public void Export(object sender, EventArgs e) {
+        public void Export(object sender, EventArgs e)
+        {
 
             //Save file dialog.
             SaveFileDialog s = new SaveFileDialog();
@@ -3307,7 +3331,8 @@ namespace NitroStudio2
             int ind = GetIdFromNode(tree.SelectedNode);
 
             //Switch the type.
-            switch (tree.SelectedNode.Parent.Name) {
+            switch (tree.SelectedNode.Parent.Name)
+            {
 
                 //Sequence.
                 case "sequences":
@@ -3342,41 +3367,70 @@ namespace NitroStudio2
             }
 
             //Special case, sequence archive sequence.
-            if (tree.SelectedNode.Parent.Parent != null) {
+            if (tree.SelectedNode.Parent.Parent != null)
+            {
+                
                 s.Filter = "Supported Sound Files|*.sseq;*.smft;*.mid;*.wav|Sound Sequence|*.sseq|SMF Text|*.smft|MIDI|*.mid|Wave|*.wav";
                 s.FileName += ".sseq";
+
             }
 
             //Export the file.
-            if (s.ShowDialog() == DialogResult.OK) {
+            if (s.ShowDialog() == DialogResult.OK)
+            {
 
                 //Switch the export type.
-                switch (Path.GetExtension(s.FileName)) {
+                switch (Path.GetExtension(s.FileName))
+                {
 
                     //SSEQ.
                     case ".sseq":
-                        if (tree.SelectedNode.Parent.Parent == null) {
+                        
+                        if (tree.SelectedNode.Parent.Parent == null)
+                        {
+                            
                             SA.Sequences.Where(x => x.Index == ind).FirstOrDefault().File.Write(s.FileName);
-                        } else {
-                            throw new NotImplementedException();
+
                         }
+                        
+                        else
+                        {
+                            
+                            throw new NotImplementedException();
+
+                        }
+                        
                         break;
 
                     //SMFT.
                     case ".smft":
-                        if (tree.SelectedNode.Parent.Parent == null) {
+                        
+                        if (tree.SelectedNode.Parent.Parent == null)
+                        {
+                            
                             SA.Sequences.Where(x => x.Index == ind).FirstOrDefault().File.ReadCommandData();
                             SA.Sequences.Where(x => x.Index == ind).FirstOrDefault().File.Name = SA.Sequences.Where(x => x.Index == ind).FirstOrDefault().Name;
                             System.IO.File.WriteAllLines(s.FileName, SA.Sequences.Where(x => x.Index == ind).FirstOrDefault().File.ToText());
-                        } else {
-                            throw new NotImplementedException();
+
                         }
+                        
+                        else
+                        {
+                            
+                            throw new NotImplementedException();
+
+                        }
+                        
                         break;
 
                     //MIDI.
                     case ".mid":
-                        if (tree.SelectedNode.Parent.Parent == null) {
-                            switch (seqExportModeBox.SelectedIndex) {
+                        
+                        if (tree.SelectedNode.Parent.Parent == null)
+                        {
+                            
+                            switch (seqExportModeBox.SelectedIndex)
+                            {
 
                                 //Nitro Studio.
                                 case 0:
@@ -3385,10 +3439,15 @@ namespace NitroStudio2
 
                                 //LoveEmu.
                                 case 1:
-                                    if (!System.IO.File.Exists(NitroPath + "/sseq2midi.exe")) {
+                                    
+                                    if (!System.IO.File.Exists(NitroPath + "/sseq2midi.exe"))
+                                    {
+                                        
                                         MessageBox.Show("Cannot find sseq2midi.exe!");
                                         return;
+
                                     }
+                                    
                                     SA.Sequences.Where(x => x.Index == ind).FirstOrDefault().File.Write("temp.sseq");
                                     Process pro = new Process();
                                     pro.StartInfo.FileName = NitroPath + "/sseq2midi.exe";
@@ -3396,38 +3455,88 @@ namespace NitroStudio2
                                     pro.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                                     pro.Start();
                                     pro.WaitForExit();
-                                    if (System.IO.File.Exists(s.FileName) && s.FileName != "temp.mid") { System.IO.File.Delete(s.FileName); }
+                                    
+                                    if (System.IO.File.Exists(s.FileName) && s.FileName != "temp.mid")
+                                    {
+                                        
+                                        System.IO.File.Delete(s.FileName);
+                                    
+                                    }
+                                    
                                     System.IO.File.Move("temp.mid", s.FileName);
                                     System.IO.File.Delete("temp.sseq");
                                     break;
                             }
-                        } else {
-                            throw new NotImplementedException();
                         }
+                        
+                        else
+                        {
+                            
+                            throw new NotImplementedException();
+
+                        }
+                        
                         break;
 
                     //WAV.
                     case ".wav":
-                        if (tree.SelectedNode.Parent.Name == "sequences") {
+                        
+                        if (tree.SelectedNode.Parent.Name == "sequences")
+                        {
+                            
                             var seq = SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                             seq.File.ReadCommandData();
-                            try {
+
+                            try
+                            {
+                                
                                 SequenceRecorder rec = new SequenceRecorder(new PlayableBank[] { seq.Bank.File }, seq.Bank.GetAssociatedWaves(), seq.File.Commands, 0, s.FileName);
                                 rec.ShowDialog();
-                            } catch { MessageBox.Show("Sequence entry has no valid bank hooked up to it!"); return; }
-                        } else if (tree.SelectedNode.Parent.Name == "streams") {
+
+                            }
+                            
+                            catch
+                            {
+                                
+                                MessageBox.Show("Sequence entry has no valid bank hooked up to it!");
+                                return;
+                            
+                            }
+                        }
+                        
+                        else if (tree.SelectedNode.Parent.Name == "streams")
+                        {
+                            
                             RiffWave wav = new RiffWave();
                             wav.FromOtherStreamFile(SA.Streams.Where(x => x.Index == ind).FirstOrDefault().File);
                             wav.Write(s.FileName);
-                        } else {
+
+                        }
+                        
+                        else
+                        {
                             var a = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode.Parent)).FirstOrDefault();
                             var seq = a.File.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                             a.File.ReadCommandData(true);
-                            try {
+
+                            try
+                            {
+                                
                                 SequenceRecorder rec = new SequenceRecorder(new PlayableBank[] { seq.Bank.File }, seq.Bank.GetAssociatedWaves(), a.File.Commands, a.File.PublicLabels.Values.ElementAt(a.File.Sequences.IndexOf(seq)), s.FileName);
                                 rec.ShowDialog();
-                            } catch { MessageBox.Show("Sequence entry has no valid bank hooked up to it!"); return; }
+
+                            }
+                            
+                            catch
+                            {
+                                
+                                MessageBox.Show("Sequence entry has no valid bank hooked up to it!");
+                                return;
+                            
+                            }
+
                         }
+                        
                         break;
 
                     //SSAR.
@@ -3440,18 +3549,28 @@ namespace NitroStudio2
                         SequenceArchive sa = new SequenceArchive();
                         var other = SA.SequenceArchives.Where(x => x.Index == ind).FirstOrDefault().File;
                         sa.Read(other.Write());
-                        for (int i = 0; i < sa.Sequences.Count; i++) {
+                        
+                        for (int i = 0; i < sa.Sequences.Count; i++)
+                        {
+                            
                             sa.Sequences[i].Name = other.Sequences[i].Name;
                             sa.Sequences[i].Bank = other.Sequences[i].Bank;
                             sa.Sequences[i].Player = other.Sequences[i].Player;
+
                         }
+                        
                         uint[] vals = sa.Labels.Values.ToArray();
                         string[] bakNames = sa.Labels.Keys.ToArray();
                         sa.Labels = new Dictionary<string, uint>();
                         int valInd = 0;
-                        foreach (var saa in sa.Sequences) {
+                        
+                        foreach (var saa in sa.Sequences)
+                        {
+                            
                             sa.Labels.Add(saa.Name == null ? bakNames[valInd] : saa.Name, vals[valInd++]);
+
                         }
+                        
                         sa.ReadCommandData(true);
                         sa.Name = SA.SequenceArchives.Where(x => x.Index == ind).FirstOrDefault().Name;
                         System.IO.File.WriteAllLines(s.FileName, sa.ToText());
@@ -3500,115 +3619,256 @@ namespace NitroStudio2
         /// <summary>
         /// Rename.
         /// </summary>
-        public void Rename(object sender, EventArgs e) {
+        public void Rename(object sender, EventArgs e)
+        {
 
             //Get the new name.
             string newName = Interaction.InputBox("Rename the entry:", "Renamer", tree.SelectedNode.Text.Substring(tree.SelectedNode.Text.IndexOf(' ') + 1));
             int index = GetIdFromNode(tree.SelectedNode);
-            if (newName == "") { return; }
-            switch (tree.SelectedNode.Parent.Name) {
+            
+            if (newName == "")
+            {
+                
+                return;
+            
+            }
+            
+            switch (tree.SelectedNode.Parent.Name)
+            {
+                
                 case "sequences":
-                    if (SA.Sequences.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.Sequences.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.Sequences.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "sequenceArchives":
-                    if (SA.SequenceArchives.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.SequenceArchives.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.SequenceArchives.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "banks":
-                    if (SA.Banks.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.Banks.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.Banks.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "waveArchives":
-                    if (SA.WaveArchives.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.WaveArchives.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.WaveArchives.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "players":
-                    if (SA.Players.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.Players.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.Players.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "groups":
-                    if (SA.Groups.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.Groups.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.Groups.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "streamPlayers":
-                    if (SA.StreamPlayers.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.StreamPlayers.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.StreamPlayers.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+                
                 case "streams":
-                    if (SA.Streams.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); return; }
+                    
+                    if (SA.Streams.Where(x => x.Name.Equals(newName)).Count() > 0)
+                    {
+                        
+                        MessageBox.Show("An entry of the same name already exists!");
+                        return;
+                    
+                    }
+                    
                     SA.Streams.Where(x => x.Index == index).FirstOrDefault().Name = newName;
                     break;
+
             }
-            if (tree.SelectedNode.Parent.Parent != null) {
+
+            if (tree.SelectedNode.Parent.Parent != null)
+            {
+                
                 var sar = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode.Parent)).FirstOrDefault();
-                if (sar.File.Sequences.Where(x => x.Name.Equals(newName)).Count() > 0) { MessageBox.Show("An entry of the same name already exists!"); }
+                
+                if (sar.File.Sequences.Where(x => x.Name.Equals(newName)).Count() > 0)
+                {
+                    
+                    MessageBox.Show("An entry of the same name already exists!");
+                
+                }
+                
                 sar.File.Sequences.Where(x => x.Index == index).FirstOrDefault().Name = newName;
+
             }
+           
             UpdateNodes();
             DoInfoStuff();
+
         }
 
         /// <summary>
         /// Delete.
         /// </summary>
-        public void Delete(object sender, EventArgs e) {
-            switch (tree.SelectedNode.Parent.Name) {
+        public void Delete(object sender, EventArgs e)
+        {
+            
+            switch (tree.SelectedNode.Parent.Name)
+            {
+                
                 case "sequences":
                     var x1 = SA.Sequences.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
-                    for (int i = 0; i < SA.Groups.Count; i++) {
-                        while (SA.Groups[i].Entries.Where(x => x.Entry == x1).Count() > 0) {
+                    
+                    for (int i = 0; i < SA.Groups.Count; i++)
+                    {
+                        
+                        while (SA.Groups[i].Entries.Where(x => x.Entry == x1).Count() > 0)
+                        {
+                           
                             SA.Groups[i].Entries.Remove(SA.Groups[i].Entries.Where(x => x.Entry == x1).FirstOrDefault());
+
                         }
+
                     }
+
                     SA.Sequences.Remove(x1);
                     break;
+                
                 case "sequenceArchives":
                     var x2 = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
-                    for (int i = 0; i < SA.Groups.Count; i++) {
-                        while (SA.Groups[i].Entries.Where(x => x.Entry == x2).Count() > 0) {
+                    
+                    for (int i = 0; i < SA.Groups.Count; i++)
+                    {
+                        
+                        while (SA.Groups[i].Entries.Where(x => x.Entry == x2).Count() > 0)
+                        {
+                            
                             SA.Groups[i].Entries.Remove(SA.Groups[i].Entries.Where(x => x.Entry == x2).FirstOrDefault());
+
                         }
+
                     }
+                    
                     SA.SequenceArchives.Remove(x2);
                     break;
+                
                 case "banks":
                     var x3 = SA.Banks.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
-                    for (int i = 0; i < SA.Groups.Count; i++) {
-                        while (SA.Groups[i].Entries.Where(x => x.Entry == x3).Count() > 0) {
+                    
+                    for (int i = 0; i < SA.Groups.Count; i++)
+                    {
+                        
+                        while (SA.Groups[i].Entries.Where(x => x.Entry == x3).Count() > 0)
+                        {
+                            
                             SA.Groups[i].Entries.Remove(SA.Groups[i].Entries.Where(x => x.Entry == x3).FirstOrDefault());
+
                         }
+
                     }
+                    
                     SA.Banks.Remove(x3);
                     break;
+                
                 case "waveArchives":
                     var x4 = SA.WaveArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
-                    for (int i = 0; i < SA.Groups.Count; i++) {
-                        while (SA.Groups[i].Entries.Where(x => x.Entry == x4).Count() > 0) {
+                    
+                    for (int i = 0; i < SA.Groups.Count; i++)
+                    {
+                        
+                        while (SA.Groups[i].Entries.Where(x => x.Entry == x4).Count() > 0)
+                        {
+                           
                             SA.Groups[i].Entries.Remove(SA.Groups[i].Entries.Where(x => x.Entry == x4).FirstOrDefault());
+
                         }
+
                     }
+                    
                     SA.WaveArchives.Remove(x4);
                     break;
+                
                 case "players":
                     var x5 = SA.Players.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     SA.Players.Remove(x5);
                     break;
+                
                 case "groups":
                     var x6 = SA.Groups.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     SA.Groups.Remove(x6);
                     break;
+                
                 case "streamPlayers":
                     var x7 = SA.StreamPlayers.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     SA.StreamPlayers.Remove(x7);
                     break;
+                
                 case "streams":
                     var x8 = SA.Streams.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
                     SA.Streams.Remove(x8);
                     break;
+
             }
+
             UpdateNodes();
             DoInfoStuff();
+
         }
 
         /// <summary>
@@ -3618,41 +3878,69 @@ namespace NitroStudio2
         /// <param name="maxId">Maximum Id.</param>
         /// <param name="root">Root Id.</param>
         /// <returns>The next available Id.</returns>
-        public int GetNextAvailableForwardId(int preferredId, uint maxId, string root) {
+        public int GetNextAvailableForwardId(int preferredId, uint maxId, string root)
+        {
 
             //Id.
             int id = preferredId;
 
             //Root has Id.
-            bool rootHasId() {
-                foreach (TreeNode n in tree.Nodes[root].Nodes) {
-                    if (n.Text.Contains("[" + id + "]")) {
+            bool rootHasId()
+            {
+                
+                foreach (TreeNode n in tree.Nodes[root].Nodes)
+                {
+                   
+                    if (n.Text.Contains("[" + id + "]"))
+                    {
+                        
                         return true;
+
                     }
+
                 }
+                
                 return false;
+
             }
 
             //Increment Id.
-            while (id <= maxId && rootHasId()) {
+            while (id <= maxId && rootHasId())
+            {
+                
                 id++;
+
             }
 
             //Overflow, start at 0.
-            if (id > maxId) {
+            if (id > maxId)
+            {
+                
                 id = 0;
-                while (id < preferredId && rootHasId()) {
+                
+                while (id < preferredId && rootHasId())
+                {
+                    
                     id++;
+
                 }
-                if (id == preferredId) {
+                
+                if (id == preferredId)
+                {
+                   
                     MessageBox.Show("There are no more available slots for the item!");
                     return -1;
+
                 }
+
             }
 
             //Safe check.
-            if (id < 0) {
+            if (id < 0)
+            {
+                
                 return -1;
+
             }
 
             //Return the Id.
@@ -3667,41 +3955,69 @@ namespace NitroStudio2
         /// <param name="maxId">Maximum Id.</param>
         /// <param name="root">Root Id.</param>
         /// <returns>The next available Id.</returns>
-        public int GetNextAvailablePreviousId(int preferredId, uint maxId, string root) {
+        public int GetNextAvailablePreviousId(int preferredId, uint maxId, string root)
+        {
 
             //Id.
             int id = preferredId;
 
             //Root has Id.
-            bool rootHasId() {
-                foreach (TreeNode n in tree.Nodes[root].Nodes) {
-                    if (n.Text.Contains("[" + id + "]")) {
+            bool rootHasId()
+            {
+                
+                foreach (TreeNode n in tree.Nodes[root].Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + id + "]"))
+                    {
+                        
                         return true;
+
                     }
+
                 }
+                
                 return false;
+
             }
 
             //Increment Id.
-            while (id >= 0 && rootHasId()) {
+            while (id >= 0 && rootHasId())
+            {
+                
                 id--;
+
             }
 
             //Overflow, start at top.
-            if (id < 0) {
+            if (id < 0)
+            {
+                
                 id = (int)maxId;
-                while (id > preferredId && rootHasId()) {
+                
+                while (id > preferredId && rootHasId())
+                {
+                    
                     id--;
+
                 }
-                if (id == preferredId) {
+                
+                if (id == preferredId)
+                {
+                   
                     MessageBox.Show("There are no more available slots for the item!");
                     return -1;
+
                 }
+
             }
 
             //Safe check.
-            if (id < 0) {
+            if (id < 0)
+            {
+               
                 return -1;
+
             }
 
             //Return the Id.
@@ -3712,142 +4028,270 @@ namespace NitroStudio2
         /// <summary>
         /// Root add.
         /// </summary>
-        protected override void RootAdd() {
+        protected override void RootAdd()
+        {
 
             //Sequences.
-            if (tree.SelectedNode.Name.Equals("sequences")) {
+            if (tree.SelectedNode.Name.Equals("sequences"))
+            {
+                
                 int ind = GetNextAvailableForwardId(SA.Sequences.Count > 0 ? SA.Sequences.Last().Index + 1 : 0, SoundArchive.MaxSequenceId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddSequence(ind);
                 SA.Sequences = SA.Sequences.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+                
                 DoInfoStuff();
+
             }
 
             //Sequence archives.
-            else if (tree.SelectedNode.Name.Equals("sequenceArchives")) {
+            else if (tree.SelectedNode.Name.Equals("sequenceArchives"))
+            {
+                
                 int ind = GetNextAvailableForwardId(SA.SequenceArchives.Count > 0 ? SA.SequenceArchives.Last().Index + 1 : 0, SoundArchive.MaxSequenceArchiveId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddSequenceArchive(ind);
                 SA.SequenceArchives = SA.SequenceArchives.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Banks.
-            else if (tree.SelectedNode.Name.Equals("banks")) {
+            else if (tree.SelectedNode.Name.Equals("banks"))
+            {
+                
                 int ind = GetNextAvailableForwardId(SA.Banks.Count > 0 ? SA.Banks.Last().Index + 1 : 0, SoundArchive.MaxBankId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddBank(ind);
                 SA.Banks = SA.Banks.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                       
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Wave archives.
-            else if (tree.SelectedNode.Name.Equals("waveArchives")) {
+            else if (tree.SelectedNode.Name.Equals("waveArchives"))
+            {
+                
                 int ind = GetNextAvailableForwardId(SA.WaveArchives.Count > 0 ? SA.WaveArchives.Last().Index + 1 : 0, SoundArchive.MaxWaveArchiveId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+                
                 AddWaveArchive(ind);
                 SA.WaveArchives = SA.WaveArchives.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+                
                 DoInfoStuff();
+
             }
 
             //Player.
-            else if (tree.SelectedNode.Name.Equals("players")) {
+            else if (tree.SelectedNode.Name.Equals("players"))
+            {
+               
                 int ind = GetNextAvailableForwardId(SA.Players.Count > 0 ? SA.Players.Last().Index + 1 : 0, SoundArchive.MaxPlayerId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+
                 AddSequencePlayer(ind);
                 SA.Players = SA.Players.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                   
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Group.
-            else if (tree.SelectedNode.Name.Equals("groups")) {
+            else if (tree.SelectedNode.Name.Equals("groups"))
+            {
+               
                 int ind = GetNextAvailableForwardId(SA.Groups.Count > 0 ? SA.Groups.Last().Index + 1 : 0, SoundArchive.MaxGroupId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddGroup(ind);
                 SA.Groups = SA.Groups.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                   
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Stream player.
-            else if (tree.SelectedNode.Name.Equals("streamPlayers")) {
+            else if (tree.SelectedNode.Name.Equals("streamPlayers"))
+            {
+                
                 int ind = GetNextAvailableForwardId(SA.StreamPlayers.Count > 0 ? SA.StreamPlayers.Last().Index + 1 : 0, SoundArchive.MaxStreamPlayerId, tree.SelectedNode.Name);
-                if (ind == -1) {
+                
+                if (ind == -1)
+                {
+                    
                     return;
+
                 }
+                
                 AddStreamPlayer(ind);
                 SA.StreamPlayers = SA.StreamPlayers.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+                
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                        
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
             //Stream.
             else if (tree.SelectedNode.Name.Equals("streams")) {
+                
                 int ind = GetNextAvailableForwardId(SA.Streams.Count > 0 ? SA.Streams.Last().Index + 1 : 0, SoundArchive.MaxStreamId, tree.SelectedNode.Name);
-                if (ind == -1) {
+               
+                if (ind == -1)
+                {
+                   
                     return;
+
                 }
+
                 AddStream(ind);
                 SA.Streams = SA.Streams.OrderBy(x => x.Index).ToList();
                 UpdateNodes();
-                foreach (TreeNode n in tree.SelectedNode.Nodes) {
-                    if (n.Text.Contains("[" + ind + "]")) {
+               
+                foreach (TreeNode n in tree.SelectedNode.Nodes)
+                {
+                    
+                    if (n.Text.Contains("[" + ind + "]"))
+                    {
+                       
                         tree.SelectedNode = n;
+
                     }
+
                 }
+
                 DoInfoStuff();
+
             }
 
         }
@@ -3855,28 +4299,38 @@ namespace NitroStudio2
         /// <summary>
         /// Open a sequence archive file.
         /// </summary>
-        public void OpenSeqArcFile(object sender, EventArgs e) {
+        public void OpenSeqArcFile(object sender, EventArgs e)
+        {
+           
             var f = SA.SequenceArchives.Where(x => x.Index == GetIdFromNode(tree.SelectedNode)).FirstOrDefault();
             SequenceArchiveEditor ed = new SequenceArchiveEditor(f.File, this, f.Name);
             ed.Show();
+
         }
 
         /// <summary>
         /// Add a sequence.
         /// </summary>
         /// <param name="index">The index.</param>
-        public void AddSequence(int index) {
+        public void AddSequence(int index)
+        {
 
             //Check for banks.
-            if (SA.Banks.Count < 1) {
+            if (SA.Banks.Count < 1)
+            {
+                
                 MessageBox.Show("There must be at least one bank in order to add a sequence.");
                 return;
+
             }
 
             //Check for players.
-            if (SA.Players.Count < 1) {
+            if (SA.Players.Count < 1)
+            {
+               
                 MessageBox.Show("There must be at least one sequence player in order to add a sequence.");
                 return;
+
             }
 
             //Add the sequence.
@@ -3886,13 +4340,22 @@ namespace NitroStudio2
             e.Name = "SEQ_" + index;
             e.Index = index;
             int nameIndex = index;
-            while (SA.Sequences.Where(x => x.Name.Equals("SEQ_" + nameIndex)).Count() > 0) {
+           
+            while (SA.Sequences.Where(x => x.Name.Equals("SEQ_" + nameIndex)).Count() > 0)
+            {
+                
                 e.Name = "SEQ_" + nameIndex++;
+
             }
+            
             e.File = new Sequence() { RawData = new byte[] { 0xFF }, Labels = new Dictionary<string, uint>() };
             /*var seqs = SA.Sequences.Where(x => x.Index >= index);
-            foreach (var s in seqs) {
+            
+            foreach (var s in seqs)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the sequence.
@@ -3904,18 +4367,25 @@ namespace NitroStudio2
         /// Add a sequence archive at an index.
         /// </summary>
         /// <param name="index">The index.</param>
-        public void AddSequenceArchive(int index) {
+        public void AddSequenceArchive(int index)
+        {
 
             //Check for banks.
-            if (SA.Banks.Count < 1) {
+            if (SA.Banks.Count < 1)
+            {
+                
                 MessageBox.Show("There must be at least one bank in order to add a sequence archive.");
                 return;
+
             }
 
             //Check for players.
-            if (SA.Players.Count < 1) {
+            if (SA.Players.Count < 1)
+            {
+                
                 MessageBox.Show("There must be at least one sequence player in order to add a sequence archive.");
                 return;
+
             }
 
             //Add the sequence archive.
@@ -3923,13 +4393,22 @@ namespace NitroStudio2
             e.Name = "SEQARC_" + index;
             e.Index = index;
             int nameIndex = index;
-            while (SA.Sequences.Where(x => x.Name.Equals("SEQARC_" + nameIndex)).Count() > 0) {
+            
+            while (SA.Sequences.Where(x => x.Name.Equals("SEQARC_" + nameIndex)).Count() > 0)
+            {
+                
                 e.Name = "SEQARC_" + nameIndex++;
+
             }
+            
             e.File = new SequenceArchive() { RawData = new byte[0], Labels = new Dictionary<string, uint>() };
             /*var seqArcs = SA.SequenceArchives.Where(x => x.Index >= index);
-            foreach (var s in seqArcs) {
+            
+            foreach (var s in seqArcs)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the sequence archive.
@@ -3941,7 +4420,8 @@ namespace NitroStudio2
         /// Add a bank.
         /// </summary>
         /// <param name="index">Where to add the bank.</param>
-        public void AddBank(int index) {
+        public void AddBank(int index)
+        {
 
             //Add the bank.
             BankInfo e = new BankInfo();
@@ -3949,12 +4429,21 @@ namespace NitroStudio2
             e.Name = "BANK_" + index;
             e.Index = index;
             int nameIndex = index;
-            while (SA.Banks.Where(x => x.Name.Equals("BANK_" + nameIndex)).Count() > 0) {
+            
+            while (SA.Banks.Where(x => x.Name.Equals("BANK_" + nameIndex)).Count() > 0)
+            {
+               
                 e.Name = "BANK_" + nameIndex++;
+
             }
+            
             /*var banks = SA.Banks.Where(x => x.Index >= index);
-            foreach (var s in banks) {
+            
+            foreach (var s in banks)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the bank.
@@ -3966,7 +4455,8 @@ namespace NitroStudio2
         /// Add a wave archive.
         /// </summary>
         /// <param name="index">Where to add the wave archive.</param>
-        public void AddWaveArchive(int index) {
+        public void AddWaveArchive(int index)
+        {
 
             //Add the wave archive.
             WaveArchiveInfo e = new WaveArchiveInfo();
@@ -3974,12 +4464,21 @@ namespace NitroStudio2
             e.Name = "WAR_" + index;
             e.Index = index;
             int nameIndex = index;
-            while (SA.WaveArchives.Where(x => x.Name.Equals("WAR_" + nameIndex)).Count() > 0) {
+            
+            while (SA.WaveArchives.Where(x => x.Name.Equals("WAR_" + nameIndex)).Count() > 0)
+            {
+               
                 e.Name = "WAR_" + nameIndex++;
+
             }
+            
             /*var wars = SA.WaveArchives.Where(x => x.Index >= index);
-            foreach (var s in wars) {
+            
+            foreach (var s in wars)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the wave archive.
@@ -3991,7 +4490,8 @@ namespace NitroStudio2
         /// Add a sequence player.
         /// </summary>
         /// <param name="index">Where to add the sequence player.</param>
-        public void AddSequencePlayer(int index) {
+        public void AddSequencePlayer(int index)
+        {
 
             //Add the sequence player.
             PlayerInfo e = new PlayerInfo();
@@ -3999,12 +4499,21 @@ namespace NitroStudio2
             e.Index = index;
             e.ChannelFlags = new bool[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true };
             int nameIndex = index;
-            while (SA.Players.Where(x => x.Name.Equals("PLAYER_" + nameIndex)).Count() > 0) {
+           
+            while (SA.Players.Where(x => x.Name.Equals("PLAYER_" + nameIndex)).Count() > 0)
+            {
+                
                 e.Name = "PLAYER_" + nameIndex++;
+
             }
+            
             /*var plys = SA.Players.Where(x => x.Index >= index);
-            foreach (var s in plys) {
+            
+            foreach (var s in plys)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the player.
@@ -4016,7 +4525,8 @@ namespace NitroStudio2
         /// Add a group.
         /// </summary>
         /// <param name="index">Where to add the group.</param>
-        public void AddGroup(int index) {
+        public void AddGroup(int index)
+        {
 
             //Add the group.
             GroupInfo e = new GroupInfo();
@@ -4024,12 +4534,21 @@ namespace NitroStudio2
             e.Index = index;
             e.Entries = new List<GroupEntry>();
             int nameIndex = index;
-            while (SA.Groups.Where(x => x.Name.Equals("GROUP_" + nameIndex)).Count() > 0) {
+            
+            while (SA.Groups.Where(x => x.Name.Equals("GROUP_" + nameIndex)).Count() > 0)
+            {
+               
                 e.Name = "GROUP_" + nameIndex++;
+
             }
+            
             /*var grps = SA.Groups.Where(x => x.Index >= index);
-            foreach (var s in grps) {
+            
+            foreach (var s in grps)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the group.
@@ -4041,19 +4560,29 @@ namespace NitroStudio2
         /// Add a stream player.
         /// </summary>
         /// <param name="index">Where to add the stream player.</param>
-        public void AddStreamPlayer(int index) {
+        public void AddStreamPlayer(int index)
+        {
 
             //Add the stream player.
             StreamPlayerInfo e = new StreamPlayerInfo();
             e.Name = "STRM_PLAYER_" + index;
             e.Index = index;
             int nameIndex = index;
-            while (SA.StreamPlayers.Where(x => x.Name.Equals("STRM_PLAYER_" + nameIndex)).Count() > 0) {
+            
+            while (SA.StreamPlayers.Where(x => x.Name.Equals("STRM_PLAYER_" + nameIndex)).Count() > 0)
+            {
+                
                 e.Name = "STRM_PLAYER_" + nameIndex++;
+
             }
+            
             /*var stmPlys = SA.StreamPlayers.Where(x => x.Index >= index);
-            foreach (var s in stmPlys) {
+            
+            foreach (var s in stmPlys)
+            {
+
                 s.Index++;
+
             }*/
 
             //Insert the stream player.
@@ -4065,12 +4594,16 @@ namespace NitroStudio2
         /// Add a stream.
         /// </summary>
         /// <param name="index">Where to add the stream.</param>
-        public void AddStream(int index) {
+        public void AddStream(int index)
+        {
 
             //Make sure stream player exists.
-            if (SA.StreamPlayers.Count < 1) {
+            if (SA.StreamPlayers.Count < 1)
+            {
+                
                 MessageBox.Show("The must be at least one stream player in order to add a stream.");
                 return;
+
             }
 
             //Get the file.
@@ -4079,24 +4612,38 @@ namespace NitroStudio2
             o.Filter = "Supported Audio Files|*.wav;*.swav;*.strm";
             o.ShowDialog();
             NitroFileLoader.Stream s = new NitroFileLoader.Stream();
-            if (o.FileName != "") {
-                switch (Path.GetExtension(o.FileName)) {
+            
+            if (o.FileName != "")
+            {
+                
+                switch (Path.GetExtension(o.FileName))
+                {
+                    
                     case ".wav":
                         RiffWave r = new RiffWave();
                         r.Read(o.FileName);
                         s.FromOtherStreamFile(r);
                         break;
+                    
                     case ".swav":
                         Wave w = new Wave();
                         w.Read(o.FileName);
                         s.FromOtherStreamFile(w);
                         break;
+                    
                     case ".strm":
                         s.Read(o.FileName);
                         break;
+
                 }
-            } else {
+
+            }
+            
+            else
+            {
+                
                 return;
+
             }
 
             //Add the stream.
@@ -4106,12 +4653,21 @@ namespace NitroStudio2
             e.Player = SA.StreamPlayers[0];
             e.File = s;
             int nameIndex = index;
-            while (SA.Streams.Where(x => x.Name.Equals("STRM_" + nameIndex)).Count() > 0) {
+            
+            while (SA.Streams.Where(x => x.Name.Equals("STRM_" + nameIndex)).Count() > 0)
+            {
+               
                 e.Name = "STRM_" + nameIndex++;
+
             }
+            
             /*var stms = SA.Streams.Where(x => x.Index >= index);
-            foreach (var st in stms) {
+            
+            foreach (var st in stms)
+            {
+
                 st.Index++;
+
             }*/
 
             //Insert the stream.
@@ -4124,30 +4680,48 @@ namespace NitroStudio2
         /// </summary>
         /// <param name="b">Bank info.</param>
         /// <param name="d">DLS file.</param>
-        public void ReplaceBankWithDLS(BankInfo b, DownloadableSounds d) {
+        public void ReplaceBankWithDLS(BankInfo b, DownloadableSounds d)
+        {
 
             //Get instruments to import.
             List<RiffWave> wavSamples = new List<RiffWave>();
             List<int> instIds = new List<int>();
             List<string> instNames = new List<string>();
-            foreach (var i in d.Instruments) {
-                if (i.Regions.Count > 0) {
+           
+            foreach (var i in d.Instruments)
+            {
+               
+                if (i.Regions.Count > 0)
+                {
+                   
                     instIds.Add((int)(i.InstrumentId + i.BankId * 128));
                     instNames.Add(i.Name);
                     wavSamples.Add(d.Waves[(int)i.Regions[0].WaveId]);
+
                 }
+
             }
 
             //Get instruments.
             InstrumentSelector sel = new InstrumentSelector(wavSamples, instIds, instNames);
             sel.ShowDialog();
             instIds = sel.SelectedInstruments;
-            if (instIds == null) { return; }
+            
+            if (instIds == null)
+            {
+                
+                return;
+            
+            }
 
             //Add each instrument.
             List<GotaSoundBank.DLS.Instrument> insts = new List<GotaSoundBank.DLS.Instrument>();
-            foreach (var id in instIds) {
+            
+            foreach (var id in instIds)
+            {
+
                 insts.Add(d.Instruments.Where(x => x.InstrumentId == id % 128 && x.BankId == id / 128).FirstOrDefault());
+
             }
 
             //Get wave archives.
@@ -4155,30 +4729,55 @@ namespace NitroStudio2
             List<string> md5s = new List<string>();
             List<WaveArchiveInfo> wars = b.WaveArchives.Where(x => x != null).ToList();
             Dictionary<uint, int> otherWavId = new Dictionary<uint, int>();
-            foreach (var inst in insts) {
-                foreach (Region r in inst.Regions) {
+           
+            foreach (var inst in insts)
+            {
+                
+                foreach (Region r in inst.Regions)
+                {
+                   
                     var wav = d.Waves[(int)r.WaveId];
                     wav.Loops = r.Loops;
                     wav.LoopStart = r.LoopStart;
                     wav.LoopEnd = r.LoopLength == 0 ? (uint)wav.Audio.NumSamples : r.LoopStart + r.LoopLength;
                     string md5 = wav.Md5Sum;
-                    if (!md5s.Contains(md5)) {
+                    
+                    if (!md5s.Contains(md5))
+                    {
+                        
                         wavSamples.Add(wav);
                         md5s.Add(md5);
                         otherWavId.Add(r.WaveId, otherWavId.Count);
-                    } else if (!otherWavId.ContainsKey(r.WaveId)) {
-                        otherWavId.Add(r.WaveId, md5s.IndexOf(md5));
+
                     }
+                    
+                    else if (!otherWavId.ContainsKey(r.WaveId))
+                    {
+                      
+                        otherWavId.Add(r.WaveId, md5s.IndexOf(md5));
+
+                    }
+
                 }
+
             }
+
             WaveMapper wm = new WaveMapper(wavSamples, wars);
             wm.ShowDialog();
             var warMap = wm.WarMap;
-            if (warMap == null) { return; }
+            
+            if (warMap == null)
+            {
+                
+                return;
+            
+            }
 
             //Add waves.
             Dictionary<int, Tuple<ushort, ushort>> swavMap = new Dictionary<int, Tuple<ushort, ushort>>();
-            foreach (var w in wavSamples) {
+            
+            foreach (var w in wavSamples)
+            {
 
                 //Get wav.
                 Wave wav = new Wave();
@@ -4187,25 +4786,46 @@ namespace NitroStudio2
                 //Add wave.
                 var war = SA.WaveArchives.Where(x => x.Index == warMap[wavSamples.IndexOf(w)]).FirstOrDefault();
                 var md5 = wav.Md5Sum;
-                if (war.File.Waves.Where(x => x.Md5Sum.Equals(md5)).Count() < 1) {   
+                
+                if (war.File.Waves.Where(x => x.Md5Sum.Equals(md5)).Count() < 1)
+                {   
+                   
                     war.File.Waves.Add(wav);
+
                 }
+
                 swavMap.Add(wavSamples.IndexOf(w), new Tuple<ushort, ushort>((ushort)b.WaveArchives.ToList().IndexOf(war), (ushort)war.File.Waves.IndexOf(war.File.Waves.Where(x => x.Md5Sum.Equals(md5)).FirstOrDefault())));
 
             }
 
             //Add instruments.
             b.File.Instruments = new List<NitroFileLoader.Instrument>();
-            foreach (var inst in insts) {
+           
+            foreach (var inst in insts)
+            {
 
                 //Get instrument.
                 NitroFileLoader.Instrument i;
-                if (inst.Regions.Count < 2 && inst.Regions.Where(x => x.NoteLow == 0).Count() > 0) {
+                
+                if (inst.Regions.Count < 2 && inst.Regions.Where(x => x.NoteLow == 0).Count() > 0)
+                {
+                    
                     i = new DirectInstrument();
-                } else if (inst.Regions.Count < 9 && inst.Regions.Where(x => x.NoteLow == 0).Count() > 0) {
+
+                }
+                
+                else if (inst.Regions.Count < 9 && inst.Regions.Where(x => x.NoteLow == 0).Count() > 0)
+                {
+                    
                     i = new KeySplitInstrument();
-                } else {
+
+                }
+                
+                else
+                {
+                   
                     i = new DrumSetInstrument();
+
                 }
 
                 //Index.
@@ -4213,10 +4833,16 @@ namespace NitroStudio2
 
                 //Get regions.
                 var regions = inst.Regions.OrderBy(x => x.NoteLow).ToList();
-                if (regions[0].NoteLow != 0 && i as DrumSetInstrument != null) {
+               
+                if (regions[0].NoteLow != 0 && i as DrumSetInstrument != null)
+                {
+                   
                     (i as DrumSetInstrument).Min = (byte)regions[0].NoteLow;
+
                 }
-                foreach (var r in regions) {
+                
+                foreach (var r in regions)
+                {
 
                     //Note info.
                     NoteInfo n = new NoteInfo();
@@ -4235,30 +4861,65 @@ namespace NitroStudio2
                     n.Sustain = 127;
                     n.Release = 127;
                     n.Pan = 64;
-                    foreach (var a in r.Articulators) {
-                        foreach (var c in a.Connections) {
-                            if (c.DestinationConnection == DestinationConnection.EG1AttackTime) { 
-                                if (c.Scale != int.MinValue) {
+                    
+                    foreach (var a in r.Articulators)
+                    {
+                        
+                        foreach (var c in a.Connections)
+                        {
+                            
+                            if (c.DestinationConnection == DestinationConnection.EG1AttackTime)
+                            { 
+                                
+                                if (c.Scale != int.MinValue)
+                                {
+                                    
                                     n.Attack = Bank.GetNearestTableIndex(Bank.TimecentsToMilliseconds(c.Scale / 65536), Bank.AttackTable);
+
                                 }
+
                             }
-                            if (c.DestinationConnection == DestinationConnection.EG1DecayTime) {
-                                if (c.Scale != int.MinValue) {
+                            
+                            if (c.DestinationConnection == DestinationConnection.EG1DecayTime)
+                            {
+                                
+                                if (c.Scale != int.MinValue)
+                                {
+                                   
                                     n.Decay = Bank.GetNearestTableIndex(Bank.TimecentsToMilliseconds(c.Scale / 65536), Bank.MaxReleaseTimes);
+
                                 }
+
                             }
-                            if (c.DestinationConnection == DestinationConnection.EG1SustainLevel) {
+                            
+                            if (c.DestinationConnection == DestinationConnection.EG1SustainLevel)
+                            {
+                                
                                 n.Sustain = Bank.Fraction2Sustain((c.Scale / 65536) / 1000d);
+
                             }
-                            if (c.DestinationConnection == DestinationConnection.EG1ReleaseTime) {
-                                if (c.Scale != int.MinValue) {
+                            
+                            if (c.DestinationConnection == DestinationConnection.EG1ReleaseTime)
+                            {
+                                
+                                if (c.Scale != int.MinValue)
+                                {
+                                   
                                     n.Release= Bank.GetNearestTableIndex(Bank.TimecentsToMilliseconds(c.Scale / 65536), Bank.MaxReleaseTimes);
+
                                 }
+
                             }
-                            if (c.DestinationConnection == DestinationConnection.Pan) {
+                            
+                            if (c.DestinationConnection == DestinationConnection.Pan)
+                            {
+                               
                                 n.Pan = Bank.SetPan(c.Scale / 65536);
+
                             }
+
                         }
+
                     }
 
                     //Add note info.
@@ -4278,18 +4939,25 @@ namespace NitroStudio2
         /// </summary>
         /// <param name="b">Bank info.</param>
         /// <param name="s">SF2 file.</param>
-        public void ReplaceBankWithSoundFont(BankInfo b, SoundFont s) {
+        public void ReplaceBankWithSoundFont(BankInfo b, SoundFont s)
+        {
+           
             ReplaceBankWithDLS(b, new DownloadableSounds(s));
+
         }
 
         /// <summary>
         /// Import a file.
         /// </summary>
-        protected override void importFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void importFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+               
                 return;
+
             }
 
             //Open the file.
@@ -4297,20 +4965,28 @@ namespace NitroStudio2
             o.RestoreDirectory = true;
             o.Filter = "Sound Archive|*.sdat;*.dsxe|All Files|*.*";
 
-            if (o.ShowDialog() != DialogResult.OK) {
+            if (o.ShowDialog() != DialogResult.OK)
+            {
+                
                 return;
+
             }
+            
             string path = o.FileName;
             File = (IOFile)Activator.CreateInstance(FileType);
             File.Read(path);
 
         }
 
-        protected override void exportFileToolStripMenuItem_Click(object sender, EventArgs e) {
+        protected override void exportFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
             //File open test.
-            if (!FileTest(sender, e, false, true)) {
+            if (!FileTest(sender, e, false, true))
+            {
+                
                 return;
+
             }
 
             //Export.
@@ -4318,14 +4994,19 @@ namespace NitroStudio2
             s.RestoreDirectory = true;
             s.Filter = "Sound Archive|*.sdat;*.dsxe|All Files|*.*";
             s.OverwritePrompt = false;
-            if (s.ShowDialog() == DialogResult.OK) {
+           
+            if (s.ShowDialog() == DialogResult.OK)
+            {
+               
                 SA.Write(s.FileName);
+
             }
 
         }
 
         private void InitializeComponent()
         {
+            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.settingsPanel.SuspendLayout();
             this.indexPanel.SuspendLayout();

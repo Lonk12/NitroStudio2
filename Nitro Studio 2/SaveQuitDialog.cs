@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NitroStudio2 {
+namespace NitroStudio2
+{
+    
     public partial class SaveQuitDialog : Form
     {
 
@@ -9,8 +11,10 @@ namespace NitroStudio2 {
 
         public SaveQuitDialog(EditorBase parent2)
         {
+            
             InitializeComponent();
             parentTwo = parent2;
+
         }
 
         private void SaveQuitDialog_Load(object sender, EventArgs e)
@@ -20,23 +24,80 @@ namespace NitroStudio2 {
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            
             this.Close();
+
         }
 
         private void NoButton_Click(object sender, EventArgs e)
         {
-            try { parentTwo.Close(); } catch { }
+            
+            try
+            {
+                
+                parentTwo.Close();
+            
+            }
+            
+            catch
+            {
+            
+            }
+
         }
 
         private void YesButton_Click(object sender, EventArgs e)
         {
+            
             //Save application
-            //try { parent.save(); } catch { }
-            //try { parentTwo.save(); } catch { }
-            try { parentTwo.saveToolStripMenuItem_Click(sender, e); } catch { }
+          /*try
+            {
+            
+              parent.save();
+            
+            }
+            
+            catch
+            {
+            
+            }
+            
+            try
+            {
+            
+              parentTwo.save();
+            
+            }
+            
+            catch
+            {
+            
+            }*/
+            
+            try
+            {
+                
+                parentTwo.saveToolStripMenuItem_Click(sender, e);
+            
+            }
+            
+            catch
+            {
+            
+            }
 
             //Exit application
-            try { parentTwo.Close(); } catch { }
+            try
+            {
+                
+                parentTwo.Close();
+            
+            }
+            
+            catch
+            {
+            
+            }
 
         }
     }
