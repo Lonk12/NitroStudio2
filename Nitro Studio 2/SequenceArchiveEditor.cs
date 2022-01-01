@@ -1927,140 +1927,312 @@ namespace NitroStudio2
 
         }
 
-        private void Track3CheckChanged(object sender, EventArgs e) {
+        private void Track3CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track3Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track3Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track3Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[3] = !check;
+
         }
 
-        private void Track4CheckChanged(object sender, EventArgs e) {
+        private void Track4CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track4Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track4Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+               
                 track4Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[4] = !check;
+
         }
 
-        private void Track5CheckChanged(object sender, EventArgs e) {
+        private void Track5CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track5Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track5Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track5Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[5] = !check;
+
         }
 
-        private void Track6CheckChanged(object sender, EventArgs e) {
+        private void Track6CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track6Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track6Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+               
                 track6Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[6] = !check;
+
         }
 
-        private void Track7CheckChanged(object sender, EventArgs e) {
+        private void Track7CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track7Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track7Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track7Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+
             Mixer.Mutes[7] = !check;
+
         }
 
-        private void Track8CheckChanged(object sender, EventArgs e) {
+        private void Track8CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track8Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track8Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track8Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[8] = !check;
+
         }
 
-        private void Track9CheckChanged(object sender, EventArgs e) {
+        private void Track9CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track9Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track9Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track9Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+
             Mixer.Mutes[9] = !check;
+
         }
 
-        private void Track10CheckChanged(object sender, EventArgs e) {
+        private void Track10CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track10Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+               
                 track10Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track10Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[10] = !check;
+
         }
 
-        private void Track11CheckChanged(object sender, EventArgs e) {
+        private void Track11CheckChanged(object sender, EventArgs e)
+        {
+           
             bool check = track11Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track11Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track11Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+           
             Mixer.Mutes[11] = !check;
+
         }
 
-        private void Track12CheckChanged(object sender, EventArgs e) {
+        private void Track12CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track12Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track12Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track12Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[12] = !check;
+
         }
 
-        private void Track13CheckChanged(object sender, EventArgs e) {
+        private void Track13CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track13Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track13Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track13Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+            
             Mixer.Mutes[13] = !check;
+
         }
 
-        private void Track14CheckChanged(object sender, EventArgs e) {
+        private void Track14CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track14Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track14Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track14Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+
             Mixer.Mutes[14] = !check;
+
         }
 
-        private void Track15CheckChanged(object sender, EventArgs e) {
+        private void Track15CheckChanged(object sender, EventArgs e)
+        {
+            
             bool check = track15Box.Checked;
-            if (check) {
+            
+            if (check)
+            {
+                
                 track15Picture.BackgroundImage = Properties.Resources.Idle;
-            } else {
+
+            }
+            
+            else
+            {
+                
                 track15Picture.BackgroundImage = Properties.Resources.Mute;
+
             }
+
             Mixer.Mutes[15] = !check;
+
         }
 
-        private void Track0Solo(object sender, EventArgs e) {
+        private void Track0Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track0Box.Checked && !(track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track0Box.Checked && !(track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2077,7 +2249,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2094,14 +2271,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track1Solo(object sender, EventArgs e) {
+        private void Track1Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track1Box.Checked && !(track0Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track1Box.Checked && !(track0Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2118,7 +2299,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = true;
                 track2Box.Checked = false;
@@ -2135,14 +2321,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track2Solo(object sender, EventArgs e) {
+        private void Track2Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track2Box.Checked && !(track0Box.Checked || track1Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track2Box.Checked && !(track0Box.Checked || track1Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2159,7 +2349,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = true;
@@ -2176,14 +2371,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track3Solo(object sender, EventArgs e) {
+        private void Track3Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track3Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track3Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2200,7 +2399,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2217,14 +2421,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track4Solo(object sender, EventArgs e) {
+        private void Track4Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track4Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track4Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2241,7 +2449,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2258,14 +2471,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track5Solo(object sender, EventArgs e) {
+        private void Track5Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track5Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track5Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2282,7 +2499,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2299,14 +2521,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track6Solo(object sender, EventArgs e) {
+        private void Track6Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track6Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track6Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2323,7 +2549,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2340,14 +2571,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track7Solo(object sender, EventArgs e) {
+        private void Track7Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track7Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track7Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2364,7 +2599,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2381,14 +2621,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track8Solo(object sender, EventArgs e) {
+        private void Track8Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track8Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track8Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2405,7 +2649,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2422,14 +2671,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track9Solo(object sender, EventArgs e) {
+        private void Track9Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track9Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track9Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2446,7 +2699,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2463,14 +2721,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track10Solo(object sender, EventArgs e) {
+        private void Track10Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track10Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track10Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2487,7 +2749,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2504,14 +2771,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track11Solo(object sender, EventArgs e) {
+        private void Track11Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track11Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track11Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2528,7 +2799,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2545,14 +2821,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track12Solo(object sender, EventArgs e) {
+        private void Track12Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track12Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track12Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track13Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2569,7 +2849,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2586,14 +2871,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track13Solo(object sender, EventArgs e) {
+        private void Track13Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track13Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track14Box.Checked || track15Box.Checked)) {
+            if (track13Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track14Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2610,7 +2899,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2627,14 +2921,18 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = false;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track14Solo(object sender, EventArgs e) {
+        private void Track14Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track14Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track15Box.Checked)) {
+            if (track14Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track15Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2651,7 +2949,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2668,14 +2971,18 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = true;
                 track15Box.Checked = false;
+
             }
 
         }
 
-        private void Track15Solo(object sender, EventArgs e) {
+        private void Track15Solo(object sender, EventArgs e)
+        {
 
             //Already solo'd.
-            if (track15Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked)) {
+            if (track15Box.Checked && !(track0Box.Checked || track1Box.Checked || track2Box.Checked || track3Box.Checked || track4Box.Checked || track5Box.Checked || track6Box.Checked || track7Box.Checked || track8Box.Checked || track9Box.Checked || track10Box.Checked || track11Box.Checked || track12Box.Checked || track13Box.Checked || track14Box.Checked))
+            {
+
                 track0Box.Checked = true;
                 track1Box.Checked = true;
                 track2Box.Checked = true;
@@ -2692,7 +2999,12 @@ namespace NitroStudio2
                 track13Box.Checked = true;
                 track14Box.Checked = true;
                 track15Box.Checked = true;
-            } else {
+
+            }
+            
+            else
+            {
+
                 track0Box.Checked = false;
                 track1Box.Checked = false;
                 track2Box.Checked = false;
@@ -2709,6 +3021,7 @@ namespace NitroStudio2
                 track13Box.Checked = false;
                 track14Box.Checked = false;
                 track15Box.Checked = true;
+
             }
 
         }
@@ -2716,29 +3029,47 @@ namespace NitroStudio2
         /// <summary>
         /// Position tick.
         /// </summary>
-        public void PositionTick(object sender, EventArgs e) {
-            if (Player != null && PositionBarFree) {
+        public void PositionTick(object sender, EventArgs e)
+        {
+            
+            if (Player != null && PositionBarFree)
+            {
+               
                 kermalisPosition.Value = Player.GetCurrentPosition() > kermalisPosition.Maximum ? kermalisPosition.Maximum : (int)Player.GetCurrentPosition();
+
             }
+
         }
 
         /// <summary>
         /// Mouse down.
         /// </summary>
-        public void PositionMouseDown(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left) {
+        public void PositionMouseDown(object sender, MouseEventArgs e)
+        {
+            
+            if (e.Button == MouseButtons.Left)
+            {
+                
                 PositionBarFree = false;
+
             }
+
         }
 
         /// <summary>
         /// Mouse up.
         /// </summary>
-        public void PositionMouseUp(object sender, MouseEventArgs e) {
-            if (e.Button == MouseButtons.Left && Player != null && Player.Events != null) {
+        public void PositionMouseUp(object sender, MouseEventArgs e)
+        {
+            
+            if (e.Button == MouseButtons.Left && Player != null && Player.Events != null)
+            {
+                
                 Player.SetCurrentPosition(kermalisPosition.Value);
                 PositionBarFree = true;
+
             }
+
         }
 
     }
