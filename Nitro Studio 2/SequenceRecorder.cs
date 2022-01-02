@@ -11,8 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NitroStudio2 {
-    public partial class SequenceRecorder : Form {
+namespace NitroStudio2
+{
+
+    public partial class SequenceRecorder : Form
+    {
 
         /// <summary>
         /// Mixer.
@@ -46,7 +49,8 @@ namespace NitroStudio2 {
         /// <param name="wars">Wave archives.</param>
         /// <param name="commands">Sequence commands.</param>
         /// <param name="startIndex">Start index.</param>
-        public SequenceRecorder(PlayableBank[] banks, RiffWave[][] wars, List<SequenceCommand> commands, int startIndex, string filePath) {
+        public SequenceRecorder(PlayableBank[] banks, RiffWave[][] wars, List<SequenceCommand> commands, int startIndex, string filePath)
+        {
 
             //Init.
             InitializeComponent();
@@ -63,7 +67,8 @@ namespace NitroStudio2 {
         /// <summary>
         /// Record the sequence.
         /// </summary>
-        private void exportButton_Click(object sender, EventArgs e) {
+        private void exportButton_Click(object sender, EventArgs e)
+        {
 
             //Save.
             Player.LoadSong(commands, seqStart);
@@ -75,4 +80,5 @@ namespace NitroStudio2 {
         }
 
     }
+
 }
